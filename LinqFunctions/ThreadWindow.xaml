@@ -1,0 +1,48 @@
+﻿<Window x:Class="LinqFunctions.ThreadWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LinqFunctions"
+        mc:Ignorable="d"
+        Title="ThreadWindow" Height="250" Width="400">
+    <Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition>
+                </ColumnDefinition>
+                <ColumnDefinition>
+                </ColumnDefinition>
+                <ColumnDefinition>
+                </ColumnDefinition>
+                <ColumnDefinition>
+                </ColumnDefinition>
+                <ColumnDefinition Width="80">
+                </ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBox Name="tb_output" Grid.ColumnSpan="4" Margin="5"/>
+            <Button Name="btnProcess" Grid.Column="4" Margin="5" Content="Process" Click="btnProcess_Click"/>
+            <Button Name="btnThreadpool" Grid.Column="4" Grid.Row="1" Margin="5" Content="Thread Pool" Click="btnThreadpool_Click"/>
+            <Button Name="btnLock" Grid.Column="4" Grid.Row="2" Margin="5" Content="Lock" Click="btnLock_Click"  />
+            <Button Name="btnDelegateInvoke" Grid.Column="3" Grid.Row="3" Margin="5" Content="EndInvoke" Click="btnDelegateInvoke_Click" />
+            <Button Name="btnCallBack" Grid.Column="4" Grid.Row="3" Margin="5" Content="Callback" Click="btnCallBack_Click"/>
+            <Button Name="btnStartThread" Margin="5" Content="Start" Grid.Column="1" Grid.Row="1" Click="btnStartThread_Click"/>
+            <Button Name="btnEndThread" Margin="5" Content="Stop" Grid.Column="2" Grid.Row="1" Click="btnEndThread_Click"/>
+
+            <TextBlock Grid.Row="2" Text="Systems" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+            <TextBlock Grid.Row="2" Grid.Column="2" Text="Using" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+            <TextBox Grid.Row="2" Grid.Column="1" Name="tbProducts" Margin="5"/>
+            <TextBox Grid.Row="2" Grid.Column="3" Name="tbUsers" Margin="5"/>
+            <TextBox Name="tbManualWait" Grid.Column="0" Grid.Row="1" Margin="5" Text="1"/>
+        </Grid>
+    </Grid>
+</Window>
