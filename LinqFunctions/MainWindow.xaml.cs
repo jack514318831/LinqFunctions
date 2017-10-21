@@ -234,6 +234,10 @@ namespace LinqFunctions
             {
                 ArrayC();
             }
+            else if (cbstr.Equals("ArrayList"))
+            {
+                ArraylistFunc();
+            }
            
 
         }
@@ -293,6 +297,18 @@ namespace LinqFunctions
             {
                 MessageBox.Show(s.ToString());
             }       
+        }
+
+        private void ArraylistFunc()
+        {
+            ArrayList list = new ArrayList();
+            list.Add( new int[] { 31, 2, 34, 53, 1, 5 });
+
+            // ascending sort
+            list.Sort();
+
+            // Descending sort
+            list.Reverse();
         }
 
       
@@ -899,6 +915,7 @@ namespace LinqFunctions
             }
         }
 
+     
     }
 #endregion
 }

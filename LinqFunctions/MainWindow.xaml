@@ -43,11 +43,12 @@
                 <ComboBoxItem Content="String Format"/>
             </ComboBox>
             <TextBlock Grid.Column="1" Grid.Row="2" FontSize="16" VerticalAlignment="Center" Text="Linq to Array"></TextBlock>
-            <ComboBox Name="CB_Array" Grid.Column="2" Grid.Row="2" Margin="7" DropDownClosed="CB_Array_DropDownClosed" >
+            <ComboBox Name="CB_Array" Grid.Column="2" Grid.Row="2" Margin="7" DropDownClosed="CB_Array_DropDownClosed">
                 <ComboBoxItem Content="Let"/>
                 <ComboBoxItem Content="String Array"/>
                 <ComboBoxItem Content="Int Array" />
                 <ComboBoxItem Content="Type Of"/>
+                <ComboBoxItem Content="ArrayList"/>
             </ComboBox>
 
             <TextBlock Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" FontSize="16" Text="Lambda Exp."/>
