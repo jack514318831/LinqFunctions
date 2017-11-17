@@ -72,38 +72,38 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ClientForm.cs">
+    <Compile Include="Socket\ClientForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ClientForm.Designer.cs">
+    <Compile Include="Socket\ClientForm.Designer.cs">
       <DependentUpon>ClientForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="InfoTrans.xaml.cs">
+    <Compile Include="Communication\InfoTrans.xaml.cs">
       <DependentUpon>InfoTrans.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ISendmassege.cs" />
-    <Compile Include="Kind.xaml.cs">
+    <Compile Include="Communication\ISendmassege.cs" />
+    <Compile Include="Communication\Kind.xaml.cs">
       <DependentUpon>Kind.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MyEventHandler.cs" />
-    <Compile Include="SocketServer.cs">
+    <Compile Include="Communication\MyEventHandler.cs" />
+    <Compile Include="Socket\SocketServer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SocketServer.Designer.cs">
+    <Compile Include="Socket\SocketServer.Designer.cs">
       <DependentUpon>SocketServer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Storage.cs" />
-    <Compile Include="ThreadWindow.xaml.cs">
+    <Compile Include="ClassLibrery\Storage.cs" />
+    <Compile Include="Threading\ThreadWindow.xaml.cs">
       <DependentUpon>ThreadWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WPFFunctions.xaml.cs">
+    <Compile Include="WPFClass\WPFFunctions.xaml.cs">
       <DependentUpon>WPFFunctions.xaml</DependentUpon>
     </Compile>
-    <Page Include="InfoTrans.xaml">
+    <Page Include="Communication\InfoTrans.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Kind.xaml">
+    <Page Include="Communication\Kind.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -119,18 +119,18 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="ThreadWindow.xaml">
+    <Page Include="Threading\ThreadWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WPFFunctions.xaml">
+    <Page Include="WPFClass\WPFFunctions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ModelCountry.cs" />
-    <Compile Include="ModelEmployee.cs" />
+    <Compile Include="ClassLibrery\ModelCountry.cs" />
+    <Compile Include="ClassLibrery\ModelEmployee.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -144,14 +144,14 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="ClientForm.resx">
+    <EmbeddedResource Include="Socket\ClientForm.resx">
       <DependentUpon>ClientForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="SocketServer.resx">
+    <EmbeddedResource Include="Socket\SocketServer.resx">
       <DependentUpon>SocketServer.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
