@@ -33,10 +33,10 @@ namespace LinqFunctions
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
-#region LinqToXML
+        #region LinqToXML
         private void CB_XML_DropDownClosed(object sender, EventArgs e)
         {
             string CBstr = CB_XML.Text;
@@ -52,8 +52,8 @@ namespace LinqFunctions
                 {
                     ReadXML(open.FileName);
                 }
-                         
-                 MessageBox.Show("Fertig");
+
+                MessageBox.Show("Fertig");
             }
             else if (CBstr.Equals("XML to string"))
             {
@@ -106,12 +106,12 @@ namespace LinqFunctions
             List<ModelCountry> list = new List<ModelCountry>();
 
             var citylist = from country in xdoc.Descendants().Elements("country")
-                         from city in country.Elements("city")
-                         select new
-                         {
-                             countryname = country.Attribute("name").Value,
-                             cityname = city.Value
-                         };
+                           from city in country.Elements("city")
+                           select new
+                           {
+                               countryname = country.Attribute("name").Value,
+                               cityname = city.Value
+                           };
 
             foreach (var item in citylist)
             {
@@ -121,7 +121,7 @@ namespace LinqFunctions
         }
         #endregion
 
-#region StringAnalyse
+        #region StringAnalyse
         private void CB_String_DropDownClosed(object sender, EventArgs e)
         {
             string cbstr = CB_String.Text;
@@ -151,7 +151,7 @@ namespace LinqFunctions
         {
             DateTime date = DateTime.Now;
             //Culture Kurs Format
-            string result = string.Format(CultureInfo.CreateSpecificCulture("en-US"),"{0,-10}{1,10}{2,10:C1}", date, "OK",88.12);
+            string result = string.Format(CultureInfo.CreateSpecificCulture("en-US"), "{0,-10}{1,10}{2,10:C1}", date, "OK", 88.12);
             MessageBox.Show(result);
         }
 
@@ -163,12 +163,12 @@ namespace LinqFunctions
                          select word;
 
             DG_Data.ItemsSource = result;
-           
+
         }
 
         private void stringB()
         {
-            string input= "hi Hellow HI world hellow world world hi hi";
+            string input = "hi Hellow HI world hellow world world hi hi";
 
             var result = from word in input.Split(' ')
                          let w = word.ToLower()
@@ -214,7 +214,7 @@ namespace LinqFunctions
         }
         #endregion
 
-#region LinqToArray
+        #region LinqToArray
         private void CB_Array_DropDownClosed(object sender, EventArgs e)
         {
             string cbstr = CB_Array.Text;
@@ -238,7 +238,7 @@ namespace LinqFunctions
             {
                 ArraylistFunc();
             }
-           
+
 
         }
 
@@ -296,13 +296,13 @@ namespace LinqFunctions
             foreach (var s in result)
             {
                 MessageBox.Show(s.ToString());
-            }       
+            }
         }
 
         private void ArraylistFunc()
         {
             ArrayList list = new ArrayList();
-            list.Add( new int[] { 31, 2, 34, 53, 1, 5 });
+            list.Add(new int[] { 31, 2, 34, 53, 1, 5 });
 
             // ascending sort
             list.Sort();
@@ -311,10 +311,10 @@ namespace LinqFunctions
             list.Reverse();
         }
 
-      
-#endregion
 
-#region LambdaExp
+        #endregion
+
+        #region LambdaExp
         private void CB_Lambda_DropDownClosed(object sender, EventArgs e)
         {
             string cbstr = CB_Lambda.Text;
@@ -362,7 +362,7 @@ namespace LinqFunctions
             int[] source = new[] { 3, 8, 4, 6, 1, 7, 9, 2, 4, 8 };
             StringBuilder outstr = new StringBuilder();
 
-            var result = source.Where<int>((num)=>{
+            var result = source.Where<int>((num) => {
                 if (num <= 7 && num >= 3)
                 { return true; }
                 return false;
@@ -381,7 +381,7 @@ namespace LinqFunctions
             IList<ModelEmployee> elist = EmployeeListBuider.Buil();
 
             var result = elist.OrderByDescending(emp => emp.EmpployeeID).ThenBy<ModelEmployee, int>(emp => emp.Salary);
-           
+
             DG_Data.ItemsSource = result;
         }
 
@@ -441,9 +441,9 @@ namespace LinqFunctions
 
             MessageBox.Show(result);
         }
-#endregion
+        #endregion
 
-#region LinqToDataset
+        #region LinqToDataset
         private void CB_DataSet_DropDownClosed(object sender, EventArgs e)
         {
             string cbstr = CB_DataSet.Text;
@@ -510,11 +510,11 @@ namespace LinqFunctions
                          };
 
             DG_Data.ItemsSource = result;
-           
-        }
-#endregion
 
-#region LinqJoin
+        }
+        #endregion
+
+        #region LinqJoin
         private void CB_join_DropDownClosed(object sender, EventArgs e)
         {
             string cbstr = CB_join.Text;
@@ -564,9 +564,9 @@ namespace LinqFunctions
                              mark = m.Name,
                              storage = item.Name
                          };
-            
 
-            DG_Data.ItemsSource = result;                       
+
+            DG_Data.ItemsSource = result;
         }
 
         private void RightJoin()
@@ -611,11 +611,11 @@ namespace LinqFunctions
             }
 
             tb_output.Text = output.ToString();
-                         
-        }
- #endregion
 
-#region regularExp
+        }
+        #endregion
+
+        #region regularExp
         private void CB_Regex_DropDownClosed(object sender, EventArgs e)
         {
             string cbstr = CB_Regex.Text;
@@ -677,9 +677,9 @@ namespace LinqFunctions
             tb_output.Text = buider.ToString();
         }
 
-#endregion
+        #endregion
 
-#region Excel/Stream
+        #region Excel/Stream
         private void cb_excel_DropDownClosed(object sender, EventArgs e)
         {
             string cbstr = cb_excel.Text;
@@ -742,9 +742,9 @@ namespace LinqFunctions
                     cell.SetCellValue(c);
                 }
                 ICell cell2 = row.CreateCell(6);
-                cell2.SetCellFormula ("SUM(A"+(r+1).ToString()+":E"+(r+1).ToString()+")");
+                cell2.SetCellFormula("SUM(A" + (r + 1).ToString() + ":E" + (r + 1).ToString() + ")");
             }
-            
+
             FileStream fs = new FileStream(path, FileMode.Create, FileAccess.Write);
             wk.Write(fs);
             fs.Close();
@@ -763,7 +763,7 @@ namespace LinqFunctions
             {
                 str += sr.ReadLine();
             }
-            
+
             tb_output.Text = str;
         }
 
@@ -785,12 +785,12 @@ namespace LinqFunctions
                 sw.Write(str.ToCharArray());
                 sw.Flush();
             }
-          
+
         }
 
         #endregion
 
-#region sql
+        #region sql
 
         /// <summary>
         /// With Ado.Net Data Load 
@@ -818,7 +818,7 @@ namespace LinqFunctions
 
         }
 
-     
+
         private void SQLA()
         {
             string connstr = ConfigurationManager.ConnectionStrings["connstr"].ConnectionString;
@@ -914,8 +914,174 @@ namespace LinqFunctions
                 wf.ShowDialog();
             }
         }
+        #endregion
 
-     
+        #region Grundelage
+        private void cb_Grundlage_DropDownClosed(object sender, EventArgs e)
+        {
+            if (cb_Grundlage.Text.Equals("Access modifier"))
+            {
+                AccessModifier();
+            }
+            else if (cb_Grundlage.Text.Equals(""))
+            {
+              //   BaseThis();
+            }
+            else if(cb_Grundlage.Text.Equals("virtual method"))
+            {
+                VirtualMethod();
+            }
+            else if (cb_Grundlage.Text.Equals("Exception Handle"))
+            {
+                ExceptionHandler();
+            }
+        }
+
+        public void AccessModifier()
+        {
+           
+        }
+        
+        public class MyClass
+        {
+            //public
+            //protected internal
+            //protected
+            //internal
+            //private
+
+            // intern Class Access
+            private int num = 0;
+
+            // intern Sub Class auch Access
+            protected int num1 = 0;
+
+            // in dieselbem Programm
+            internal int num2 = 100;
+
+            // internal und protected beide access
+            protected internal int num3 =1000;
+
+            // anywhere access
+            public int num4 = 1000;
+        }
+
+        #region BaseThis
+        public class Father
+        {
+            public string Lastname { get; set; }
+            public int Age { get; set; }
+            public Father(string lastname, int age)
+            {
+                Lastname = lastname;
+                Age = age;
+            }
+        }
+
+        public class Son:Father
+        {
+            public Son(string lastname, int age):base(lastname, age)
+            {
+
+            }
+        }
+
+        #endregion
+
+        #region vitual method
+
+        private void VirtualMethod()
+        {
+            Person[] p = new Person[2];
+            p[0] = new Chinese();
+            p[1] = new American();
+
+            foreach(var ps in p)
+            {
+               tb_output.Text +=  ps.SayNationality();
+            }
+        }
+
+        public class Person
+        {
+            public virtual string SayNationality()
+            {
+                return "I come from..";
+            }
+        }
+
+        public class Chinese : Person
+        {
+            public override string SayNationality()
+            {
+                return "China";
+            }
+        }
+
+        public class American: Person
+        {
+            public override string SayNationality()
+            {
+                return "USA";
+            }
+        }
+
+        #endregion
+
+        #region AbstractClass
+        abstract class Animal
+        {
+            public string Name { get; set; }
+            public abstract void SayHi();
+        }
+
+        class Cat : Animal
+        {
+            public override void SayHi()
+            {
+                MessageBox.Show("Cat");
+            }
+        }
+
+        #endregion
+
+        #region TryParse
+        public int ParseTryParse(string numstr)
+        {
+            int result;
+            result = int.Parse(numstr);
+            if(!int.TryParse(numstr,out result))
+            {
+                MessageBox.Show("Fehler");
+            }
+            return result;
+        }
+
+        #endregion
+
+        #region Exception
+        private void ExceptionHandler()
+        {
+            int i = 1, j = 0;
+            try
+            {
+                int r = i / j;
+            }
+            catch (NullReferenceException ex)
+            { }
+            catch(DivideByZeroException ex)
+            { }
+            catch(ArgumentException ex)
+            { }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Source);
+                MessageBox.Show(ex.StackTrace);
+            }
+        }
+        #endregion
+        #endregion
     }
-#endregion
+
 }
