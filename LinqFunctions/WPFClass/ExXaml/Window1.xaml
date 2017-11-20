@@ -1,0 +1,3 @@
+﻿<DockPanel xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+<Button Content="hi hallo" Margin="60" Name="MyButton"/>
+</DockPanel>

@@ -33,6 +33,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>LinqFunctions.WPFClass.ExXaml.Programm1</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>..\..\NPOI 2.2.1 binary package\Release\Net40\ICSharpCode.SharpZipLib.dll</HintPath>
@@ -96,6 +99,12 @@
     <Compile Include="Threading\ThreadWindow.xaml.cs">
       <DependentUpon>ThreadWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WPFClass\CodeOnly\Programm.cs" />
+    <Compile Include="WPFClass\CodeOnly\Window1.cs" />
+    <Compile Include="WPFClass\ExXaml\Programm1.cs" />
+    <Compile Include="WPFClass\ExXaml\WindowMain.xaml.cs">
+      <DependentUpon>WindowMain.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WPFClass\WPFFunctions.xaml.cs">
       <DependentUpon>WPFFunctions.xaml</DependentUpon>
     </Compile>
@@ -120,6 +129,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Threading\ThreadWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPFClass\ExXaml\WindowMain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
