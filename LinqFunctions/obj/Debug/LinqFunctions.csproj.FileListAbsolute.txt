@@ -51,7 +51,6 @@ E:\Csharp\LinqFunctions\LinqFunctions\obj\Debug\LinqFunctions.pdb
 C:\Users\g.he\Documents\CSharp\Git\LinqFunctions\LinqFunctions\bin\Debug\LinqFunctions.exe.config
 C:\Users\g.he\Documents\CSharp\Git\LinqFunctions\LinqFunctions\bin\Debug\LinqFunctions.exe
 C:\Users\g.he\Documents\CSharp\Git\LinqFunctions\LinqFunctions\bin\Debug\LinqFunctions.pdb
-C:\Users\g.he\Documents\CSharp\Git\LinqFunctions\LinqFunctions\bin\Debug\NPOI.xml
 C:\Users\g.he\Documents\CSharp\Git\LinqFunctions\LinqFunctions\obj\Debug\LinqFunctions.csprojResolveAssemblyReference.cache
 C:\Users\g.he\Documents\CSharp\Git\LinqFunctions\LinqFunctions\obj\Debug\Communication\InfoTrans.g.cs
 C:\Users\g.he\Documents\CSharp\Git\LinqFunctions\LinqFunctions\obj\Debug\Communication\Kind.g.cs
@@ -99,3 +98,5 @@ E:\Csharp\Git\LinqFunctions\LinqFunctions\obj\Debug\LinqFunctions.exe
 E:\Csharp\Git\LinqFunctions\LinqFunctions\obj\Debug\LinqFunctions.pdb
 E:\Csharp\Git\LinqFunctions\LinqFunctions\obj\Debug\WPFClass\ExXaml\WindowMain.baml
 E:\Csharp\Git\LinqFunctions\LinqFunctions\obj\Debug\WPFClass\ExXaml\WindowMain.g.cs
+C:\Users\g.he\Documents\CSharp\Git\LinqFunctions\LinqFunctions\obj\Debug\WPFClass\ExXaml\WindowMain.baml
+C:\Users\g.he\Documents\CSharp\Git\LinqFunctions\LinqFunctions\obj\Debug\WPFClass\ExXaml\WindowMain.g.cs
