@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Users>
+ <user id ="001">
+   <name>jack</name>
+   <password>321</password>
+ </user>
+  <user id ="001">
+    <name>Gang</name>
+    <password>123</password>
+  </user>
+  <user id ="002">
+    <name>He</name>
+    <password>1234</password>
+  </user>
+</Users>
+ 

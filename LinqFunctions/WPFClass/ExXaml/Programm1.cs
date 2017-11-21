@@ -9,12 +9,12 @@ namespace LinqFunctions.WPFClass.ExXaml
 {
     class Programm1:Application
     {
-        [STAThread()]
-        static void Main()
-        {
-            Programm1 app = new Programm1();
-            app.MainWindow = new WindowMain(@"E:\Csharp\Git\LinqFunctions\LinqFunctions\WPFClass\ExXaml\Window1.xaml");
-            app.MainWindow.ShowDialog();
-        }
+        //[STAThread()]
+        //static void Main()
+        //{
+        //    Programm1 app = new Programm1();
+        //    app.MainWindow = new WindowMain(@"E:\Csharp\Git\LinqFunctions\LinqFunctions\WPFClass\ExXaml\Window1.xaml");
+        //    app.MainWindow.ShowDialog();
+        //}
     }
 }

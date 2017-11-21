@@ -1,0 +1,19 @@
+﻿<Window x:Class="LinqFunctions.WPFClass.MouseOverWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LinqFunctions.WPFClass"
+        mc:Ignorable="d"
+        Title="MouseOverWindow" Height="300" Width="300">
+    <Grid>
+        <StackPanel>
+            <Rectangle Name="rect" Height="180" Fill="LightBlue" MouseMove="Rectangle_MouseMove">
+            </Rectangle>
+            <Button Name="btn" Content="Click me" Click="btn_Click" MouseMove="btn_MouseMove"/>
+            <TextBox Name="tb_output" />
+            <Label Name="lb_quelle" Height="24" Background="YellowGreen" Content="Drag Me" MouseDown="lb_quelle_MouseDown"/>
+            <Label Name="lb_target" Height="24" Background="Orange" Content="Target" AllowDrop="True" Drop="lb_target_Drop" />
+        </StackPanel>
+    </Grid>
+</Window>

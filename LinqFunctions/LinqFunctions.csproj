@@ -34,7 +34,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>LinqFunctions.App</StartupObject>
+    <StartupObject>
+    </StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ICSharpCode.SharpZipLib">
@@ -105,8 +106,20 @@
     <Compile Include="WPFClass\ExXaml\WindowMain.xaml.cs">
       <DependentUpon>WindowMain.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WPFClass\Keydown.xaml.cs">
+      <DependentUpon>Keydown.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPFClass\MouseOverWindow.xaml.cs">
+      <DependentUpon>MouseOverWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WPFClass\WPFFunctions.xaml.cs">
       <DependentUpon>WPFFunctions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="XML\xmlUserLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XML\xmlUserLogin.Designer.cs">
+      <DependentUpon>xmlUserLogin.cs</DependentUpon>
     </Compile>
     <Page Include="Communication\InfoTrans.xaml">
       <SubType>Designer</SubType>
@@ -133,6 +146,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WPFClass\ExXaml\WindowMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPFClass\Keydown.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPFClass\MouseOverWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -167,6 +188,9 @@
     <EmbeddedResource Include="Socket\SocketServer.resx">
       <DependentUpon>SocketServer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="XML\xmlUserLogin.resx">
+      <DependentUpon>xmlUserLogin.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -174,6 +198,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="XML\UserXML.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

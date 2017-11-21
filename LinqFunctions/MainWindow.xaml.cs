@@ -17,6 +17,7 @@ using System.Threading;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Globalization;
+using LinqFunctions.XML;
 
 namespace LinqFunctions
 {
@@ -63,6 +64,11 @@ namespace LinqFunctions
                     XmlToString(open.FileName);
                 }
                 MessageBox.Show("Fertig");
+            }
+            else if (CBstr.Equals("UserFenster"))
+            {
+                xmlUserLogin xmlf = new xmlUserLogin();
+                xmlf.ShowDialog();
             }
         }
 
@@ -214,7 +220,7 @@ namespace LinqFunctions
         }
         #endregion
 
-        #region LinqToArray
+        #region Linq Grund
         private void CB_Array_DropDownClosed(object sender, EventArgs e)
         {
             string cbstr = CB_Array.Text;
@@ -237,6 +243,22 @@ namespace LinqFunctions
             else if (cbstr.Equals("ArrayList"))
             {
                 ArraylistFunc();
+            }
+            else if (cbstr.Equals("Innen Join"))
+            {
+                InnenJoin();
+            }
+            else if (cbstr.Equals("Links Join"))
+            {
+                LinksJoin();
+            }
+            else if (cbstr.Equals("Group Join"))
+            {
+                GroupJoin();
+            }
+            else if (cbstr.Equals("Right Join"))
+            {
+                RightJoin();
             }
 
 
@@ -309,6 +331,85 @@ namespace LinqFunctions
 
             // Descending sort
             list.Reverse();
+        }
+
+        private void InnenJoin()
+        {
+            StringBuilder output = new StringBuilder();
+            List<Storage> slist = Storage.Build();
+            List<Marke> mlist = Marke.Build();
+
+            var result = from s in slist
+                         join m in mlist on s.MarkeID equals m.MarkeID
+                         where m.Name.Equals("SMA")
+                         select s;
+
+            DG_Data.ItemsSource = result;
+        }
+
+        private void LinksJoin()
+        {
+            StringBuilder output = new StringBuilder();
+            List<Storage> slist = Storage.Build();
+            List<Marke> mlist = Marke.Build();
+
+            var result = from m in mlist
+                         join s in slist on m.MarkeID equals s.MarkeID into sgroup
+                         from item in sgroup.DefaultIfEmpty(new Storage(0, "", 0))
+                         select new
+                         {
+                             mark = m.Name,
+                             storage = item.Name
+                         };
+
+
+            DG_Data.ItemsSource = result;
+        }
+
+        private void RightJoin()
+        {
+            StringBuilder output = new StringBuilder();
+            List<Storage> slist = Storage.Build();
+            List<Marke> mlist = Marke.Build();
+
+            var result = from s in slist
+                         join m in mlist on s.MarkeID equals m.MarkeID into marks
+                         from item in marks.DefaultIfEmpty()
+                         select new
+                         {
+                             mark = item != null ? item.Name : "",
+                             storage = s.Name
+                         };
+
+
+            DG_Data.ItemsSource = result;
+        }
+
+        private void GroupJoin()
+        {
+            StringBuilder output = new StringBuilder();
+            List<Storage> slist = Storage.Build();
+            List<Marke> mlist = Marke.Build();
+
+            var result = from marke in mlist
+                         join storage in slist on marke.MarkeID equals storage.MarkeID into storages
+                         select new
+                         {
+                             MarkeName = marke.Name,
+                             Storages = storages
+                         };
+
+            foreach (var marke in result)
+            {
+                output.AppendLine().Append(marke.MarkeName);
+                foreach (var storage in marke.Storages)
+                {
+                    output.AppendLine().Append(" ").Append(storage.Name);
+                }
+            }
+
+            tb_output.Text = output.ToString();
+
         }
 
 
@@ -514,105 +615,22 @@ namespace LinqFunctions
         }
         #endregion
 
-        #region LinqJoin
-        private void CB_join_DropDownClosed(object sender, EventArgs e)
+        #region WPF
+        private void CB_wpf_DropDownClosed(object sender, EventArgs e)
         {
-            string cbstr = CB_join.Text;
-            if (cbstr.Equals("Innen Join"))
+           if(CB_wpf.Text.Equals("Keydown"))
             {
-                InnenJoin();
+                WPFClass.Keydown kf = new WPFClass.Keydown();
+                kf.ShowDialog();
             }
-            else if (cbstr.Equals("Links Join"))
+            else if(CB_wpf.Text.Equals("MouseOver"))
             {
-                LinksJoin();
-            }
-            else if (cbstr.Equals("Group Join"))
-            {
-                GroupJoin();
-            }
-            else if (cbstr.Equals("Right Join"))
-            {
-                RightJoin();
+                WPFClass.MouseOverWindow mf = new WPFClass.MouseOverWindow();
+                mf.ShowDialog();
             }
         }
 
-        private void InnenJoin()
-        {
-            StringBuilder output = new StringBuilder();
-            List<Storage> slist = Storage.Build();
-            List<Marke> mlist = Marke.Build();
-
-            var result = from s in slist
-                         join m in mlist on s.MarkeID equals m.MarkeID
-                         where m.Name.Equals("SMA")
-                         select s;
-
-            DG_Data.ItemsSource = result;
-        }
-
-        private void LinksJoin()
-        {
-            StringBuilder output = new StringBuilder();
-            List<Storage> slist = Storage.Build();
-            List<Marke> mlist = Marke.Build();
-
-            var result = from m in mlist
-                         join s in slist on m.MarkeID equals s.MarkeID into sgroup
-                         from item in sgroup.DefaultIfEmpty(new Storage(0, "", 0))
-                         select new
-                         {
-                             mark = m.Name,
-                             storage = item.Name
-                         };
-
-
-            DG_Data.ItemsSource = result;
-        }
-
-        private void RightJoin()
-        {
-            StringBuilder output = new StringBuilder();
-            List<Storage> slist = Storage.Build();
-            List<Marke> mlist = Marke.Build();
-
-            var result = from s in slist
-                         join m in mlist on s.MarkeID equals m.MarkeID into marks
-                         from item in marks.DefaultIfEmpty()
-                         select new
-                         {
-                             mark = item != null ? item.Name : "",
-                             storage = s.Name
-                         };
-
-
-            DG_Data.ItemsSource = result;
-        }
-
-        private void GroupJoin()
-        {
-            StringBuilder output = new StringBuilder();
-            List<Storage> slist = Storage.Build();
-            List<Marke> mlist = Marke.Build();
-
-            var result = from marke in mlist
-                         join storage in slist on marke.MarkeID equals storage.MarkeID into storages
-                         select new {
-                             MarkeName = marke.Name,
-                             Storages = storages
-                         };
-
-            foreach (var marke in result)
-            {
-                output.AppendLine().Append(marke.MarkeName);
-                foreach (var storage in marke.Storages)
-                {
-                    output.AppendLine().Append(" ").Append(storage.Name);
-                }
-            }
-
-            tb_output.Text = output.ToString();
-
-        }
+       
         #endregion
 
         #region regularExp
@@ -964,6 +982,17 @@ namespace LinqFunctions
 
             // anywhere access
             public int num4 = 1000;
+
+            //operator
+            public static bool operator ==(MainWindow.MyClass a, MainWindow.MyClass b)
+            {
+                if (a.num4 == b.num4)
+                { return true; }
+                return false;
+            }
+
+            public static bool operator !=(MyClass a, MyClass b)
+            { return false; }
         }
 
         #region BaseThis
@@ -1000,6 +1029,19 @@ namespace LinqFunctions
             {
                tb_output.Text +=  ps.SayNationality();
             }
+
+            // WeakReference
+            WeakReference wk = new WeakReference(p);
+            p = null;
+            
+            if(wk.IsAlive)
+            {
+                object obj = wk.Target;
+                if(obj !=null)
+                {
+                    Person p1 = obj as Person;
+                }
+            }   
         }
 
         public class Person
@@ -1081,7 +1123,10 @@ namespace LinqFunctions
             }
         }
         #endregion
+
         #endregion
+
+      
     }
 
 }
