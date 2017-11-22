@@ -95,5 +95,30 @@ namespace LinqFunctions.XML
                 tbEditPassword.Text = item.SubItems[2].Text; 
             }
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            XmlDocument document = new XmlDocument();
+            document.Load(@"C:/Users/g.he/Documents/CSharp/Git/LinqFunctions/LinqFunctions/XML/UserXML.xml");
+
+            if(listView1.SelectedItems.Count>0)
+            {
+                string id = listView1.SelectedItems[0].SubItems[0].Text;
+                XmlNode node= document.SelectSingleNode("/Users/user[@id='" + id + "']");
+                
+                if(node!=null)
+                {
+                    document.DocumentElement.RemoveChild(node);
+                    document.Save(@"C:/Users/g.he/Documents/CSharp/Git/LinqFunctions/LinqFunctions/XML/UserXML.xml");
+                    XMLLoad();
+                }
+            }
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            // XmlNode node = document.SelectSingleNode("/Users/user/name[.='"+nid+"']");
+            // node.NextSibling.InnerText;
+        }
     }
 }

@@ -45,16 +45,16 @@
             this.label6 = new System.Windows.Forms.Label();
             this.tbEditId = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnLogin = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.tbLoginPassword = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.tbLoginUsername = new System.Windows.Forms.TextBox();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnUsername = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnPassword = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -69,18 +69,18 @@
             this.groupBox1.Controls.Add(this.tbNewPassword);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.tbNewId);
-            this.groupBox1.Location = new System.Drawing.Point(48, 38);
+            this.groupBox1.Location = new System.Drawing.Point(48, 35);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(506, 148);
+            this.groupBox1.Size = new System.Drawing.Size(506, 137);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Add new user";
             // 
             // btnNew
             // 
-            this.btnNew.Location = new System.Drawing.Point(358, 94);
+            this.btnNew.Location = new System.Drawing.Point(358, 87);
             this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(75, 25);
+            this.btnNew.Size = new System.Drawing.Size(75, 23);
             this.btnNew.TabIndex = 6;
             this.btnNew.Text = "New";
             this.btnNew.UseVisualStyleBackColor = true;
@@ -89,49 +89,49 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(278, 36);
+            this.label3.Location = new System.Drawing.Point(278, 33);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(55, 13);
+            this.label3.Size = new System.Drawing.Size(53, 12);
             this.label3.TabIndex = 5;
             this.label3.Text = "Username";
             // 
             // tbNeuName
             // 
-            this.tbNeuName.Location = new System.Drawing.Point(342, 33);
+            this.tbNeuName.Location = new System.Drawing.Point(342, 30);
             this.tbNeuName.Name = "tbNeuName";
-            this.tbNeuName.Size = new System.Drawing.Size(100, 20);
+            this.tbNeuName.Size = new System.Drawing.Size(100, 21);
             this.tbNeuName.TabIndex = 4;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(30, 100);
+            this.label2.Location = new System.Drawing.Point(30, 92);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 13);
+            this.label2.Size = new System.Drawing.Size(53, 12);
             this.label2.TabIndex = 3;
             this.label2.Text = "Password";
             // 
             // tbNewPassword
             // 
-            this.tbNewPassword.Location = new System.Drawing.Point(94, 96);
+            this.tbNewPassword.Location = new System.Drawing.Point(94, 89);
             this.tbNewPassword.Name = "tbNewPassword";
-            this.tbNewPassword.Size = new System.Drawing.Size(100, 20);
+            this.tbNewPassword.Size = new System.Drawing.Size(100, 21);
             this.tbNewPassword.TabIndex = 2;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(30, 36);
+            this.label1.Location = new System.Drawing.Point(30, 33);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(18, 13);
+            this.label1.Size = new System.Drawing.Size(17, 12);
             this.label1.TabIndex = 1;
             this.label1.Text = "ID";
             // 
             // tbNewId
             // 
-            this.tbNewId.Location = new System.Drawing.Point(94, 33);
+            this.tbNewId.Location = new System.Drawing.Point(94, 30);
             this.tbNewId.Name = "tbNewId";
-            this.tbNewId.Size = new System.Drawing.Size(100, 20);
+            this.tbNewId.Size = new System.Drawing.Size(100, 21);
             this.tbNewId.TabIndex = 0;
             // 
             // groupBox2
@@ -143,18 +143,18 @@
             this.groupBox2.Controls.Add(this.tbEditPassword);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.tbEditId);
-            this.groupBox2.Location = new System.Drawing.Point(48, 347);
+            this.groupBox2.Location = new System.Drawing.Point(48, 320);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(506, 148);
+            this.groupBox2.Size = new System.Drawing.Size(506, 137);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Edit user";
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(361, 93);
+            this.button2.Location = new System.Drawing.Point(361, 86);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 25);
+            this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 13;
             this.button2.Text = "Edit";
             this.button2.UseVisualStyleBackColor = true;
@@ -162,105 +162,106 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(281, 35);
+            this.label4.Location = new System.Drawing.Point(281, 32);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(55, 13);
+            this.label4.Size = new System.Drawing.Size(53, 12);
             this.label4.TabIndex = 12;
             this.label4.Text = "Username";
             // 
             // tbEditUsername
             // 
-            this.tbEditUsername.Location = new System.Drawing.Point(345, 31);
+            this.tbEditUsername.Location = new System.Drawing.Point(345, 29);
             this.tbEditUsername.Name = "tbEditUsername";
-            this.tbEditUsername.Size = new System.Drawing.Size(100, 20);
+            this.tbEditUsername.Size = new System.Drawing.Size(100, 21);
             this.tbEditUsername.TabIndex = 11;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(33, 99);
+            this.label5.Location = new System.Drawing.Point(33, 91);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(53, 13);
+            this.label5.Size = new System.Drawing.Size(53, 12);
             this.label5.TabIndex = 10;
             this.label5.Text = "Password";
             // 
             // tbEditPassword
             // 
-            this.tbEditPassword.Location = new System.Drawing.Point(97, 95);
+            this.tbEditPassword.Location = new System.Drawing.Point(97, 88);
             this.tbEditPassword.Name = "tbEditPassword";
-            this.tbEditPassword.Size = new System.Drawing.Size(100, 20);
+            this.tbEditPassword.Size = new System.Drawing.Size(100, 21);
             this.tbEditPassword.TabIndex = 9;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(33, 35);
+            this.label6.Location = new System.Drawing.Point(33, 32);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(18, 13);
+            this.label6.Size = new System.Drawing.Size(17, 12);
             this.label6.TabIndex = 8;
             this.label6.Text = "ID";
             // 
             // tbEditId
             // 
-            this.tbEditId.Location = new System.Drawing.Point(97, 31);
+            this.tbEditId.Location = new System.Drawing.Point(97, 29);
             this.tbEditId.Name = "tbEditId";
-            this.tbEditId.Size = new System.Drawing.Size(100, 20);
+            this.tbEditId.Size = new System.Drawing.Size(100, 21);
             this.tbEditId.TabIndex = 7;
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.button4);
+            this.groupBox3.Controls.Add(this.btnLogin);
             this.groupBox3.Controls.Add(this.label7);
-            this.groupBox3.Controls.Add(this.textBox7);
+            this.groupBox3.Controls.Add(this.tbLoginPassword);
             this.groupBox3.Controls.Add(this.label8);
-            this.groupBox3.Controls.Add(this.textBox8);
-            this.groupBox3.Location = new System.Drawing.Point(596, 38);
+            this.groupBox3.Controls.Add(this.tbLoginUsername);
+            this.groupBox3.Location = new System.Drawing.Point(596, 35);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(215, 457);
+            this.groupBox3.Size = new System.Drawing.Size(215, 422);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "User Login";
             // 
-            // button4
+            // btnLogin
             // 
-            this.button4.Location = new System.Drawing.Point(117, 152);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 25);
-            this.button4.TabIndex = 8;
-            this.button4.Text = "Login";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnLogin.Location = new System.Drawing.Point(117, 140);
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Size = new System.Drawing.Size(75, 23);
+            this.btnLogin.TabIndex = 8;
+            this.btnLogin.Text = "Login";
+            this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(28, 100);
+            this.label7.Location = new System.Drawing.Point(28, 92);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(53, 13);
+            this.label7.Size = new System.Drawing.Size(53, 12);
             this.label7.TabIndex = 7;
             this.label7.Text = "Password";
             // 
-            // textBox7
+            // tbLoginPassword
             // 
-            this.textBox7.Location = new System.Drawing.Point(92, 96);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(100, 20);
-            this.textBox7.TabIndex = 6;
+            this.tbLoginPassword.Location = new System.Drawing.Point(92, 89);
+            this.tbLoginPassword.Name = "tbLoginPassword";
+            this.tbLoginPassword.Size = new System.Drawing.Size(100, 21);
+            this.tbLoginPassword.TabIndex = 6;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(28, 36);
+            this.label8.Location = new System.Drawing.Point(28, 33);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(18, 13);
+            this.label8.Size = new System.Drawing.Size(53, 12);
             this.label8.TabIndex = 5;
-            this.label8.Text = "ID";
+            this.label8.Text = "Username";
             // 
-            // textBox8
+            // tbLoginUsername
             // 
-            this.textBox8.Location = new System.Drawing.Point(92, 33);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(100, 20);
-            this.textBox8.TabIndex = 4;
+            this.tbLoginUsername.Location = new System.Drawing.Point(92, 30);
+            this.tbLoginUsername.Name = "tbLoginUsername";
+            this.tbLoginUsername.Size = new System.Drawing.Size(100, 21);
+            this.tbLoginUsername.TabIndex = 4;
             // 
             // listView1
             // 
@@ -269,10 +270,10 @@
             this.columnUsername,
             this.columnPassword});
             this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(48, 206);
+            this.listView1.Location = new System.Drawing.Point(48, 190);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(506, 116);
+            this.listView1.Size = new System.Drawing.Size(506, 107);
             this.listView1.TabIndex = 3;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -293,21 +294,22 @@
             this.columnPassword.Text = "Password";
             this.columnPassword.Width = 346;
             // 
-            // button3
+            // btnDelete
             // 
-            this.button3.Location = new System.Drawing.Point(409, 528);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 25);
-            this.button3.TabIndex = 14;
-            this.button3.Text = "Delete";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnDelete.Location = new System.Drawing.Point(409, 487);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.TabIndex = 14;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // xmlUserLogin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(844, 605);
-            this.Controls.Add(this.button3);
+            this.ClientSize = new System.Drawing.Size(844, 558);
+            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -348,11 +350,11 @@
         private System.Windows.Forms.TextBox tbEditPassword;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox tbEditId;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox tbLoginPassword;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox tbLoginUsername;
+        private System.Windows.Forms.Button btnDelete;
     }
 }

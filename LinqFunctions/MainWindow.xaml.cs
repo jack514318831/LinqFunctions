@@ -633,6 +633,11 @@ namespace LinqFunctions
                 WPFClass.ExXaml.WindowMain window = new WPFClass.ExXaml.WindowMain();
                 window.ShowDialog();
             }
+            else if(CB_wpf.Text.Equals("Content Element"))
+            {
+                WPFClass.ContentElement.Window1 window = new WPFClass.ContentElement.Window1();
+                window.ShowDialog();
+            }
         }
 
        

@@ -102,6 +102,9 @@
     </Compile>
     <Compile Include="WPFClass\CodeOnly\Programm.cs" />
     <Compile Include="WPFClass\CodeOnly\Window1.cs" />
+    <Compile Include="WPFClass\ContentElement\Window1.xaml.cs">
+      <DependentUpon>Window1.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WPFClass\ExXaml\Programm1.cs" />
     <Compile Include="WPFClass\ExXaml\WindowMain.xaml.cs">
       <DependentUpon>WindowMain.xaml</DependentUpon>
@@ -142,6 +145,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Threading\ThreadWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPFClass\ContentElement\Window1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,0 +1,59 @@
+﻿<Window x:Class="LinqFunctions.WPFClass.ContentElement.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Window1" Height="400" Width="300">
+    <Grid>
+        <StackPanel>
+            <!--isCancel:Esc is isDefault:enter-->
+            <Button IsCancel="True" IsDefault="True">
+                <Button.ToolTip>
+                    <ToolTip>
+                        <StackPanel>
+                            <TextBlock Text="Hallo"/>
+                        </StackPanel>
+                    </ToolTip>
+                </Button.ToolTip>
+                <StackPanel>
+                    <TextBlock>hallo</TextBlock>
+                    <TextBlock>aaa</TextBlock>
+                    <RadioButton Content="radio" GroupName="g1"/>
+                </StackPanel>
+            </Button>
+            <Label Target="{Binding ElementName=tb}">
+                choose _A
+            </Label>
+            <TextBox Name="tb"/>
+            <CheckBox Name="cb" Content="Check Box" IsChecked="{x:Null}" IsThreeState="True" />
+            <RadioButton Content="radia" GroupName="g1"/>
+            <ScrollViewer CanContentScroll="True" Height="70" Margin="5">
+                <StackPanel>
+                    <Button Content="btn1" Height="50" Margin="5"/>
+                    <Button Content="btn2" Height="50" Margin="5"/>
+                    <Button Content="btn3" Height="50" Margin="5"/>
+                </StackPanel>
+            </ScrollViewer>
+            <TabControl Height="70" Margin="4">
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel>
+                            <TextBlock Text="hallo"/>
+                            <TextBlock Text="aaa"/>
+                        </StackPanel>
+                    </TabItem.Header>
+                    <StackPanel>
+                        <CheckBox Content="aaa"/>
+                        <CheckBox Content="bbb"/>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="item2">
+                </TabItem>
+            </TabControl>
+            <TextBox Margin="5" Name="tbTest" SpellCheck.IsEnabled="True" Text="asodfjasodlfj jfaosdjfasdf  asodfjasodf asdfoasj dfo afksdkf" TextWrapping="Wrap" SelectionChanged="tbTest_SelectionChanged">
+            </TextBox>
+            <TextBlock Name="tblock" Height="30" Margin="5"/>
+        </StackPanel>
+    </Grid>
+</Window>
