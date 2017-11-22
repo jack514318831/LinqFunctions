@@ -31,19 +31,19 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnNew = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.tbNeuName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.tbNewPassword = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbNewId = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.tbEditUsername = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.tbEditPassword = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.tbEditId = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.button4 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
@@ -64,11 +64,11 @@
             // 
             this.groupBox1.Controls.Add(this.btnNew);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.textBox3);
+            this.groupBox1.Controls.Add(this.tbNeuName);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Controls.Add(this.tbNewPassword);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.tbNewId);
             this.groupBox1.Location = new System.Drawing.Point(48, 38);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(506, 148);
@@ -95,12 +95,12 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Username";
             // 
-            // textBox3
+            // tbNeuName
             // 
-            this.textBox3.Location = new System.Drawing.Point(342, 33);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 4;
+            this.tbNeuName.Location = new System.Drawing.Point(342, 33);
+            this.tbNeuName.Name = "tbNeuName";
+            this.tbNeuName.Size = new System.Drawing.Size(100, 20);
+            this.tbNeuName.TabIndex = 4;
             // 
             // label2
             // 
@@ -111,12 +111,12 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Password";
             // 
-            // textBox2
+            // tbNewPassword
             // 
-            this.textBox2.Location = new System.Drawing.Point(94, 96);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 2;
+            this.tbNewPassword.Location = new System.Drawing.Point(94, 96);
+            this.tbNewPassword.Name = "tbNewPassword";
+            this.tbNewPassword.Size = new System.Drawing.Size(100, 20);
+            this.tbNewPassword.TabIndex = 2;
             // 
             // label1
             // 
@@ -127,22 +127,22 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "ID";
             // 
-            // textBox1
+            // tbNewId
             // 
-            this.textBox1.Location = new System.Drawing.Point(94, 33);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 0;
+            this.tbNewId.Location = new System.Drawing.Point(94, 33);
+            this.tbNewId.Name = "tbNewId";
+            this.tbNewId.Size = new System.Drawing.Size(100, 20);
+            this.tbNewId.TabIndex = 0;
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.button2);
             this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.textBox4);
+            this.groupBox2.Controls.Add(this.tbEditUsername);
             this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.textBox5);
+            this.groupBox2.Controls.Add(this.tbEditPassword);
             this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.textBox6);
+            this.groupBox2.Controls.Add(this.tbEditId);
             this.groupBox2.Location = new System.Drawing.Point(48, 347);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(506, 148);
@@ -168,12 +168,12 @@
             this.label4.TabIndex = 12;
             this.label4.Text = "Username";
             // 
-            // textBox4
+            // tbEditUsername
             // 
-            this.textBox4.Location = new System.Drawing.Point(345, 31);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 11;
+            this.tbEditUsername.Location = new System.Drawing.Point(345, 31);
+            this.tbEditUsername.Name = "tbEditUsername";
+            this.tbEditUsername.Size = new System.Drawing.Size(100, 20);
+            this.tbEditUsername.TabIndex = 11;
             // 
             // label5
             // 
@@ -184,12 +184,12 @@
             this.label5.TabIndex = 10;
             this.label5.Text = "Password";
             // 
-            // textBox5
+            // tbEditPassword
             // 
-            this.textBox5.Location = new System.Drawing.Point(97, 95);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(100, 20);
-            this.textBox5.TabIndex = 9;
+            this.tbEditPassword.Location = new System.Drawing.Point(97, 95);
+            this.tbEditPassword.Name = "tbEditPassword";
+            this.tbEditPassword.Size = new System.Drawing.Size(100, 20);
+            this.tbEditPassword.TabIndex = 9;
             // 
             // label6
             // 
@@ -200,12 +200,12 @@
             this.label6.TabIndex = 8;
             this.label6.Text = "ID";
             // 
-            // textBox6
+            // tbEditId
             // 
-            this.textBox6.Location = new System.Drawing.Point(97, 31);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(100, 20);
-            this.textBox6.TabIndex = 7;
+            this.tbEditId.Location = new System.Drawing.Point(97, 31);
+            this.tbEditId.Name = "tbEditId";
+            this.tbEditId.Size = new System.Drawing.Size(100, 20);
+            this.tbEditId.TabIndex = 7;
             // 
             // groupBox3
             // 
@@ -276,6 +276,7 @@
             this.listView1.TabIndex = 3;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // columnID
             // 
@@ -328,7 +329,7 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbNewId;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.ListView listView1;
@@ -337,16 +338,16 @@
         private System.Windows.Forms.ColumnHeader columnPassword;
         private System.Windows.Forms.Button btnNew;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox tbNeuName;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox tbNewPassword;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox tbEditUsername;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox tbEditPassword;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox tbEditId;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox textBox7;

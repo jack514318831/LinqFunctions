@@ -1,16 +1,23 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Users>
- <user id ="001">
-   <name>jack</name>
-   <password>321</password>
- </user>
-  <user id ="002">
+  <user id="001">
+    <name>jack</name>
+    <password>321</password>
+  </user>
+  <user id="002">
     <name>Gang</name>
     <password>123</password>
   </user>
-  <user id ="003">
+  <user id="003">
     <name>He</name>
     <password>1234</password>
   </user>
+  <user id="004">
+    <name>GangHe</name>
+    <password>12345</password>
+  </user>
+  <user id="005">
+    <name>aaa</name>
+    <password>bbb</password>
+  </user>
 </Users>
- 
