@@ -32,11 +32,6 @@ namespace LinqFunctions
 
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         #region LinqToXML
         private void CB_XML_DropDownClosed(object sender, EventArgs e)
         {
@@ -627,6 +622,16 @@ namespace LinqFunctions
             {
                 WPFClass.MouseOverWindow mf = new WPFClass.MouseOverWindow();
                 mf.ShowDialog();
+            }
+            else if(CB_wpf.Text.Equals("CodeOnly"))
+            {
+                WPFClass.CodeOnly.Window1 window = new WPFClass.CodeOnly.Window1();
+                window.ShowDialog();
+            }
+            else if(CB_wpf.Text.Equals("Ex XAML"))
+            {
+                WPFClass.ExXaml.WindowMain window = new WPFClass.ExXaml.WindowMain();
+                window.ShowDialog();
             }
         }
 

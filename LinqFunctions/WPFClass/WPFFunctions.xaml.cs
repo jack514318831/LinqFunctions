@@ -83,8 +83,6 @@ namespace LinqFunctions
         {
            Color c = Color.FromRgb(25, 125, 25);
            SolidColorBrush scb = new SolidColorBrush(c);
-           
-
         }
 
      

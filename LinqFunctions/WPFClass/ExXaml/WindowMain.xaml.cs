@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.IO;
 using System.Windows.Markup;
+using Microsoft.Win32;
 
 namespace LinqFunctions.WPFClass.ExXaml
 {
@@ -23,23 +24,27 @@ namespace LinqFunctions.WPFClass.ExXaml
     {
         public WindowMain()
         {
-            InitializeComponent();
+            InitializeComponent1();
         }
 
-        private Button MyButton;
-        public WindowMain(string str)
+        private Button button1;
+        private void InitializeComponent1()
         {
-            this.Width = this.Height = 300;
-            this.Top = this.Left = 100;
-            this.Title = "Extretion";
+            this.Width = this.Height = this.Top = this.Left = 300;
+            this.Title = "Ex Code";
+
+            OpenFileDialog open = new OpenFileDialog();
+            if (open.ShowDialog() == false)
+            { return; }
 
             DependencyObject rootObject = new DependencyObject();
-            using (FileStream fs = new FileStream(str, FileMode.Open))
+
+            using (FileStream fs = new FileStream(open.FileName, FileMode.Open))
             {
                 rootObject = (DependencyObject) XamlReader.Load(fs);
             }
 
-            MyButton = LogicalTreeHelper.FindLogicalNode(rootObject, "MyButton") as Button;
+            button1 = (Button) LogicalTreeHelper.FindLogicalNode(rootObject, "MyButton");
 
             this.Content = rootObject;
         }

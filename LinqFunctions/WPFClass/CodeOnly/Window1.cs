@@ -15,34 +15,60 @@ namespace LinqFunctions.WPFClass.CodeOnly
         {
             InitializeComponent();
         }
-
         private Button button1;
         private void InitializeComponent()
         {
-            this.Width = 250;
-            this.Height = 200;
-            this.Left= this.Top = 100;
+            this.Width = this.Height = this.Top = this.Left = 300;
             this.Title = "Code Only";
 
             DockPanel dockpanel = new DockPanel();
 
             button1 = new Button();
             button1.Content = "Click Me";
-            button1.Margin = new Thickness(10);
-            button1.Click += button1_Click; 
+            button1.Margin = new Thickness(60);
+            button1.Click += button1_Click;
 
-            IAddChild container = dockpanel;
-            container.AddChild(button1);
-
-            container = this;
+            IAddChild container = this;
             container.AddChild(dockpanel);
-
-
+            container = dockpanel;
+            container.AddChild(button1);
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            button1.Content = "Hallo";
+            button1.Content="AAA";
         }
+       
+
+        #region Solution
+        //private Button button1;
+        //private void InitializeComponent()
+        //{
+        //    this.Width = 250;
+        //    this.Height = 200;
+        //    this.Left = this.Top = 100;
+        //    this.Title = "Code Only";
+
+        //    DockPanel dockpanel = new DockPanel();
+
+        //    button1 = new Button();
+        //    button1.Content = "Click Me";
+        //    button1.Margin = new Thickness(10);
+        //    button1.Click += button1_Click;
+
+        //    IAddChild container = dockpanel;
+        //    container.AddChild(button1);
+
+        //    container = this;
+        //    container.AddChild(dockpanel);
+
+
+        //}
+
+        //private void button1_Click(object sender, RoutedEventArgs e)
+        //{
+        //    button1.Content = "Hallo";
+        //} 
+        #endregion
     }
 }

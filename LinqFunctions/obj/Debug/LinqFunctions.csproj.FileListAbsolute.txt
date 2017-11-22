@@ -105,3 +105,8 @@ E:\Csharp\Git\LinqFunctions\LinqFunctions\obj\Debug\WPFClass\Keydown.baml
 E:\Csharp\Git\LinqFunctions\LinqFunctions\obj\Debug\WPFClass\MouseOverWindow.g.cs
 E:\Csharp\Git\LinqFunctions\LinqFunctions\obj\Debug\WPFClass\MouseOverWindow.baml
 E:\Csharp\Git\LinqFunctions\LinqFunctions\obj\Debug\LinqFunctions.XML.xmlUserLogin.resources
+C:\Users\g.he\Documents\CSharp\Git\LinqFunctions\LinqFunctions\obj\Debug\WPFClass\Keydown.g.cs
+C:\Users\g.he\Documents\CSharp\Git\LinqFunctions\LinqFunctions\obj\Debug\WPFClass\MouseOverWindow.g.cs
+C:\Users\g.he\Documents\CSharp\Git\LinqFunctions\LinqFunctions\obj\Debug\WPFClass\Keydown.baml
+C:\Users\g.he\Documents\CSharp\Git\LinqFunctions\LinqFunctions\obj\Debug\WPFClass\MouseOverWindow.baml
+C:\Users\g.he\Documents\CSharp\Git\LinqFunctions\LinqFunctions\obj\Debug\LinqFunctions.XML.xmlUserLogin.resources

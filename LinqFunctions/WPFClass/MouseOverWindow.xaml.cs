@@ -26,31 +26,50 @@ namespace LinqFunctions.WPFClass
 
         private void Rectangle_MouseMove(object sender, MouseEventArgs e)
         {
+            //Mouse over Show Point
+            #region Solution
+            //Point pt = e.GetPosition(this);
+            //tb_output.Text = string.Format("X:{0}  Y:{1}",pt.X, pt.Y); 
+            #endregion
             Point pt = e.GetPosition(this);
-            tb_output.Text = string.Format("X:{0}  Y:{1}",pt.X, pt.Y);
+            tb_output.Text = string.Format("X:{0}  Y:{1}", pt.X,pt.Y);
         }
 
-        //Mouse Capture
         private void btn_Click(object sender, RoutedEventArgs e)
         {
+            //Mouse captured by a element
+            #region Solution
+            //Mouse.Capture(rect);
+            //btn.Content = "Mouse Captured"; 
+            #endregion
             Mouse.Capture(rect);
-            btn.Content = "Mouse Captured";
+            btn.Content = "Captured";
         }
 
         private void lb_quelle_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Label lb = (Label)sender;
+            #region Solution
+            //    Label lb = (Label)sender;
+            //    DragDrop.DoDragDrop(lb, lb.Content, DragDropEffects.Copy); 
+            #endregion
+            Label lb = sender as Label;
             DragDrop.DoDragDrop(lb, lb.Content, DragDropEffects.Copy);
         }
 
         private void lb_target_Drop(object sender, DragEventArgs e)
         {
+            #region Solution
+            //lb_target.Content = e.Data.GetData(DataFormats.Text); 
+            #endregion
             lb_target.Content = e.Data.GetData(DataFormats.Text);
         }
 
         private void btn_MouseMove(object sender, MouseEventArgs e)
         {
-            btn.Background = new SolidColorBrush(Color.FromRgb(123, 53, 82));
+            #region Solution
+            //btn.Background = new SolidColorBrush(Color.FromRgb(123, 53, 82)); 
+            #endregion
+            btn.Background = new SolidColorBrush(Color.FromRgb(192, 132, 161));
         }
     }
 }
