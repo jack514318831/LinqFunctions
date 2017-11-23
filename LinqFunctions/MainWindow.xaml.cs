@@ -613,34 +613,34 @@ namespace LinqFunctions
         #region WPF
         private void CB_wpf_DropDownClosed(object sender, EventArgs e)
         {
-           if(CB_wpf.Text.Equals("Keydown"))
+            if (CB_wpf.Text.Equals("Keydown"))
             {
                 WPFClass.Keydown kf = new WPFClass.Keydown();
                 kf.ShowDialog();
             }
-            else if(CB_wpf.Text.Equals("MouseOver"))
+            else if (CB_wpf.Text.Equals("MouseOver"))
             {
                 WPFClass.MouseOverWindow mf = new WPFClass.MouseOverWindow();
                 mf.ShowDialog();
             }
-            else if(CB_wpf.Text.Equals("CodeOnly"))
+            else if (CB_wpf.Text.Equals("CodeOnly"))
             {
                 WPFClass.CodeOnly.Window1 window = new WPFClass.CodeOnly.Window1();
                 window.ShowDialog();
             }
-            else if(CB_wpf.Text.Equals("Ex XAML"))
+            else if (CB_wpf.Text.Equals("Ex XAML"))
             {
                 WPFClass.ExXaml.WindowMain window = new WPFClass.ExXaml.WindowMain();
                 window.ShowDialog();
             }
-            else if(CB_wpf.Text.Equals("Content Element"))
+            else if (CB_wpf.Text.Equals("Content Element"))
             {
                 WPFClass.ContentElement.Window1 window = new WPFClass.ContentElement.Window1();
                 window.ShowDialog();
             }
         }
 
-       
+
         #endregion
 
         #region regularExp
@@ -953,9 +953,9 @@ namespace LinqFunctions
             }
             else if (cb_Grundlage.Text.Equals(""))
             {
-              //   BaseThis();
+                //   BaseThis();
             }
-            else if(cb_Grundlage.Text.Equals("virtual method"))
+            else if (cb_Grundlage.Text.Equals("virtual method"))
             {
                 VirtualMethod();
             }
@@ -963,13 +963,17 @@ namespace LinqFunctions
             {
                 ExceptionHandler();
             }
+            else if (cb_Grundlage.Text.Equals("Klasse Sort"))
+            {
+                KlasseSort();
+            }
         }
 
         public void AccessModifier()
         {
-           
+
         }
-        
+
         public class MyClass
         {
             //public
@@ -988,40 +992,102 @@ namespace LinqFunctions
             internal int num2 = 100;
 
             // internal und protected beide access
-            protected internal int num3 =1000;
+            protected internal int num3 = 1000;
 
             // anywhere access
             public int num4 = 1000;
 
             //operator
-            public static bool operator ==(MainWindow.MyClass a, MainWindow.MyClass b)
+            #region Operator
+            //public static bool operator ==(MainWindow.MyClass a, MainWindow.MyClass b)
+            //{
+            //    if (a.num4 == b.num4)
+            //    { return true; }
+            //    return false;
+            //}
+
+            //public static bool operator !=(MyClass a, MyClass b)
+            //{ return false; } 
+            #endregion
+            public static bool operator ==(MyClass a, MyClass b)
             {
                 if (a.num4 == b.num4)
                 { return true; }
                 return false;
             }
-
             public static bool operator !=(MyClass a, MyClass b)
-            { return false; }
+            {
+                return false;
+            }
         }
 
         #region BaseThis
         public class Father
         {
-            public string Lastname { get; set; }
+            public string Nachname { get; set; }
             public int Age { get; set; }
-            public Father(string lastname, int age)
+            public Father(string n, int a)
             {
-                Lastname = lastname;
-                Age = age;
+                Nachname = n;
+                Age = a;
             }
         }
 
-        public class Son:Father
+        public class Son : Father
         {
-            public Son(string lastname, int age):base(lastname, age)
-            {
+            public Son(string n, int a) : base(n, a)
+            { }
+        }
 
+        #endregion
+
+        #region Sort Compare
+
+        public void KlasseSort()
+        {
+            ArrayList list = new ArrayList();
+            list.Add(new Klasse("aaa", 30));
+            list.Add(new Klasse("ccc", 20));
+            list.Add(new Klasse("bbb", 10));
+            list.Sort();
+            foreach (Klasse k in list)
+            {
+                tb_input.Text += k.Name;
+            }
+
+            tb_input.Text += "/r/n";
+            IComparer comparer = new KlassComparer();
+            list.Sort(comparer);
+
+            foreach (Klasse k in list)
+            {
+                tb_input.Text += k.Name;
+            }
+        }
+
+        //1. Mit IComparable
+        public class Klasse : IComparable
+        {
+            public string Name { get; set; }
+            public int Con { get; set; }
+            public Klasse(string n, int c)
+            {
+                Name = n;
+                Con = c;
+            }
+
+            public int CompareTo(object obj)
+            {
+                return this.Con - ((Klasse)obj).Con;
+            }
+        }
+
+        //2. Mit IComparer
+        public class KlassComparer : IComparer
+        {
+            public int Compare(object x, object y)
+            {
+                return (x as Klasse).Name[0] - (y as Klasse).Name[0];
             }
         }
 
@@ -1135,7 +1201,6 @@ namespace LinqFunctions
         #endregion
 
         #endregion
-
       
     }
 

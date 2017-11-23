@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LinqFunctions"
         mc:Ignorable="d"
-        Title="MainWindow" Height="480" Width="620">
+        Title="Main Window" Height="480" Width="620">
     <Grid>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -106,6 +106,7 @@
             <ComboBox Name="cb_Grundlage" Grid.Column="2" Grid.Row="9" Margin="7" DropDownClosed="cb_Grundlage_DropDownClosed">
                 <ComboBoxItem Content="Access modifier"/>
                 <ComboBoxItem Content="virtual method"/>
+                <ComboBoxItem Content="Klasse Sort"/>
             </ComboBox>
             <TextBlock Text="Anothers" Grid.Column="1" Grid.Row="10" VerticalAlignment="Center" FontSize="16"/>
             <ComboBox Name="cb_anorders" Grid.Column="2" Grid.Row="10" Margin="7" DropDownClosed="cb_anorders_DropDownClosed">

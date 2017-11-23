@@ -8,7 +8,7 @@
     <Grid>
         <StackPanel>
             <!--isCancel:Esc is isDefault:enter-->
-            <Button IsCancel="True" IsDefault="True">
+            <!--<Button IsCancel="True" IsDefault="True">
                 <Button.ToolTip>
                     <ToolTip>
                         <StackPanel>
@@ -21,12 +21,30 @@
                     <TextBlock>aaa</TextBlock>
                     <RadioButton Content="radio" GroupName="g1"/>
                 </StackPanel>
+            </Button>-->
+            <Button IsCancel="True" IsDefault="True">
+                <Button.ToolTip>
+                    <ToolTip>
+                        <StackPanel>
+                            <TextBlock Text="aaa"/>
+                            <TextBlock Text="bbb"/>
+                        </StackPanel>
+                    </ToolTip>
+                </Button.ToolTip>
+                <StackPanel>
+                    <TextBlock Text="aaa"/>
+                    <TextBlock Text="bbb"/>
+                    <RadioButton GroupName="g1" Content="ccc"/>
+                </StackPanel>
             </Button>
+            <!--<Label Target="{Binding ElementName=tb}">
+                choose _A
+            </Label>-->
             <Label Target="{Binding ElementName=tb}">
                 choose _A
             </Label>
             <TextBox Name="tb"/>
-            <CheckBox Name="cb" Content="Check Box" IsChecked="{x:Null}" IsThreeState="True" />
+            <CheckBox Content="CheckBox" IsChecked="{x:Null}" IsThreeState="True"/>
             <RadioButton Content="radia" GroupName="g1"/>
             <ScrollViewer CanContentScroll="True" Height="70" Margin="5">
                 <StackPanel>
@@ -36,7 +54,7 @@
                 </StackPanel>
             </ScrollViewer>
             <TabControl Height="70" Margin="4">
-                <TabItem>
+                <!--<TabItem>
                     <TabItem.Header>
                         <StackPanel>
                             <TextBlock Text="hallo"/>
@@ -47,11 +65,23 @@
                         <CheckBox Content="aaa"/>
                         <CheckBox Content="bbb"/>
                     </StackPanel>
+                </TabItem>-->
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel>
+                            <TextBlock Text="aaa"/>
+                            <TextBlock Text="bbb"/>
+                        </StackPanel>
+                    </TabItem.Header>
+                    <StackPanel>
+                        <TextBlock Text="aaa"/>
+                        <TextBlock Text="bbb"/>
+                    </StackPanel>
                 </TabItem>
                 <TabItem Header="item2">
                 </TabItem>
             </TabControl>
-            <TextBox Margin="5" Name="tbTest" SpellCheck.IsEnabled="True" Text="asodfjasodlfj jfaosdjfasdf  asodfjasodf asdfoasj dfo afksdkf" TextWrapping="Wrap" SelectionChanged="tbTest_SelectionChanged">
+            <TextBox Margin="5" Name="tbTest" SpellCheck.IsEnabled="True" Text="Photovoltaik Deutschland hat sich etwas vergrößern, auch in verschiedene Bundesländern" TextWrapping="Wrap" SelectionChanged="tbTest_SelectionChanged">
             </TextBox>
             <TextBlock Name="tblock" Height="30" Margin="5"/>
         </StackPanel>

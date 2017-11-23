@@ -31,22 +31,44 @@ namespace LinqFunctions.WPFClass.ExXaml
         private void InitializeComponent1()
         {
             this.Width = this.Height = this.Top = this.Left = 300;
-            this.Title = "Ex Code";
-
-            OpenFileDialog open = new OpenFileDialog();
-            if (open.ShowDialog() == false)
-            { return; }
+            this.Title = "ex fenster";
 
             DependencyObject rootObject = new DependencyObject();
+            OpenFileDialog open = new OpenFileDialog();
+            open.ShowDialog();
 
             using (FileStream fs = new FileStream(open.FileName, FileMode.Open))
             {
-                rootObject = (DependencyObject) XamlReader.Load(fs);
+                rootObject = (DependencyObject)XamlReader.Load(fs);
             }
 
-            button1 = (Button) LogicalTreeHelper.FindLogicalNode(rootObject, "MyButton");
+            button1 = (Button)LogicalTreeHelper.FindLogicalNode(rootObject, "MyButton");
 
             this.Content = rootObject;
         }
+
+        #region Solution
+        //private Button button1;
+        //private void InitializeComponent1()
+        //{
+        //    this.Width = this.Height = this.Top = this.Left = 300;
+        //    this.Title = "Ex Code";
+
+        //    OpenFileDialog open = new OpenFileDialog();
+        //    if (open.ShowDialog() == false)
+        //    { return; }
+
+        //    DependencyObject rootObject = new DependencyObject();
+
+        //    using (FileStream fs = new FileStream(open.FileName, FileMode.Open))
+        //    {
+        //        rootObject = (DependencyObject) XamlReader.Load(fs);
+        //    }
+
+        //    button1 = (Button) LogicalTreeHelper.FindLogicalNode(rootObject, "MyButton");
+
+        //    this.Content = rootObject;
+        //} 
+        #endregion
     }
 }

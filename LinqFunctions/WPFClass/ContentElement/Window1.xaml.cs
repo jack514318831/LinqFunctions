@@ -26,8 +26,12 @@ namespace LinqFunctions.WPFClass.ContentElement
 
         private void tbTest_SelectionChanged(object sender, RoutedEventArgs e)
         {
-            if (this.tblock == null) return;
-           this.tblock.Text = "selection from" + this.tbTest.SelectionStart + "Length" + this.tbTest.SelectionLength + "Content:" + this.tbTest.SelectedText;
+            #region Solution
+            // if (this.tblock == null) return;
+            //this.tblock.Text = "selection from" + this.tbTest.SelectionStart + "Length" + this.tbTest.SelectionLength + "Content:" + this.tbTest.SelectedText; 
+            #endregion
+            if (tblock == null) return;
+            tblock.Text = string.Format("select from {0}, length {1}, Content {2}", tbTest.SelectionStart, tbTest.SelectionLength, tbTest.SelectedText);
         }
     }
 }
