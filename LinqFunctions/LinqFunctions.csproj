@@ -100,6 +100,9 @@
     <Compile Include="Threading\ThreadWindow.xaml.cs">
       <DependentUpon>ThreadWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WPFClass\AreaElement.xaml.cs">
+      <DependentUpon>AreaElement.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WPFClass\CodeOnly\Programm.cs" />
     <Compile Include="WPFClass\CodeOnly\Window1.cs" />
     <Compile Include="WPFClass\ContentElement\Window1.xaml.cs">
@@ -145,6 +148,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Threading\ThreadWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPFClass\AreaElement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

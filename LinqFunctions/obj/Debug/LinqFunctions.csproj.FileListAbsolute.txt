@@ -114,3 +114,5 @@ E:\Csharp\Git\LinqFunctions\LinqFunctions\obj\Debug\WPFClass\ContentElement\Wind
 E:\Csharp\Git\LinqFunctions\LinqFunctions\obj\Debug\WPFClass\ContentElement\Window1.g.cs
 C:\Users\g.he\Documents\CSharp\Git\LinqFunctions\LinqFunctions\obj\Debug\WPFClass\ContentElement\Window1.baml
 C:\Users\g.he\Documents\CSharp\Git\LinqFunctions\LinqFunctions\obj\Debug\WPFClass\ContentElement\Window1.g.cs
+E:\Csharp\Git\LinqFunctions\LinqFunctions\obj\Debug\WPFClass\AreaElement.g.cs
+E:\Csharp\Git\LinqFunctions\LinqFunctions\obj\Debug\WPFClass\AreaElement.baml

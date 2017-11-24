@@ -1,0 +1,32 @@
+﻿<Window x:Class="LinqFunctions.WPFClass.AreaElement"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LinqFunctions.WPFClass"
+        mc:Ignorable="d"
+        Title="AreaElement" Height="300" Width="300">
+    <Window.Resources>
+        <FontFamily x:Key="CustomFont">
+            CustomFont
+        </FontFamily>
+    </Window.Resources>
+    <Grid>
+        <StackPanel Loaded="StackPanel_Loaded">
+            <Slider Name="SliderFont" Orientation="Horizontal" Maximum="100" TickPlacement="TopLeft" TickFrequency="5" SmallChange="1" LargeChange="5" IsSelectionRangeEnabled="True" SelectionStart="70" SelectionEnd="90" >
+            </Slider>
+            <TextBlock Text="Code Binding" Name="tbZiel" Margin="2" Foreground="{Binding ElementName=lbBinding,Path=SelectedItem.Tag}"/>
+            <ProgressBar Name="progressbar" Height="20" Value="12" IsIndeterminate="True"/>
+            <TextBlock Name="tbOutput" Text="Simple Text" FontSize="{Binding ElementName=SliderFont, Path=Value, Mode=TwoWay}"/>
+            <Button Content="Show Windows" Click="Button_Click"/>
+            <Button Name="btnRemove" Content="Remove Binding" Click="btnRemove_Click"  />
+            <ListBox Name="lbBinding">
+                <ListBoxItem Tag="Red" Content="red"/>
+                <ListBoxItem Tag="Yellow" Content="yellow"/>
+            </ListBox>
+            <TextBox Name="tbSize" Text="{Binding ElementName=tbZiel, Path=FontSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Name="tbDatabinding" Height="20" Text="{Binding Source={x:Static SystemFonts.IconFontFamily}, Path=Source}"/>
+            <TextBlock Name="tbBindingResource" Height="20" Text="{Binding Source={StaticResource CustomFont},Path=Source}"/>
+        </StackPanel>
+    </Grid>
+</Window>

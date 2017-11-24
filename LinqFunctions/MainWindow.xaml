@@ -79,6 +79,7 @@
                 <ComboBoxItem Content="MouseOver"/>
                 <ComboBoxItem Content="CodeOnly"/>
                 <ComboBoxItem Content="Ex XAML"/>
+                <ComboBoxItem Content="Area Element"/>
                 <ComboBoxItem Content="Content Element"/>
             </ComboBox>
             <TextBlock Text="Wait for Some" Grid.Column="1" Grid.Row="6" FontSize="16" VerticalAlignment="Center"/>

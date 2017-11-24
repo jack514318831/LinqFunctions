@@ -638,6 +638,12 @@ namespace LinqFunctions
                 WPFClass.ContentElement.Window1 window = new WPFClass.ContentElement.Window1();
                 window.ShowDialog();
             }
+            else if(CB_wpf.Text.Equals("Area Element"))
+            {
+                WPFClass.AreaElement window = new WPFClass.AreaElement();
+                window.Owner = this;
+                window.ShowDialog();
+            }
         }
 
 
