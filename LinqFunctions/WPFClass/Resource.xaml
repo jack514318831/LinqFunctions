@@ -1,0 +1,36 @@
+﻿<Window x:Class="LinqFunctions.WPFClass.Resource"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LinqFunctions.WPFClass"
+        mc:Ignorable="d"
+        Title="Resource" Height="300" Width="300">
+    <Window.Resources>
+        <Style x:Key="EventSetterStyle">
+            <EventSetter Event="FrameworkElement.MouseEnter" Handler="mouseenter">
+            </EventSetter>
+            <EventSetter Event="FrameworkElement.MouseLeave" Handler="mouseleave">
+            </EventSetter>
+        </Style>
+        <Style x:Key="FontStyle">
+            <Setter Property="Control.FontSize" Value="16"/>
+        </Style>
+        <Style x:Key="FontColor" BasedOn="{StaticResource FontStyle}">
+            <Setter Property="Control.Foreground" Value="Red"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <StackPanel Name="SPanel">
+            <StackPanel.Resources>
+                <SolidColorBrush x:Key="solidbrush" Color="Gray"/>
+            </StackPanel.Resources>
+            <Button Background="{StaticResource solidbrush}" Content="Static"/>
+            <Button Background="{DynamicResource solidbrush}" Content="Dynamic" Click="Button_Click"/>
+            <Button Foreground="{x:Static SystemColors.WindowTextBrush}" Content="Window Text Color"/>
+            <Button Name="btn1" Content="ResourceLibrary" Click="Button_Click_1" Background="{DynamicResource dictionarybrush}"/>
+            <TextBlock Text="aaa" Style="{StaticResource EventSetterStyle}"/>
+            <TextBlock Text="More Style" Style="{StaticResource FontColor}"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -18,6 +18,7 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Globalization;
 using LinqFunctions.XML;
+using System.Reflection;
 
 namespace LinqFunctions
 {
@@ -644,6 +645,11 @@ namespace LinqFunctions
                 window.Owner = this;
                 window.ShowDialog();
             }
+            else if (CB_wpf.Text.Equals("Resource"))
+            {
+                WPFClass.Resource window = new WPFClass.Resource();
+                window.ShowDialog();
+            }
         }
 
 
@@ -955,7 +961,7 @@ namespace LinqFunctions
         {
             if (cb_Grundlage.Text.Equals("Access modifier"))
             {
-                AccessModifier();
+               
             }
             else if (cb_Grundlage.Text.Equals(""))
             {
@@ -972,14 +978,58 @@ namespace LinqFunctions
             else if (cb_Grundlage.Text.Equals("Klasse Sort"))
             {
                 KlasseSort();
+            }else if(cb_Grundlage.Text.Equals("Reflector"))
+            {
+                Reflector();
             }
         }
 
-        public void AccessModifier()
+        private void Reflector()
         {
+            //Load Assembly
+            Assembly asm = Assembly.Load(@"E:\Csharp\Git\LinqFunctions\LinqFunctions\bin\Debug\LinqFunctions.exe");
 
+            //Get Types
+            Type[] types = asm.GetTypes();
+            foreach (Type type in types)
+            {
+                tb_output.Text = type.FullName + "/r/n";
+            }
+
+            //Get public Type
+            Type[] publicTypes = asm.GetExportedTypes();
+
+            //Get one type
+            Type typePerson = asm.GetType("_.Person");
+
+            //Get Method
+            MethodInfo info = typePerson.GetMethod("SayHi");
+
+            //Create Object
+            object obj = Activator.CreateInstance(typePerson):
+
+            //Invode method
+            info.Invoke(obj, null);
+
+            //Get Method with parameter
+            MethodInfo methed1 = typePerson.GetMethod("SayHi", new Type[] { typeof(string)});
+
+            //Invode Method with parameter
+            methed1.Invoke(obj, new object[] { "hallo" });
+
+            //Contructor
+            ConstructorInfo construtor = typePerson.GetConstructor(new Type[] { typeof(string) });
+
+            //Create intance with parameter
+            object obj1= construtor.Invoke(new object[] { "hi"});
+
+            //Get Property
+            PropertyInfo propertyinfo = typePerson.GetProperty("Name");
+            string name = propertyinfo.GetValue(obj1, null).ToString();
+            
         }
 
+        #region Access Modifier
         public class MyClass
         {
             //public
@@ -1025,7 +1075,8 @@ namespace LinqFunctions
             {
                 return false;
             }
-        }
+        } 
+        #endregion
 
         #region BaseThis
         public class Father

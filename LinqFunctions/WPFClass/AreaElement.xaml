@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LinqFunctions.WPFClass"
         mc:Ignorable="d"
-        Title="AreaElement" Height="300" Width="300">
+        Title="AreaElement" Height="400" Width="300">
     <Window.Resources>
         <FontFamily x:Key="CustomFont">
             CustomFont
         </FontFamily>
     </Window.Resources>
     <Grid>
-        <StackPanel Loaded="StackPanel_Loaded">
+        <StackPanel Name="StackPanel" Loaded="StackPanel_Loaded">
             <Slider Name="SliderFont" Orientation="Horizontal" Maximum="100" TickPlacement="TopLeft" TickFrequency="5" SmallChange="1" LargeChange="5" IsSelectionRangeEnabled="True" SelectionStart="70" SelectionEnd="90" >
             </Slider>
             <TextBlock Text="Code Binding" Name="tbZiel" Margin="2" Foreground="{Binding ElementName=lbBinding,Path=SelectedItem.Tag}"/>
@@ -27,6 +27,30 @@
             <TextBox Name="tbSize" Text="{Binding ElementName=tbZiel, Path=FontSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             <TextBlock Name="tbDatabinding" Height="20" Text="{Binding Source={x:Static SystemFonts.IconFontFamily}, Path=Source}"/>
             <TextBlock Name="tbBindingResource" Height="20" Text="{Binding Source={StaticResource CustomFont},Path=Source}"/>
+            <TextBlock Margin="5">
+                <TextBlock.Text>
+                    <Binding Path="Name">
+                        <Binding.RelativeSource>
+                            <RelativeSource Mode="FindAncestor" AncestorType="{x:Type StackPanel}">
+                            </RelativeSource>
+                        </Binding.RelativeSource>
+                    </Binding>
+                </TextBlock.Text>
+            </TextBlock>
+            <TextBlock Margin="5">
+                <TextBlock.Text>
+                    <Binding Path="Margin">
+                        <Binding.RelativeSource>
+                            <RelativeSource Mode="Self"/>
+                        </Binding.RelativeSource>
+                    </Binding>
+                </TextBlock.Text>
+            </TextBlock>
+            <StackPanel DataContext="{x:Static SystemFonts.IconFontFamily}">
+                <TextBlock Text="{Binding Path=Source}"/>
+                <TextBlock Text="{Binding Path=LineSpacing}"/>
+                <TextBlock Text="{Binding FamilyTypefaces[0].Style}"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>

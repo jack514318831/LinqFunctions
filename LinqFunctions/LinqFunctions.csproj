@@ -118,6 +118,9 @@
     <Compile Include="WPFClass\MouseOverWindow.xaml.cs">
       <DependentUpon>MouseOverWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WPFClass\Resource.xaml.cs">
+      <DependentUpon>Resource.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WPFClass\WPFFunctions.xaml.cs">
       <DependentUpon>WPFFunctions.xaml</DependentUpon>
     </Compile>
@@ -168,6 +171,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WPFClass\MouseOverWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPFClass\Resource.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ResourceDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
