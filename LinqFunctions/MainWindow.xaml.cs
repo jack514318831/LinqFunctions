@@ -630,6 +630,11 @@ namespace LinqFunctions
                 WPFClass.Resource window = new WPFClass.Resource();
                 window.ShowDialog();
             }
+            else if (CB_wpf.Text.Equals("Trigger"))
+            {
+                WPFClass.Trigger win = new WPFClass.Trigger();
+                win.ShowDialog();
+            }
         }
 
 
@@ -1060,6 +1065,17 @@ namespace LinqFunctions
             //Get Properties
             PropertyInfo property = typePerson.GetProperty("Name");
             string name = property.GetValue(obj1, null).ToString();
+
+            //entscheiden, ob Reference accept
+            Type typeFather = typeof(Father);
+            Type typeSon = typeof(Son);
+            bool b = typeFather.IsAssignableFrom(typeSon);
+
+            //Is Instanze
+            b = typeFather.IsInstanceOfType(obj);
+
+            //Is subClass
+            b = typeSon.IsSubclassOf(typeFather);
 
         } 
         #endregion

@@ -127,3 +127,5 @@ C:\Users\g.he\Documents\CSharp\Git\LinqFunctions\LinqFunctions\obj\Debug\App.bam
 C:\Users\g.he\Documents\CSharp\Git\LinqFunctions\LinqFunctions\obj\Debug\WPFClass\AreaElement.baml
 C:\Users\g.he\Documents\CSharp\Git\LinqFunctions\LinqFunctions\obj\Debug\WPFClass\Resource.baml
 C:\Users\g.he\Documents\CSharp\Git\LinqFunctions\LinqFunctions\obj\Debug\ResourceDictionary.baml
+E:\Csharp\Git\LinqFunctions\LinqFunctions\obj\Debug\WPFClass\Trigger.g.cs
+E:\Csharp\Git\LinqFunctions\LinqFunctions\obj\Debug\WPFClass\Trigger.baml

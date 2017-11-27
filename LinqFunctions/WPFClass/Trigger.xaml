@@ -1,0 +1,30 @@
+﻿<Window x:Class="LinqFunctions.WPFClass.Trigger"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LinqFunctions.WPFClass"
+        mc:Ignorable="d"
+        Title="Trigger" Height="360" Width="300">
+    <Window.Resources>
+        <Style x:Key="ButtonStyle">
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="Control.IsFocused" Value="True"/>
+                        <Condition Property="Control.IsMouseOver" Value="True"/>
+                    </MultiTrigger.Conditions>
+                    <MultiTrigger.Setters>
+                        <Setter Property="Control.Foreground" Value="Red"/>
+                    </MultiTrigger.Setters>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <StackPanel>
+            <Button Content="Button" Style="{StaticResource ButtonStyle}"/>
+            <TextBox Margin="3"/>
+        </StackPanel>
+    </Grid>
+</Window>
