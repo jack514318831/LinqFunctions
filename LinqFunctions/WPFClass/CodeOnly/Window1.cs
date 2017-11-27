@@ -16,30 +16,6 @@ namespace LinqFunctions.WPFClass.CodeOnly
             InitializeComponent();
         }
 
-        private Button button1;
-        private void InitializeComponent()
-        {
-            this.Width = this.Height = this.Top = this.Left=300;
-            this.Title = "Code Only";
-
-            DockPanel dockpanel = new DockPanel();
-
-            button1 = new Button();
-            button1.Content = "Click me";
-            button1.Margin = new Thickness(10);
-            button1.Click += button1_Click;
-
-            IAddChild container = dockpanel;
-            container.AddChild(button1);
-            container = this;
-            container.AddChild(dockpanel);
-        }
-       
-        private void button1_Click(object sender, RoutedEventArgs e)
-        {
-            button1.Content = "Hallo";
-        }
-
         #region Solution
         //private Button button1;
         //private void InitializeComponent()
@@ -70,5 +46,31 @@ namespace LinqFunctions.WPFClass.CodeOnly
         //    button1.Content = "Hallo";
         //} 
         #endregion
+
+        private Button button1;
+        private void InitializeComponent()
+        {
+            this.Height = this.Width = this.Top = this.Left = 300;
+            this.Title="Cody Only";
+
+            DockPanel dockpanel = new DockPanel();
+
+            button1 = new Button();
+            button1.Margin = new Thickness(50);
+            button1.Content = "storage";
+            button1.Click += button1_Click;
+
+            IAddChild container = dockpanel;
+            container.AddChild(button1);
+            container = this;
+            container.AddChild(dockpanel);
+
+        }
+
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            button1.Content = "Lithium";
+        }
+
     }
 }

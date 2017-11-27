@@ -9,12 +9,22 @@ namespace LinqFunctions.WPFClass.ExXaml
 {
     class Programm1
     {
+        #region Solution
         //[STAThread()]
         //static void Main()
         //{
         //    Application app = new Application();
         //    MainWindow mw = new MainWindow();
         //    app.Run(mw);
+        //} 
+        #endregion
+        
+        //static void Main()
+        //{
+        //    Application app = new Application();
+        //    MainWindow mw = new MainWindow();
+        //    app.Run(mw);
         //}
+       
     }
 }

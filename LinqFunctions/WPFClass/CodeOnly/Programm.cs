@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace LinqFunctions.WPFClass.CodeOnly
 {
-    class Programm:Application
+    class Programm : Application
     {
         #region Solution
         //[STAThread()]
@@ -24,7 +24,8 @@ namespace LinqFunctions.WPFClass.CodeOnly
         //{
         //    Programm app = new Programm();
         //    app.MainWindow = new Window1();
-        //    app.MainWindow.ShowDialog();
+        //    app.MainWindow.Show();
         //}
+        
     }
 }

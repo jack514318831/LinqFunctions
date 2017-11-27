@@ -26,7 +26,10 @@ namespace LinqFunctions.WPFClass
 
         private void tb_input_KeyDown(object sender, KeyEventArgs e)
         {
-            tb_output.Text = string.Format("Event:{0} Key:{1}", e.RoutedEvent, e.Key );
+            #region Solution
+            //tb_output.Text = string.Format("Event:{0} Key:{1}", e.RoutedEvent, e.Key); 
+            #endregion
+            this.tb_output.Text = string.Format("Event:{0} Key:{1}", e.RoutedEvent, e.Key);
         }
     }
 }

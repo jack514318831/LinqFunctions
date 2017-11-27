@@ -72,15 +72,11 @@ namespace LinqFunctions
         {
             List<ModelEmployee> list = EmployeeListBuider.Buil();
 
-            XElement result = new XElement("Employees", from emp in list
-                                                        orderby emp.Salary
-                                                        select new XElement("Employee",
-                                                            new XAttribute("ID", emp.EmpployeeID),
-                                                            new XAttribute("Sal", emp.Salary),
-                                                            new XElement("Department", new XAttribute("ID", emp.DepartmentID))
-                                                            )
-                                            );
-
+            var result = new XElement("emps", from emp in list
+                                              select new XElement("emp",
+                                              new XAttribute("id", emp.EmpployeeID),
+                                              new XAttribute("did",emp.DepartmentID),
+                                              new XElement("Sal", emp.Salary)));
 
             result.Save(@"E:\Test.xml");
         }
@@ -90,9 +86,9 @@ namespace LinqFunctions
             XDocument xdoc = XDocument.Load(@"E:\countries.xml");
 
             var result = from country in xdoc.Descendants().Elements("country")
-                         from city in country.Elements("city")
-                         orderby city.Value.First()
-                         select new {
+                         from city in country.Elements("country")
+                         select new
+                         {
                              country = country.Attribute("name").Value,
                              city = city.Value
                          };
@@ -153,7 +149,7 @@ namespace LinqFunctions
         {
             DateTime date = DateTime.Now;
             //Culture Kurs Format
-            string result = string.Format(CultureInfo.CreateSpecificCulture("en-US"), "{0,-10}{1,10}{2,10:C1}", date, "OK", 88.12);
+            string result = string.Format(CultureInfo.CreateSpecificCulture("en-US"), "{0,10:C}{1,-10:d}{2}", 1.1, date.ToString(), "one");
             MessageBox.Show(result);
         }
 
@@ -172,9 +168,7 @@ namespace LinqFunctions
         {
             string input = "hi Hellow HI world hellow world world hi hi";
 
-            var result = from word in input.Split(' ')
-                         let w = word.ToLower()
-                         where w.Length > 4
+            var result = from word in input.Split(' ').Distinct()
                          select word;
 
             DG_Data.ItemsSource = result;
@@ -189,7 +183,7 @@ namespace LinqFunctions
                          select new
                          {
                              word = words.Key,
-                             num = words.Count()
+                             count = words.Count()
                          };
 
             DG_Data.ItemsSource = result;
@@ -202,7 +196,7 @@ namespace LinqFunctions
 
             Dictionary<char, int> dic = new Dictionary<char, int>();
             int max = 0;
-            for (int i = 0, j = 0; i < s.Length; i++)
+            for (int i = 0, j = 0; i <= s.Length; i++)
             {
                 if (dic.ContainsKey(s[i]))
                 {
@@ -211,7 +205,6 @@ namespace LinqFunctions
                 dic[s[i]] = i;
                 max = Math.Max(max, i - j + 1);
             }
-
             tb_output.Text = max.ToString();
         }
         #endregion
@@ -264,10 +257,9 @@ namespace LinqFunctions
         {
             string[] ary = new string[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
 
-            Func<string, bool> withfirst = s => s.First() == 'J';
-            var result = ary.Where(withfirst);
+            Func<string, bool> vergleich = s => s.StartsWith("J") && s.EndsWith("n");
+            var result = ary.Where(vergleich); 
 
-            DG_Data.ItemsSource = result;
         }
 
         private void ArrayB()
@@ -294,8 +286,8 @@ namespace LinqFunctions
                          let words = sentence.Split(' ')
                          from word in words
                          let w = word.ToLower()
-                         where w.First() == 't'
-                         select word;
+                         where w.StartsWith("t")
+                         select sentence;
 
             DG_Data.ItemsSource = result;
 
@@ -303,18 +295,13 @@ namespace LinqFunctions
 
         private void ArrayD()
         {
+            IList arr = new ArrayList();
+            arr.Add(1.1);
+            arr.Add(10);
+            arr.Add("One");
 
-            IList col = new ArrayList();
-            col.Add("one");
-            col.Add(1);
-            col.Add(1.1);
-
-            var result = col.OfType<string>();
-
-            foreach (var s in result)
-            {
-                MessageBox.Show(s.ToString());
-            }
+            var result = arr.OfType<string>();
+           
         }
 
         private void ArraylistFunc()
@@ -350,14 +337,13 @@ namespace LinqFunctions
             List<Marke> mlist = Marke.Build();
 
             var result = from m in mlist
-                         join s in slist on m.MarkeID equals s.MarkeID into sgroup
-                         from item in sgroup.DefaultIfEmpty(new Storage(0, "", 0))
+                         join s in slist on m.MarkeID equals s.MarkeID into storages
+                         from item in storages.DefaultIfEmpty(new Storage(0, "", 0))
                          select new
                          {
                              mark = m.Name,
-                             storage = item.Name
+                             storage= item.Name
                          };
-
 
             DG_Data.ItemsSource = result;
         }
@@ -369,14 +355,13 @@ namespace LinqFunctions
             List<Marke> mlist = Marke.Build();
 
             var result = from s in slist
-                         join m in mlist on s.MarkeID equals m.MarkeID into marks
-                         from item in marks.DefaultIfEmpty()
+                         join m in mlist on s.MarkeID equals m.MarkeID into ms
+                         from item in ms.DefaultIfEmpty()
                          select new
                          {
-                             mark = item != null ? item.Name : "",
-                             storage = s.Name
+                             marke = item != null ? item.Name : string.Empty,
+                             storage= s.Name
                          };
-
 
             DG_Data.ItemsSource = result;
         }
@@ -459,10 +444,10 @@ namespace LinqFunctions
             int[] source = new[] { 3, 8, 4, 6, 1, 7, 9, 2, 4, 8 };
             StringBuilder outstr = new StringBuilder();
 
-            var result = source.Where<int>((num) => {
-                if (num <= 7 && num >= 3)
-                { return true; }
-                return false;
+            var result = source.Where((num) => {
+                if (num >= 3 && num <= 7)
+                    return true;
+                    return false;
             });
 
             foreach (var num in result)
@@ -477,7 +462,7 @@ namespace LinqFunctions
         {
             IList<ModelEmployee> elist = EmployeeListBuider.Buil();
 
-            var result = elist.OrderByDescending(emp => emp.EmpployeeID).ThenBy<ModelEmployee, int>(emp => emp.Salary);
+            var result = elist.OrderByDescending(emp => emp.DepartmentID).ThenBy(emp => emp.Salary);
 
             DG_Data.ItemsSource = result;
         }
@@ -512,8 +497,7 @@ namespace LinqFunctions
             IList<String> strList = new List<String>() { "One", "Two", "Three", "Four", "Five" };
 
             var result1 = strList.Skip(3);
-
-            var result2 = strList.SkipWhile(s => s.Length > 4);
+            var result2 = strList.SkipWhile((s) => s.Length > 4);
 
             MessageBox.Show(result1.ToString());
             MessageBox.Show(result2.ToString());
@@ -534,7 +518,7 @@ namespace LinqFunctions
         {
             IList<ModelEmployee> eList = EmployeeListBuider.Buil();
 
-            var result = eList.Aggregate<ModelEmployee, string, string>(string.Empty, (str, s) => str += s + ",", s => s.Substring(0, s.Length - 1));
+            var result = eList.Aggregate<ModelEmployee, string, string>(string.Empty, (str, s) => str += s + ",", (s) => s.Substring(0, s.Length - 1));
 
             MessageBox.Show(result);
         }
@@ -558,17 +542,24 @@ namespace LinqFunctions
         {
             List<ModelDepartment> dlist = EmployeeListBuider.DepartmentBuild();
             List<ModelEmployee> elist = EmployeeListBuider.Buil();
-            DataTable dtd = new DataTable();
-            DataTable dte = new DataTable();
+
             DataSet ds = new DataSet();
+            DataTable dtd = new DataTable("dp");
+            DataTable dte = new DataTable("emp");
 
-            dtd.Columns.Add(new DataColumn("DID", System.Type.GetType("System.String")));
-            dtd.Columns.Add(new DataColumn("Name", System.Type.GetType("System.String")));
+            dtd.Columns.Add(new DataColumn("DID"));
+            dtd.Columns.Add(new DataColumn("name"));
+            dte.Columns.Add(new DataColumn("ID"));
+            dte.Columns.Add(new DataColumn("DID"));
+            dte.Columns.Add(new DataColumn("Sal",System.Type.GetType("Int32")));
 
-            dte.Columns.Add(new DataColumn("ID", System.Type.GetType("System.String")));
-            dte.Columns.Add(new DataColumn("DID", System.Type.GetType("System.String")));
-            dte.Columns.Add(new DataColumn("Sal", System.Type.GetType("System.Int32")));
-
+            foreach (var dp in dlist)
+            {
+                DataRow row = dtd.NewRow();
+                row[0] = dp.DepartmentID;
+                row[1] = dp.DepartmentName;
+                dtd.Rows.Add(row);
+            }
             foreach (var emp in elist)
             {
                 DataRow row = dte.NewRow();
@@ -578,19 +569,8 @@ namespace LinqFunctions
                 dte.Rows.Add(row);
             }
 
-            foreach (var dp in dlist)
-            {
-                DataRow row = dtd.NewRow();
-                row[0] = dp.DepartmentID;
-                row[1] = dp.DepartmentName;
-                dte.Rows.Add(row);
-            }
-
-            dtd.TableName = "Department";
-            dte.TableName = "Emp";
             ds.Tables.Add(dtd);
             ds.Tables.Add(dte);
-
             return ds;
         }
 
@@ -598,13 +578,13 @@ namespace LinqFunctions
         {
             DataSet ds = CreateDS();
 
-            var result = from emp in ds.Tables["Emp"].AsEnumerable()
-                         join dp in ds.Tables["Department"].AsEnumerable() on emp.Field<string>("DID") equals dp.Field<string>("DID")
+            var result = from emp in ds.Tables["emp"].AsEnumerable()
+                         join dp in ds.Tables["dp"].AsEnumerable() on emp.Field<string>("DID") equals dp.Field<string>("DID")
                          select new
                          {
-                             dp = dp.Field<string>("Name"),
-                             emp = emp.Field<string>("ID")
+                             emp = emp.Field<Int32>("Sal")
                          };
+                         
 
             DG_Data.ItemsSource = result;
 
@@ -675,10 +655,8 @@ namespace LinqFunctions
             string str = "hier ist a card num : 4444-3333-2222-1111";
 
             string pattern = @"(\d{4}[ ,-]){3}\d{4}";
-            Regex reg = new Regex(pattern);
-
-            Match mt = reg.Match(str);
-            foreach (Group g in mt.Groups)
+            Match mt = Regex.Match(str,pattern);
+            foreach(Group g in mt.Groups)
             {
                 MessageBox.Show(g.ToString());
             }
@@ -697,21 +675,20 @@ namespace LinqFunctions
                 HttpWebRequest httpwebrequest = (HttpWebRequest)WebRequest.Create(url);
                 WebRequest webrequest = (WebRequest)httpwebrequest;
                 webrequest.Proxy = null;
-                WebResponse webresponse = webrequest.GetResponse();
-                StreamReader sr = new StreamReader(webresponse.GetResponseStream());
+                WebResponse wr = webrequest.GetResponse();
+                StreamReader sr = new StreamReader(wr.GetResponseStream());
                 htmlstr = sr.ReadToEnd();
             }
             catch
             {
             }
 
-            string pattern = "(?<=<a href=(\"|')).*?(?=(\"|')>(.|\n)*?</a>)";
-            Regex reg = new Regex(pattern);
-            MatchCollection mtc = reg.Matches(htmlstr);
+            string pattern = "(?<=<a href=('|\")).*?(?=('|\")>(.|\\n)*?</a>)";
+            MatchCollection mtc = Regex.Matches(htmlstr, pattern);
 
-            foreach (Match mt in mtc)
+            foreach(Match mt in mtc)
             {
-                buider.AppendLine().Append(mt.ToString());
+                buider.AppendLine(mt.ToString());
             }
 
             tb_output.Text = buider.ToString();
@@ -770,41 +747,44 @@ namespace LinqFunctions
         {
             //set values , set formula, and save the data
             string path = @"E:\test.xlsx";
-            IWorkbook wk = new XSSFWorkbook();
-            ISheet sheet = wk.CreateSheet();
 
-            for (int r = 0; r <= 5; r++)
+            IWorkbook wk = new XSSFWorkbook();
+            ISheet sheet = wk.CreateSheet("test");
+            for(int r =0; r<5; r++)
             {
                 IRow row = sheet.CreateRow(r);
-                for (int c = 0; c <= 5; c++)
+                for(int c =0; c<5; c++)
                 {
                     ICell cell = row.CreateCell(c);
-                    cell.SetCellValue(c);
+                    cell.SetCellValue(c + r);
                 }
-                ICell cell2 = row.CreateCell(6);
-                cell2.SetCellFormula("SUM(A" + (r + 1).ToString() + ":E" + (r + 1).ToString() + ")");
+                ICell cell1 = row.CreateCell(5);
+                cell1.SetCellFormula("=SUM(A1:E1)");
             }
 
-            FileStream fs = new FileStream(path, FileMode.Create, FileAccess.Write);
-            wk.Write(fs);
-            fs.Close();
+            using (FileStream fs = new FileStream(path, FileMode.Create))
+            {
+                wk.Write(fs);
+            }
+           
         }
 
         private void StreamRead()
         {
             OpenFileDialog open = new OpenFileDialog();
             string str = "";
-            open.Filter = "Excel (*|xlsx)|*.xlsx| Txt (*|txt)|*.txt";
 
-            if (open.ShowDialog() != true)
-            { return; }
-            StreamReader sr = new StreamReader(open.FileName, Encoding.Default, false, 1024);
-            while (!sr.EndOfStream)
+            open.Filter = "Excel (*.xlsx)| *.xlsx | Text (*.txt)|*.txt";
+            if (open.ShowDialog() == false)
+                return;
+            using (StreamReader sr =new StreamReader(open.FileName, Encoding.Default, false, 1024))
             {
-                str += sr.ReadLine();
+                while (sr.EndOfStream)
+                {
+                    str += sr.ReadLine();
+                }
             }
-
-            tb_output.Text = str;
+                tb_output.Text = str;
         }
 
         private void StreamWrite()
@@ -815,17 +795,15 @@ namespace LinqFunctions
             string path = save.FileName;
             string str = tb_input.Text;
 
-            using (FileStream fs = new FileStream(path, FileMode.Create, FileAccess.Write))
+            using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Write))
             {
                 fs.Write(Encoding.Default.GetBytes(str), 0, 1024);
             }
-
-            using (StreamWriter sw = new StreamWriter(path, false, Encoding.Default))
+            using (StreamWriter sw = new StreamWriter(path,false, Encoding.Default,1024))
             {
                 sw.Write(str.ToCharArray());
                 sw.Flush();
             }
-
         }
 
         #endregion
@@ -887,24 +865,43 @@ namespace LinqFunctions
             const int DpID = 7;
 
             // Insert into DB
+            #region Solution
+            //string connstr = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            //using (SqlConnection conn = new SqlConnection(connstr))
+            //{
+            //    conn.Open();
+            //    StringBuilder cmdstrBuider = new StringBuilder();
+            //    using (SqlCommand cmd = new SqlCommand())
+            //    {
+            //        cmd.Connection = conn;
+            //        cmdstrBuider.Append("insert into Course (CourseID,Title,Credits,DepartmentID) values (@CourseID,@Title,@Credits,@DepartmentID)");
+            //        cmd.CommandText = cmdstrBuider.ToString();
+            //        SqlParameter[] plist = new SqlParameter[] {new SqlParameter("@CourseID", SqlDbType.Int){ Value =CourseID },
+            //            new SqlParameter("@Title",title), new SqlParameter("@Credits", SqlDbType.Int){ Value = Credit},
+            //            new SqlParameter("@DepartmentID",SqlDbType.Int){ Value = DpID} };
+
+            //        cmd.Parameters.AddRange(plist);
+            //        cmd.ExecuteNonQuery();
+            //    }
+            //} 
+            #endregion
+
             string connstr = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             using (SqlConnection conn = new SqlConnection(connstr))
             {
-                conn.Open();
-                StringBuilder cmdstrBuider = new StringBuilder();
-                using (SqlCommand cmd = new SqlCommand())
+                string cmdstr = "insert into Course (CourseID, Credit, DepartmentID) values (@CourseID, @Credit, @DepartmentID)";
+                using (SqlCommand cmd = new SqlCommand(cmdstr, conn))
                 {
-                    cmd.Connection = conn;
-                    cmdstrBuider.Append("insert into Course (CourseID,Title,Credits,DepartmentID) values (@CourseID,@Title,@Credits,@DepartmentID)");
-                    cmd.CommandText = cmdstrBuider.ToString();
-                    SqlParameter[] plist = new SqlParameter[] {new SqlParameter("@CourseID", SqlDbType.Int){ Value =CourseID },
-                        new SqlParameter("@Title",title), new SqlParameter("@Credits", SqlDbType.Int){ Value = Credit},
-                        new SqlParameter("@DepartmentID",SqlDbType.Int){ Value = DpID} };
-
-                    cmd.Parameters.AddRange(plist);
+                    SqlParameter[] pars = new SqlParameter[] {
+                        new SqlParameter("@CourseID",SqlDbType.Int){  Value= CourseID },
+                        new SqlParameter("@Credit",SqlDbType.Int){ Value = Credit},
+                        new SqlParameter("@DepartmentID",SqlDbType.Int){ Value = DpID}
+                    };
+                    cmd.Parameters.AddRange(pars);
                     cmd.ExecuteNonQuery();
                 }
             }
+
         }
 
         private void SqlUpdate()
@@ -984,50 +981,88 @@ namespace LinqFunctions
             }
         }
 
+        #region Reflector
         private void Reflector()
         {
             //Load Assembly
-            Assembly asm = Assembly.Load(@"E:\Csharp\Git\LinqFunctions\LinqFunctions\bin\Debug\LinqFunctions.exe");
+            string path = @"C:\Users\g.he\Documents\CSharp\Git\LinqFunctions\LinqFunctions\PersonClass.dll";
+
+            #region Solution
+            //Assembly asm = Assembly.LoadFile(path);
+
+            ////Get Types
+            //Type[] types = asm.GetTypes();
+            //foreach (Type t in types)
+            //{
+            //    tb_output.Text += t.FullName;
+            //}
+
+            ////Get public Type
+            //Type[] publicTypes = asm.GetExportedTypes();
+
+            ////Get one type
+            //Type typePerson = asm.GetType("PersonClass.Person");
+
+            ////Get Method
+            //MethodInfo method = typePerson.GetMethod("SayHi", new Type[] { });
+
+            ////Create Object
+            //object obj = Activator.CreateInstance(typePerson);
+
+            ////Invode method
+            //method.Invoke(obj, null);
+
+            ////Get Method with parameter
+            //MethodInfo method1 = typePerson.GetMethod("SayHi", new Type[] { typeof(string) });
+
+            ////Invode Method with parameter
+            //method1.Invoke(obj, new object[] { "bbb" });
+
+            ////Constructor
+            //ConstructorInfo construtor = typePerson.GetConstructor(new Type[] { typeof(string) });
+
+            ////Create intance with parameter
+            //object obj1 = construtor.Invoke(new object[] { "ccc" });
+
+            ////Get Property
+            //PropertyInfo property = typePerson.GetProperty("Name");
+            //string name = property.GetValue(obj1, null).ToString(); 
+            #endregion
+
+            //Create Assembly
+            Assembly asm = Assembly.LoadFile(path);
 
             //Get Types
             Type[] types = asm.GetTypes();
-            foreach (Type type in types)
-            {
-                tb_output.Text = type.FullName + "/r/n";
-            }
-
-            //Get public Type
-            Type[] publicTypes = asm.GetExportedTypes();
 
             //Get one type
-            Type typePerson = asm.GetType("_.Person");
+            Type typePerson = asm.GetType("PersonClass.Person");
 
             //Get Method
-            MethodInfo info = typePerson.GetMethod("SayHi");
+            MethodInfo method = typePerson.GetMethod("SayHi", new Type[] { });
 
-            //Create Object
-            object obj = Activator.CreateInstance(typePerson):
+            //Create Instanze
+            object obj = Activator.CreateInstance(typePerson);
 
-            //Invode method
-            info.Invoke(obj, null);
+            //Method Invoke
+            method.Invoke(obj, null);
 
             //Get Method with parameter
-            MethodInfo methed1 = typePerson.GetMethod("SayHi", new Type[] { typeof(string)});
+            MethodInfo method1 = typePerson.GetMethod("SayHi", new Type[] { typeof(string) });
+            method1.Invoke(obj, new object[] { "aaa" });
 
-            //Invode Method with parameter
-            methed1.Invoke(obj, new object[] { "hallo" });
-
-            //Contructor
+            //Get Construtor
             ConstructorInfo construtor = typePerson.GetConstructor(new Type[] { typeof(string) });
 
-            //Create intance with parameter
-            object obj1= construtor.Invoke(new object[] { "hi"});
+            //Instanze with Construtor
+            object obj1 = construtor.Invoke(new object[] { "bbb" });
 
-            //Get Property
-            PropertyInfo propertyinfo = typePerson.GetProperty("Name");
-            string name = propertyinfo.GetValue(obj1, null).ToString();
-            
-        }
+            //Get Properties
+            PropertyInfo property = typePerson.GetProperty("Name");
+            string name = property.GetValue(obj1, null).ToString();
+
+        } 
+        #endregion
 
         #region Access Modifier
         public class MyClass
@@ -1065,11 +1100,10 @@ namespace LinqFunctions
             //public static bool operator !=(MyClass a, MyClass b)
             //{ return false; } 
             #endregion
+
             public static bool operator ==(MyClass a, MyClass b)
             {
-                if (a.num4 == b.num4)
-                { return true; }
-                return false;
+                return true;
             }
             public static bool operator !=(MyClass a, MyClass b)
             {
@@ -1107,9 +1141,10 @@ namespace LinqFunctions
             list.Add(new Klasse("ccc", 20));
             list.Add(new Klasse("bbb", 10));
             list.Sort();
+
             foreach (Klasse k in list)
             {
-                tb_input.Text += k.Name;
+                tb_input.Text += k.name;
             }
 
             tb_input.Text += "/r/n";
@@ -1118,33 +1153,59 @@ namespace LinqFunctions
 
             foreach (Klasse k in list)
             {
-                tb_input.Text += k.Name;
+                tb_input.Text += k.name;
             }
         }
 
-        //1. Mit IComparable
-        public class Klasse : IComparable
+        #region Solution
+        ////1. Mit IComparable
+        //public class Klasse : IComparable
+        //{
+        //    public string Name { get; set; }
+        //    public int Con { get; set; }
+        //    public Klasse(string n, int c)
+        //    {
+        //        Name = n;
+        //        Con = c;
+        //    }
+
+        //    public int CompareTo(object obj)
+        //    {
+        //        return this.Con - ((Klasse)obj).Con;
+        //    }
+        //}
+
+        ////2. Mit IComparer
+        //public class KlassComparer : IComparer
+        //{
+        //    public int Compare(object x, object y)
+        //    {
+        //        return (x as Klasse).Name[0] - (y as Klasse).Name[0];
+        //    }
+        //} 
+        #endregion
+
+        public class Klasse:IComparable
         {
-            public string Name { get; set; }
-            public int Con { get; set; }
+            public string name { get; set; }
+            public int num { get; set; }
             public Klasse(string n, int c)
             {
-                Name = n;
-                Con = c;
+                name = n;
+                num = c;
             }
 
             public int CompareTo(object obj)
             {
-                return this.Con - ((Klasse)obj).Con;
+                return name[0] - ((Klasse)obj).name[0];
             }
         }
 
-        //2. Mit IComparer
         public class KlassComparer : IComparer
         {
             public int Compare(object x, object y)
             {
-                return (x as Klasse).Name[0] - (y as Klasse).Name[0];
+                return ((Klasse)x).num - ((Klasse)y).num;
             }
         }
 
@@ -1177,27 +1238,53 @@ namespace LinqFunctions
             }   
         }
 
+        #region Solution
+        //public class Person
+        //{
+        //    public virtual string SayNationality()
+        //    {
+        //        return "I come from..";
+        //    }
+        //}
+
+        //public class Chinese : Person
+        //{
+        //    public override string SayNationality()
+        //    {
+        //        return "China";
+        //    }
+        //}
+
+        //public class American : Person
+        //{
+        //    public override string SayNationality()
+        //    {
+        //        return "USA";
+        //    }
+        //} 
+        #endregion
+
         public class Person
         {
             public virtual string SayNationality()
             {
-                return "I come from..";
+                return "";
             }
         }
 
-        public class Chinese : Person
+        public class Chinese:Person
         {
             public override string SayNationality()
             {
-                return "China";
+                return "c";
             }
         }
 
-        public class American: Person
+        public class American:Person
         {
             public override string SayNationality()
             {
-                return "USA";
+                return "a";
             }
         }
 
