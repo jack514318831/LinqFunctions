@@ -55,7 +55,7 @@
             this.tbIPAdrress.Name = "tbIPAdrress";
             this.tbIPAdrress.Size = new System.Drawing.Size(200, 20);
             this.tbIPAdrress.TabIndex = 1;
-            this.tbIPAdrress.Text = "192.168.123.49";
+            this.tbIPAdrress.Text = "192.168.123.81";
             // 
             // label1
             // 

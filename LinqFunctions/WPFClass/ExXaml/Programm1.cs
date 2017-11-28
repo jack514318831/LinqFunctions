@@ -19,12 +19,12 @@ namespace LinqFunctions.WPFClass.ExXaml
         //} 
         #endregion
         
+        //[STAThread()]
         //static void Main()
         //{
         //    Application app = new Application();
         //    MainWindow mw = new MainWindow();
         //    app.Run(mw);
         //}
-       
     }
 }

@@ -24,17 +24,13 @@
             </Button>-->
             <Button IsCancel="True" IsDefault="True">
                 <Button.ToolTip>
-                    <ToolTip>
-                        <StackPanel>
-                            <TextBlock Text="aaa"/>
-                            <TextBlock Text="bbb"/>
-                        </StackPanel>
-                    </ToolTip>
+                    <StackPanel>
+                        <TextBlock Text="aaa"/>
+                        <TextBlock Text="bbb"/>
+                    </StackPanel>
                 </Button.ToolTip>
                 <StackPanel>
-                    <TextBlock Text="aaa"/>
-                    <TextBlock Text="bbb"/>
-                    <RadioButton GroupName="g1" Content="ccc"/>
+                    <RadioButton Content="radio" GroupName="g1"/>
                 </StackPanel>
             </Button>
             <!--<Label Target="{Binding ElementName=tb}">
@@ -44,13 +40,20 @@
                 choose _A
             </Label>
             <TextBox Name="tb"/>
+            <!--<CheckBox Content="CheckBox" IsChecked="{x:Null}" IsThreeState="True"/>-->
             <CheckBox Content="CheckBox" IsChecked="{x:Null}" IsThreeState="True"/>
             <RadioButton Content="radia" GroupName="g1"/>
-            <ScrollViewer CanContentScroll="True" Height="70" Margin="5">
+            <!--<ScrollViewer CanContentScroll="True" Height="70" Margin="5">
                 <StackPanel>
                     <Button Content="btn1" Height="50" Margin="5"/>
                     <Button Content="btn2" Height="50" Margin="5"/>
                     <Button Content="btn3" Height="50" Margin="5"/>
+                </StackPanel>
+            </ScrollViewer>-->
+            <ScrollViewer Height="80" CanContentScroll="True">
+                <StackPanel>
+                    <Button Height="70" Content="btn1"/>
+                    <Button Height="70" Content="btn2"/>
                 </StackPanel>
             </ScrollViewer>
             <TabControl Height="70" Margin="4">
@@ -69,13 +72,9 @@
                 <TabItem>
                     <TabItem.Header>
                         <StackPanel>
-                            <TextBlock Text="aaa"/>
-                            <TextBlock Text="bbb"/>
                         </StackPanel>
                     </TabItem.Header>
                     <StackPanel>
-                        <TextBlock Text="aaa"/>
-                        <TextBlock Text="bbb"/>
                     </StackPanel>
                 </TabItem>
                 <TabItem Header="item2">

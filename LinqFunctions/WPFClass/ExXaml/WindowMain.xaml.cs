@@ -51,21 +51,19 @@ namespace LinqFunctions.WPFClass.ExXaml
         //} 
         #endregion
 
-        public Button button1;
+        private Button button1;
         private void InitializeComponent1()
         {
             OpenFileDialog open = new OpenFileDialog();
-            if (open.ShowDialog() == false)
-            { return; }
-            DependencyObject root = new DependencyObject();
+            if (open.ShowDialog() == false) return;
+            DependencyObject rootObject = new DependencyObject();
             using (FileStream fs = new FileStream(open.FileName, FileMode.Open))
             {
-                 root = (DependencyObject) XamlReader.Load(fs);
+                 rootObject = XamlReader.Load(fs) as DependencyObject;
             }
+            button1 = LogicalTreeHelper.FindLogicalNode(rootObject, "MyButton") as Button;
 
-            button1 =(Button) LogicalTreeHelper.FindLogicalNode(root, "MyButton");
-
-            this.Content = root;
+            this.Content = rootObject;
         }
     }
 }

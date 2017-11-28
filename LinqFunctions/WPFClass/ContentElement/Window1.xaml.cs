@@ -31,7 +31,7 @@ namespace LinqFunctions.WPFClass.ContentElement
             //this.tblock.Text = "selection from" + this.tbTest.SelectionStart + "Length" + this.tbTest.SelectionLength + "Content:" + this.tbTest.SelectedText; 
             #endregion
             if (tblock == null) return;
-            tblock.Text = string.Format("select from {0}, length {1}, Content {2}", tbTest.SelectionStart, tbTest.SelectionLength, tbTest.SelectedText);
+            tblock.Text = string.Format("{0} {1} {2}", tbTest.SelectionStart, tbTest.SelectionLength, tbTest.SelectedText);
         }
     }
 }

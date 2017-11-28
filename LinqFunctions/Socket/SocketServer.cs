@@ -23,76 +23,69 @@ namespace LinqFunctions
         }
 
         public ManualResetEvent AcceptDone = new ManualResetEvent(false);
-        public List<Socket> ProxySocketList = new List<Socket>();
+        List<Socket> ProxySocketList = new List<Socket>();
         private void btnServerStart_Click(object sender, EventArgs e)
         {
             //Create Socket
-            Socket ServerSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            Socket serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
-            //Bind Port
-            ServerSocket.Bind(new IPEndPoint(IPAddress.Parse(tbIPAdrress.Text), int.Parse(tbPort.Text)));
+            //Port Bind
+            serverSocket.Bind(new IPEndPoint(IPAddress.Parse(tbIPAdrress.Text), int.Parse(tbPort.Text)));
 
             //Listen
-            ServerSocket.Listen(10);
+            serverSocket.Listen(10);
 
-            // Accept Thread
+            //Accept
             Thread AcceptThread = new Thread((obj) =>
             {
                 AcceptClient(obj);
             });
             AcceptThread.IsBackground = true;
-            AcceptThread.Start(ServerSocket);
+            AcceptThread.Start(serverSocket);
+          
         }
 
         private void AcceptClient(object obj)
         {
-            Socket serverSocket = obj as Socket;
+            Socket serverSocket = (Socket)obj;
             while (true)
             {
                 AcceptDone.Reset();
                 serverSocket.BeginAccept(Accept, serverSocket);
                 AcceptDone.WaitOne();
             }
-
         }
 
-        private void Accept(IAsyncResult ar)
+        private void Accept(IAsyncResult asy)
         {
             AcceptDone.Set();
-            Socket server = ar.AsyncState as Socket;
-            Socket ProxySocket = server.EndAccept(ar);
+            Socket ServerSocket = asy.AsyncState as Socket;
+            Socket ProxySocket = ServerSocket.EndAccept(asy);
             ProxySocketList.Add(ProxySocket);
             SetInfoText(ProxySocket.RemoteEndPoint.ToString());
 
             byte[] data = new byte[1024];
-            byte[] result = new byte[data.Length + 1];
-            while (true)
+            byte[] result = new byte[1025];
+            while(true)
             {
                 Array.Clear(result, 0, result.Length);
+                Array.Clear(data, 0, data.Length);
                 ProxySocket.Receive(result);
-                if (result[0] == 1)
-                {
-                    Buffer.BlockCopy(result, 1, data, 0, data.Length);
-                    SetInfoText(Encoding.Default.GetString(data));
-                }
+                if (result[0] != 1) return;
+                Buffer.BlockCopy(result, 1, data, 0, data.Length);
+                SetInfoText(Encoding.Default.GetString(data));
             }
-
         }
 
         private void SetInfoText(string info)
         {
+            StringBuilder sb = new StringBuilder();
             if (tbInfo.InvokeRequired)
             {
-                tbInfo.Invoke(new Action<string>(s =>
+                tbInfo.Invoke(new Action(() =>
                 {
-                    if (tbInfo.Text.Equals(string.Empty)) { tbInfo.Text = s; }
-                    else {
-                        StringBuilder sb = new StringBuilder();
-                        sb.Append(tbInfo.Text);
-                        sb.AppendLine().Append(s);
-                        tbInfo.Text = sb.ToString();
-                    }
-                }), info);
+                   tbInfo.Text= sb.Append(tbInfo.Text).AppendLine(info).ToString();
+                }));
             }
         }
 

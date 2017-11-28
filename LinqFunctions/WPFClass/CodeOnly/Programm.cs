@@ -24,7 +24,7 @@ namespace LinqFunctions.WPFClass.CodeOnly
         //{
         //    Programm app = new Programm();
         //    app.MainWindow = new Window1();
-        //    app.MainWindow.Show();
+        //    app.MainWindow.ShowDialog();
         //}
         
     }

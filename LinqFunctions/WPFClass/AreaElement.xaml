@@ -13,21 +13,38 @@
     </Window.Resources>
     <Grid>
         <StackPanel Name="StackPanel" Loaded="StackPanel_Loaded">
-            <Slider Name="SliderFont" Orientation="Horizontal" Maximum="100" TickPlacement="TopLeft" TickFrequency="5" SmallChange="1" LargeChange="5" IsSelectionRangeEnabled="True" SelectionStart="70" SelectionEnd="90" >
+            <!--<Slider Name="SliderFont"
+            Orientation="Horizontal" Maximum="100" TickPlacement="TopLeft" TickFrequency="5" SmallChange="1" LargeChange="5" IsSelectionRangeEnabled="True" SelectionStart="70" SelectionEnd="90" >
+            </Slider>-->
+            <Slider Name="SliderFont" Orientation="Horizontal" Maximum="100" TickFrequency="5" SmallChange="1" LargeChange="5" IsSelectionRangeEnabled="True" SelectionStart="70" SelectionEnd="90">
             </Slider>
-            <TextBlock Text="Code Binding" Name="tbZiel" Margin="2" Foreground="{Binding ElementName=lbBinding,Path=SelectedItem.Tag}"/>
+            <!--<TextBlock Text="Code Binding"
+            Name="tbZiel" Margin="2" Foreground="{Binding ElementName=lbBinding,Path=SelectedItem.Tag}"/>
+            <ListBox Name="lbBinding">
+                <ListBoxItem Tag="Red" Content="red"/>
+                <ListBoxItem Tag="Yellow" Content="yellow"/>
+            </ListBox>-->
+            <ListBox Name="lbBinding">
+                <ListBoxItem Content="red" Tag="Red"/>
+                <ListBoxItem Content="yellow" Tag="Yellow"/>
+            </ListBox>
+            <TextBlock Name="tbZiel" Text="lithum" Background="{Binding ElementName=lbBinding, Path=SelectedItem.Tag}"/>
+
             <ProgressBar Name="progressbar" Height="20" Value="12" IsIndeterminate="True"/>
             <TextBlock Name="tbOutput" Text="Simple Text" FontSize="{Binding ElementName=SliderFont, Path=Value, Mode=TwoWay}"/>
             <Button Content="Show Windows" Click="Button_Click"/>
             <Button Name="btnRemove" Content="Remove Binding" Click="btnRemove_Click"  />
-            <ListBox Name="lbBinding">
-                <ListBoxItem Tag="Red" Content="red"/>
-                <ListBoxItem Tag="Yellow" Content="yellow"/>
-            </ListBox>
+            
+            <!--<TextBox
+            Name="tbSize" Text="{Binding ElementName=tbZiel, Path=FontSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />-->
             <TextBox Name="tbSize" Text="{Binding ElementName=tbZiel, Path=FontSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBlock Name="tbDatabinding" Height="20" Text="{Binding Source={x:Static SystemFonts.IconFontFamily}, Path=Source}"/>
-            <TextBlock Name="tbBindingResource" Height="20" Text="{Binding Source={StaticResource CustomFont},Path=Source}"/>
-            <TextBlock Margin="5">
+
+            <!--<TextBlock
+            Name="tbDatabinding" Height="20" Text="{Binding Source={x:Static SystemFonts.IconFontFamily}, Path=Source}"/>-->
+            <TextBlock Text="{Binding Source={x:Static SystemFonts.IconFontFamily}, Path=Source}"/>
+            <TextBlock Text="{Binding Source={StaticResource CustomFont},Path=Source}"/>
+
+            <!--<TextBlock Margin="5">
                 <TextBlock.Text>
                     <Binding Path="Name">
                         <Binding.RelativeSource>
@@ -36,8 +53,18 @@
                         </Binding.RelativeSource>
                     </Binding>
                 </TextBlock.Text>
+            </TextBlock>-->
+            <TextBlock>
+                <TextBlock.Text>
+                    <Binding Path="Name">
+                        <Binding.RelativeSource>
+                            <RelativeSource Mode="FindAncestor" AncestorType="{x:Type StackPanel}"/>
+                        </Binding.RelativeSource>
+                    </Binding>
+                </TextBlock.Text>
             </TextBlock>
-            <TextBlock Margin="5">
+
+            <!--<TextBlock Margin="5">
                 <TextBlock.Text>
                     <Binding Path="Margin">
                         <Binding.RelativeSource>
@@ -45,11 +72,16 @@
                         </Binding.RelativeSource>
                     </Binding>
                 </TextBlock.Text>
-            </TextBlock>
-            <StackPanel DataContext="{x:Static SystemFonts.IconFontFamily}">
+            </TextBlock>-->
+            
+            <!--<StackPanel DataContext="{x:Static SystemFonts.IconFontFamily}">
                 <TextBlock Text="{Binding Path=Source}"/>
                 <TextBlock Text="{Binding Path=LineSpacing}"/>
                 <TextBlock Text="{Binding FamilyTypefaces[0].Style}"/>
+            </StackPanel>-->
+            <StackPanel DataContext="{Binding Source={x:Static SystemFonts.IconFontFamily}}">
+                <TextBlock Text="{Binding Path=Source}"/>
+                <TextBlock Text="{Binding Path=LineSpacing}"/>
             </StackPanel>
         </StackPanel>
     </Grid>

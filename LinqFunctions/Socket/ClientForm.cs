@@ -21,14 +21,15 @@ namespace LinqFunctions
             InitializeComponent();
         }
 
-        Socket ClientSocket = null;
+        public Socket ClientSocket;
         private void btnConnet_Click(object sender, EventArgs e)
         {
-            // Create Socket
+            //Create Socket
             ClientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
             //Connect
             ClientSocket.Connect(new IPEndPoint(IPAddress.Parse(tbIPAdrress.Text), int.Parse(tbPort.Text)));
+
         }
 
         byte[] data = new byte[1024];
@@ -36,10 +37,10 @@ namespace LinqFunctions
         private void btnSendMessage_Click(object sender, EventArgs e)
         {
             result[0] = 1;
+            Array.Clear(data, 0, data.Length);
             data = Encoding.Default.GetBytes(tbMessage.Text);
-            Buffer.BlockCopy(data,0,result,1, data.Length);
-            ClientSocket.Send(result, SocketFlags.None);
-
+            Buffer.BlockCopy(data, 0, result, 1, data.Length);
+            ClientSocket.Send(result);
         }
 
         private void btnSendFile_Click(object sender, EventArgs e)

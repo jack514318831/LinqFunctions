@@ -50,27 +50,24 @@ namespace LinqFunctions.WPFClass.CodeOnly
         private Button button1;
         private void InitializeComponent()
         {
-            this.Height = this.Width = this.Top = this.Left = 300;
-            this.Title="Cody Only";
+            this.Width = this.Height = this.Top = this.Left = 300;
+            this.Title = "Code Only";
 
             DockPanel dockpanel = new DockPanel();
-
             button1 = new Button();
-            button1.Margin = new Thickness(50);
-            button1.Content = "storage";
+            button1.Margin = new Thickness(10);
+            button1.Content = "Lithum";
             button1.Click += button1_Click;
 
             IAddChild container = dockpanel;
             container.AddChild(button1);
             container = this;
             container.AddChild(dockpanel);
-
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            button1.Content = "Lithium";
+            button1.Content = "Blei";
         }
-
     }
 }
