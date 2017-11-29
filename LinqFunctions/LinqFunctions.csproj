@@ -121,6 +121,9 @@
     <Compile Include="WPFClass\Resource.xaml.cs">
       <DependentUpon>Resource.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WPFClass\Shape.xaml.cs">
+      <DependentUpon>Shape.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WPFClass\Trigger.xaml.cs">
       <DependentUpon>Trigger.xaml</DependentUpon>
     </Compile>
@@ -182,6 +185,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ResourceDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPFClass\Shape.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

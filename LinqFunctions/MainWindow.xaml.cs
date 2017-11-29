@@ -1077,7 +1077,39 @@ namespace LinqFunctions
             //Is subClass
             b = typeSon.IsSubclassOf(typeFather);
 
-        } 
+            //Get Private Method
+            Type typePerson1 = typeof(Person);
+            MethodInfo privatemethod = typePerson1.GetMethod("SayHi",BindingFlags.NonPublic|BindingFlags.Instance);
+            privatemethod.Invoke(Activator.CreateInstance(typePerson1), null);
+
+        }
+        #endregion
+
+        #region Enum
+        public string SeeEnum()
+        {
+            string s = (charator.Lithum | charator.Lead).ToString();
+            return s;
+        }
+
+        [Flags]
+        public enum charator
+        {
+            Lithum = 1,
+            Lead = 2,
+            Ion = 4
+        }
+        #endregion
+
+        #region Extention Method
+        //public static class stringExtrention
+        //{
+        //    public static bool isEmail(this String str)
+        //    {
+        //        return true;
+        //    }
+
+        //} 
         #endregion
 
         #region Access Modifier
@@ -1285,6 +1317,11 @@ namespace LinqFunctions
             public virtual string SayNationality()
             {
                 return "";
+            }
+            
+            private void SayHi()
+            {
+
             }
         }
 
