@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LinqFunctions.WPFClass"
         mc:Ignorable="d"
-        Title="Shape" Height="350" Width="350">
+        Title="Shape" Height="350" Width="600">
     <Window.Resources>
         <RadialGradientBrush x:Key="radial" GradientOrigin="0.5,0.5">
             <GradientStop Offset="0" Color="Red"/>
@@ -13,37 +13,76 @@
         </RadialGradientBrush>
     </Window.Resources>
     <Grid>
-        <StackPanel Height="320">
-            <StackPanel Height="150">
-                <Rectangle Height="50" Stroke="Black" RadiusX="10" RadiusY="10" >
-                </Rectangle>
-                <Ellipse Stroke="Black" Stretch="UniformToFill">
-                </Ellipse>
-            </StackPanel>
-            <Viewbox Height="120">
-                <Canvas Height="120" Width="350">
-                    <Rectangle Fill="{StaticResource radial}"  Canvas.Top="50" Canvas.Left="50" Height="60" Width="60">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Height="320">
+                <StackPanel Height="150">
+                    <Rectangle Height="50" Stroke="Black" RadiusX="10" RadiusY="10" >
                     </Rectangle>
-                    <Ellipse Fill="Red" Canvas.Top="50" Canvas.Left="150" Height="50" Width="100">
+                    <Ellipse Stroke="Black" Stretch="UniformToFill">
                     </Ellipse>
-                    <Line Stroke="Blue" StrokeThickness="10" StrokeStartLineCap="Triangle" X1="0" Y1="0" X2="100" Y2="50" Canvas.Left="20" />
-                    <Polyline Stroke="Orange" StrokeDashArray="1 2" Points="1,1 60,100 170,100"/>
-                    <Polygon Fill="Green" Points="200,0 100,100 260,10" />
-                </Canvas>
-            </Viewbox>
-            <Button Name="btn" Content="try"/>
-            <Rectangle Height="15">
-                <Rectangle.Fill>
-                    <VisualBrush Visual="{Binding ElementName=btn}">
+                </StackPanel>
+                <Viewbox Height="120">
+                    <Canvas Height="120" Width="350">
+                        <Rectangle Fill="{StaticResource radial}"  Canvas.Top="50" Canvas.Left="50" Height="60" Width="60">
+                        </Rectangle>
+                        <Ellipse Fill="Red" Canvas.Top="50" Canvas.Left="150" Height="50" Width="100">
+                        </Ellipse>
+                        <Line Stroke="Blue" StrokeThickness="10" StrokeStartLineCap="Triangle" X1="0" Y1="0" X2="100" Y2="50" Canvas.Left="20" />
+                        <Polyline Stroke="Orange" StrokeDashArray="1 2" Points="1,1 60,100 170,100"/>
+                        <Polygon Fill="Green" Points="200,0 100,100 260,10" />
+                    </Canvas>
+                </Viewbox>
+                <Button Name="btn" Content="try"/>
+                <Rectangle Height="15">
+                    <Rectangle.Fill>
+                        <VisualBrush Visual="{Binding ElementName=btn}">
                         </VisualBrush>
-                </Rectangle.Fill>
-            </Rectangle>
-            <Rectangle Height="15">
-                <Rectangle.Fill>
-                    <BitmapCacheBrush Target="{Binding ElementName=btn}"/>
-                </Rectangle.Fill>
-            </Rectangle>
-        </StackPanel>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Rectangle Height="15">
+                    <Rectangle.Fill>
+                        <BitmapCacheBrush Target="{Binding ElementName=btn}"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </StackPanel>
 
-    </Grid>
+            <StackPanel Grid.Column="1">
+                <Canvas Width="280" Height="50">
+                    <Rectangle Width="100" Height="10" Fill="Orange">
+                        <Rectangle.RenderTransform>
+                            <RotateTransform Angle="20"/>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <!--LayoutTransform-->
+                        <Rectangle Width="100" Height="10" Fill="Orange">
+                        <Rectangle.RenderTransform>
+                            <RotateTransform Angle="20" CenterX="50" CenterY="5"/>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                </Canvas>
+                <Button  Content="btnOpacity" Opacity="0.5"/>
+                <Rectangle Width="200" Height="60" Fill="YellowGreen">
+                    <Rectangle.OpacityMask>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Offset="0" Color="Black"/>
+                            <GradientStop Offset="1" Color="Transparent"/>
+                        </LinearGradientBrush>
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+                <TextBox Name="tbRender" Text="AAA"/>
+                <Rectangle Height="20" RenderTransformOrigin="1,0.5">
+                    <Rectangle.Fill>
+                        <VisualBrush Visual="{Binding ElementName=tbRender}"></VisualBrush>
+                    </Rectangle.Fill>
+                    <Rectangle.RenderTransform>
+                        <ScaleTransform ScaleY="-1"/>
+                    </Rectangle.RenderTransform>
+                </Rectangle>
+            </StackPanel>
+        </Grid>
+        </Grid>
 </Window>
