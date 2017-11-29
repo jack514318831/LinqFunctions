@@ -36,7 +36,6 @@ namespace LinqFunctions
                 {
                     tb_info.Text = m;
                 });
-
                 return;
             }
         }
@@ -56,14 +55,12 @@ namespace LinqFunctions
 
         public void SetTextFromEvent(object sender,EventArgs e)
         {
-            string m = ((MyEventArgs)e).Text;
+            string info = (e as MyEventArgs).Text;
             if (!Dispatcher.CheckAccess())
             {
-                tb_info.Dispatcher.Invoke(() =>
-                {
-                    tb_info.Text = m;
+                tb_info.Dispatcher.Invoke(()=> {
+                    tb_info.Text = info;
                 });
-                return;
             }
         }
 

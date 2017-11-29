@@ -131,3 +131,5 @@ E:\Csharp\Git\LinqFunctions\LinqFunctions\obj\Debug\WPFClass\Trigger.g.cs
 E:\Csharp\Git\LinqFunctions\LinqFunctions\obj\Debug\WPFClass\Trigger.baml
 C:\Users\g.he\Documents\CSharp\Git\LinqFunctions\LinqFunctions\obj\Debug\WPFClass\Trigger.g.cs
 C:\Users\g.he\Documents\CSharp\Git\LinqFunctions\LinqFunctions\obj\Debug\WPFClass\Trigger.baml
+C:\Users\g.he\Documents\CSharp\Git\LinqFunctions\LinqFunctions\obj\Debug\WPFClass\Shape.g.cs
+C:\Users\g.he\Documents\CSharp\Git\LinqFunctions\LinqFunctions\obj\Debug\WPFClass\Shape.baml

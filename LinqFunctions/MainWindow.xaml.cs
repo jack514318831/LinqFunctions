@@ -993,17 +993,11 @@ namespace LinqFunctions
             string path = @"C:\Users\g.he\Documents\CSharp\Git\LinqFunctions\LinqFunctions\PersonClass.dll";
 
             #region Solution
+            ////Create Assembly
             //Assembly asm = Assembly.LoadFile(path);
 
             ////Get Types
             //Type[] types = asm.GetTypes();
-            //foreach (Type t in types)
-            //{
-            //    tb_output.Text += t.FullName;
-            //}
-
-            ////Get public Type
-            //Type[] publicTypes = asm.GetExportedTypes();
 
             ////Get one type
             //Type typePerson = asm.GetType("PersonClass.Person");
@@ -1011,77 +1005,89 @@ namespace LinqFunctions
             ////Get Method
             //MethodInfo method = typePerson.GetMethod("SayHi", new Type[] { });
 
-            ////Create Object
+            ////Create Instanze
             //object obj = Activator.CreateInstance(typePerson);
 
-            ////Invode method
+            ////Method Invoke
             //method.Invoke(obj, null);
 
             ////Get Method with parameter
             //MethodInfo method1 = typePerson.GetMethod("SayHi", new Type[] { typeof(string) });
+            //method1.Invoke(obj, new object[] { "aaa" });
 
-            ////Invode Method with parameter
-            //method1.Invoke(obj, new object[] { "bbb" });
-
-            ////Constructor
+            ////Get Construtor
             //ConstructorInfo construtor = typePerson.GetConstructor(new Type[] { typeof(string) });
 
-            ////Create intance with parameter
-            //object obj1 = construtor.Invoke(new object[] { "ccc" });
+            ////Instanze with Construtor
+            //object obj1 = construtor.Invoke(new object[] { "bbb" });
 
-            ////Get Property
+            ////Get Properties
             //PropertyInfo property = typePerson.GetProperty("Name");
-            //string name = property.GetValue(obj1, null).ToString(); 
-            #endregion
+            //string name = property.GetValue(obj1, null).ToString();
 
-            //Create Assembly
+            ////entscheiden, ob Reference accept
+            //Type typeFather = typeof(Father);
+            //Type typeSon = typeof(Son);
+            //bool b = typeFather.IsAssignableFrom(typeSon);
+
+            ////Is Instance
+            //b = typeFather.IsInstanceOfType(obj);
+
+            ////Is subClass
+            //b = typeSon.IsSubclassOf(typeFather);
+
+            ////Get Private Method
+            //Type typePerson1 = typeof(Person);
+            //MethodInfo privatemethod = typePerson1.GetMethod("SayHi", BindingFlags.NonPublic | BindingFlags.Instance);
+            //privatemethod.Invoke(Activator.CreateInstance(typePerson1), null);
+            #endregion
             Assembly asm = Assembly.LoadFile(path);
 
             //Get Types
             Type[] types = asm.GetTypes();
 
-            //Get one type
+            //Get public Types
+            Type[] publicTypes = asm.GetExportedTypes();
+
+            //Get one Type
             Type typePerson = asm.GetType("PersonClass.Person");
 
             //Get Method
-            MethodInfo method = typePerson.GetMethod("SayHi", new Type[] { });
-
-            //Create Instanze
-            object obj = Activator.CreateInstance(typePerson);
-
-            //Method Invoke
-            method.Invoke(obj, null);
+            MethodInfo method = typePerson.GetMethod("SayHi", new Type[]{ });
 
             //Get Method with parameter
             MethodInfo method1 = typePerson.GetMethod("SayHi", new Type[] { typeof(string) });
-            method1.Invoke(obj, new object[] { "aaa" });
 
-            //Get Construtor
+            //Create Instance
+            object obj = Activator.CreateInstance(typePerson);
+
+            //Method invoke
+            method.Invoke(obj, null);
+            method.Invoke(obj, new object[] { "Lithum" });
+
+            //Get Constructor
             ConstructorInfo construtor = typePerson.GetConstructor(new Type[] { typeof(string) });
 
-            //Instanze with Construtor
-            object obj1 = construtor.Invoke(new object[] { "bbb" });
+            //Create Instance with p
+            object obj1 = construtor.Invoke(new object[] { "Lead" });
 
             //Get Properties
-            PropertyInfo property = typePerson.GetProperty("Name");
-            string name = property.GetValue(obj1, null).ToString();
+            PropertyInfo properties = typePerson.GetProperty("Name");
+            properties.GetValue(obj1);
 
-            //entscheiden, ob Reference accept
-            Type typeFather = typeof(Father);
-            Type typeSon = typeof(Son);
-            bool b = typeFather.IsAssignableFrom(typeSon);
+            //is Assignable
+            Type TypeBlei = typeof(Person);
+            Type TypeAmeri = typeof(American);
+            bool b1 = TypeBlei.IsAssignableFrom(TypeAmeri);
 
-            //Is Instanze
-            b = typeFather.IsInstanceOfType(obj);
+            //is Instance
+            bool b2 = typePerson.IsInstanceOfType(obj);
 
-            //Is subClass
-            b = typeSon.IsSubclassOf(typeFather);
+            //is subclass
+            bool b3 = typePerson.IsSubclassOf(TypeAmeri);
 
             //Get Private Method
-            Type typePerson1 = typeof(Person);
-            MethodInfo privatemethod = typePerson1.GetMethod("SayHi",BindingFlags.NonPublic|BindingFlags.Instance);
-            privatemethod.Invoke(Activator.CreateInstance(typePerson1), null);
-
+            typePerson.GetMethod("SayHi", BindingFlags.NonPublic | BindingFlags.Instance);
         }
         #endregion
 
@@ -1110,6 +1116,7 @@ namespace LinqFunctions
         //    }
 
         //} 
+
         #endregion
 
         #region Access Modifier

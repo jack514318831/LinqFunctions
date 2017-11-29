@@ -29,18 +29,19 @@ namespace LinqFunctions
 
         private void btnProcess_Click(object sender, RoutedEventArgs e)
         {
-            Process[] processes = Process.GetProcesses();
-            foreach (var p in processes)
+            Process[] ps = Process.GetProcesses();
+            foreach(var p in ps)
             {
                 tb_output.Text += p.Id;
             }
-
             Process.Start("chrome", "www.google.de");
         }
 
         private void btnThreadpool_Click(object sender, RoutedEventArgs e)
         {
-            ThreadPool.QueueUserWorkItem((obj) => { SetText("SMA"); }, this);
+            ThreadPool.QueueUserWorkItem((obj)=> {
+                SetText(obj as string);
+            },tbUsers.Text);
         }
 
         private void SetText(string str)
@@ -97,12 +98,18 @@ namespace LinqFunctions
 
         private void btnDelegateInvoke_Click(object sender, RoutedEventArgs e)
         {
+            #region Solution
+            //Func<int, int, string> del = (a, b) => (a + b).ToString();
+            //IAsyncResult asy = del.BeginInvoke(3, 4, null, null);
+
+            //Thread.Sleep(500);
+
+            //tb_output.Text = del.EndInvoke(asy); 
+            #endregion
             Func<int, int, string> del = (a, b) => (a + b).ToString();
-            IAsyncResult asy = del.BeginInvoke(3, 4, null, null);
-
+            IAsyncResult result = del.BeginInvoke(3, 4, null, null);
             Thread.Sleep(500);
-
-            tb_output.Text = del.EndInvoke(asy);
+            string str = del.EndInvoke(result);
         }
 
         private void btnCallBack_Click(object sender, RoutedEventArgs e)

@@ -61,25 +61,19 @@ namespace LinqFunctions.XML
             //root.AppendChild(node);
             //document.Save(@"C:/Users/g.he/Documents/CSharp/Git/LinqFunctions/LinqFunctions/XML/UserXML.xml");
             #endregion
-
             XmlElement root = document.DocumentElement;
-            if (root == null) return;
-            if (document.SelectNodes("/Users/user[@id='" + tbNewId.Text + "']").Count > 0)
-            {
-                MessageBox.Show("Extiert");
-                return;
-            }
+            if (document.SelectNodes("/Users/user[@id='"+tbNewId.Text+"']").Count > 0) return;
             XmlElement node = document.CreateElement("user");
             node.SetAttribute("id", tbNewId.Text);
-            XmlElement NameNode = document.CreateElement("name");
-            NameNode.InnerText = tbNeuName.Text;
-            node.AppendChild(NameNode);
-            XmlElement PWNode = document.CreateElement("password");
-            PWNode.InnerText = tbNewPassword.Text;
-            node.AppendChild(PWNode);
+            XmlElement Nnode = document.CreateElement("name");
+            Nnode.InnerText = tbNeuName.Text;
+            node.AppendChild(Nnode);
+            XmlElement pwnode = document.CreateElement("password");
+            pwnode.InnerText = tbNewPassword.Text;
+            node.AppendChild(pwnode);
             root.AppendChild(node);
+
             document.Save(@"C:/Users/g.he/Documents/CSharp/Git/LinqFunctions/LinqFunctions/XML/UserXML.xml"); 
-            
             XMLLoad();
             
         }
@@ -100,10 +94,9 @@ namespace LinqFunctions.XML
             //    listView1.Items.Add(item);
             //} 
             #endregion
-
-            XmlNodeList nodelist = document.SelectNodes("/Users/user");
+            XmlNodeList nodeList = document.SelectNodes("/Users/user");
             listView1.Items.Clear();
-            foreach (XmlNode node in nodelist)
+            foreach(XmlNode node in nodeList)
             {
                 ListViewItem item = new ListViewItem(node.Attributes["id"].Value);
                 item.SubItems.Add(node.SelectSingleNode("name").InnerText);
@@ -144,21 +137,15 @@ namespace LinqFunctions.XML
             //    }
             //} 
             #endregion
-            if (listView1.SelectedItems.Count > 0)
-            {
-                string id="";
-               foreach(ListViewItem item in listView1.SelectedItems)
-                {
-                    id = item.Text;
-                }
-                XmlNode node = document.SelectSingleNode("/Users/user[@id='"+id+"']");
-                if (node == null) return;
-                document.DocumentElement.RemoveChild(node);
-                document.Save(@"C:/Users/g.he/Documents/CSharp/Git/LinqFunctions/LinqFunctions/XML/UserXML.xml");
-                XMLLoad();
-            }
 
+            string id = tbEditId.Text;
+            XmlElement root = document.DocumentElement;
+            XmlNode node = document.SelectSingleNode("/Users/user[@id='"+id+"']");
+            if (node == null) return;
+            root.RemoveChild(node);
 
+            document.Save(@"C:/Users/g.he/Documents/CSharp/Git/LinqFunctions/LinqFunctions/XML/UserXML.xml");
+            XMLLoad();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -175,13 +162,12 @@ namespace LinqFunctions.XML
             //string pw = node.NextSibling.InnerText;
             //if (!tbLoginPassword.Text.Equals(pw)) return;
             #endregion
+            XmlNode Nnode = document.SelectSingleNode("/Users/user/name[.='" + tbLoginUsername.Text + "']");
+            if (Nnode == null) return;
+            string pw = Nnode.NextSibling.InnerText;
+            if (pw.Equals(tbLoginPassword.Text))
+            { MessageBox.Show("richtig"); }
 
-            string nid = tbLoginUsername.Text;
-            XmlNode node = document.SelectSingleNode("/Users/user/name[.='" + nid + "']");
-            if (node == null) return;
-            string pw = node.NextSibling.InnerText;
-            if (!tbLoginPassword.Text.Equals(pw)) return;
-            MessageBox.Show("rightig");
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -195,8 +181,7 @@ namespace LinqFunctions.XML
             //node.SelectSingleNode("name").InnerText = tbEditUsername.Text;
             //node.SelectSingleNode("password").InnerText = tbEditPassword.Text;
             #endregion
-
-            XmlNode node = document.SelectSingleNode("/Users/user[@id='" + tbEditId.Text + "']");
+            XmlNode node = document.SelectSingleNode("/Users/user[@id='"+tbEditId.Text+"']");
             if (node == null) return;
             node.SelectSingleNode("name").InnerText = tbEditUsername.Text;
             node.SelectSingleNode("password").InnerText = tbEditPassword.Text;

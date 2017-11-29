@@ -26,49 +26,41 @@ namespace LinqFunctions
             InitializeComponent();
         }
 
-        public Action<string> SendMessageAction { get; set; }
-        public EventHandler SentMessageEvent;
-        public List<ISendmassege> SendList = new List<ISendmassege>();
+        public delegate void SendMessage(string messeage);
+        public SendMessage sendmessage;
+        public event EventHandler SendMessageEvent;
+        List<ISendmassege> SendList = new List<ISendmassege>();
         private void btn_new_Click(object sender, RoutedEventArgs e)
         {
             Thread oThread = new Thread(() => {
                 Kind kf = new Kind();
-                SendMessageAction += kf.SetText;
-                SentMessageEvent += kf.SetTextFromEvent;
+                sendmessage += kf.SetText;
+                SendMessageEvent += kf.SetTextFromEvent;
                 SendList.Add(kf);
-                kf.ShowDialog();
+
                 System.Windows.Threading.Dispatcher.Run();
-
             });
-
             oThread.SetApartmentState(ApartmentState.STA);
             oThread.Start();
         }
 
         private void btn_trans_Click(object sender, RoutedEventArgs e)
         {
-            if (SendMessageAction != null)
-            {
-                SendMessageAction(tb_info.Text);
-                return;
-            }
+            if (sendmessage == null) return;
+            sendmessage(tb_info.Text);
         }
 
         private void btn_Event_Click(object sender, RoutedEventArgs e)
         {
-            if (SentMessageEvent != null)
-            {
-                MyEventArgs m = new MyEventArgs(tb_info.Text);
-                SentMessageEvent(this,m);
-                return;
-            }
+            if (SendMessageEvent == null) return;
+            SendMessageEvent(this, new MyEventArgs(tb_info.Text));
         }
 
         private void btn_Abont_Click(object sender, RoutedEventArgs e)
         {
-            foreach (var kf in SendList)
+            foreach (ISendmassege k in SendList)
             {
-                kf.SetTextAbont(tb_info.Text);
+                k.SetTextAbont(tb_info.Text);
             }
         }
     }
