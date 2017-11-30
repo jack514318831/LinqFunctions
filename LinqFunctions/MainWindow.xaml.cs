@@ -75,7 +75,7 @@ namespace LinqFunctions
             var result = new XElement("emps", from emp in list
                                               select new XElement("emp",
                                               new XAttribute("id", emp.EmpployeeID),
-                                              new XAttribute("did",emp.DepartmentID),
+                                              new XAttribute("did", emp.DepartmentID),
                                               new XElement("Sal", emp.Salary)));
 
             result.Save(@"E:\Test.xml");
@@ -258,7 +258,7 @@ namespace LinqFunctions
             string[] ary = new string[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
 
             Func<string, bool> vergleich = s => s.StartsWith("J") && s.EndsWith("n");
-            var result = ary.Where(vergleich); 
+            var result = ary.Where(vergleich);
 
         }
 
@@ -301,7 +301,7 @@ namespace LinqFunctions
             arr.Add("One");
 
             var result = arr.OfType<string>();
-           
+
         }
 
         private void ArraylistFunc()
@@ -342,7 +342,7 @@ namespace LinqFunctions
                          select new
                          {
                              mark = m.Name,
-                             storage= item.Name
+                             storage = item.Name
                          };
 
             DG_Data.ItemsSource = result;
@@ -360,7 +360,7 @@ namespace LinqFunctions
                          select new
                          {
                              marke = item != null ? item.Name : string.Empty,
-                             storage= s.Name
+                             storage = s.Name
                          };
 
             DG_Data.ItemsSource = result;
@@ -447,7 +447,7 @@ namespace LinqFunctions
             var result = source.Where((num) => {
                 if (num >= 3 && num <= 7)
                     return true;
-                    return false;
+                return false;
             });
 
             foreach (var num in result)
@@ -551,7 +551,7 @@ namespace LinqFunctions
             dtd.Columns.Add(new DataColumn("name"));
             dte.Columns.Add(new DataColumn("ID"));
             dte.Columns.Add(new DataColumn("DID"));
-            dte.Columns.Add(new DataColumn("Sal",System.Type.GetType("Int32")));
+            dte.Columns.Add(new DataColumn("Sal", System.Type.GetType("Int32")));
 
             foreach (var dp in dlist)
             {
@@ -584,7 +584,7 @@ namespace LinqFunctions
                          {
                              emp = emp.Field<Int32>("Sal")
                          };
-                         
+
 
             DG_Data.ItemsSource = result;
 
@@ -619,7 +619,7 @@ namespace LinqFunctions
                 WPFClass.ContentElement.Window1 window = new WPFClass.ContentElement.Window1();
                 window.ShowDialog();
             }
-            else if(CB_wpf.Text.Equals("Area Element"))
+            else if (CB_wpf.Text.Equals("Area Element"))
             {
                 WPFClass.AreaElement window = new WPFClass.AreaElement();
                 window.Owner = this;
@@ -660,8 +660,8 @@ namespace LinqFunctions
             string str = "hier ist a card num : 4444-3333-2222-1111";
 
             string pattern = @"(\d{4}[ ,-]){3}\d{4}";
-            Match mt = Regex.Match(str,pattern);
-            foreach(Group g in mt.Groups)
+            Match mt = Regex.Match(str, pattern);
+            foreach (Group g in mt.Groups)
             {
                 MessageBox.Show(g.ToString());
             }
@@ -691,7 +691,7 @@ namespace LinqFunctions
             string pattern = "(?<=<a href=('|\")).*?(?=('|\")>(.|\\n)*?</a>)";
             MatchCollection mtc = Regex.Matches(htmlstr, pattern);
 
-            foreach(Match mt in mtc)
+            foreach (Match mt in mtc)
             {
                 buider.AppendLine(mt.ToString());
             }
@@ -755,10 +755,10 @@ namespace LinqFunctions
 
             IWorkbook wk = new XSSFWorkbook();
             ISheet sheet = wk.CreateSheet("test");
-            for(int r =0; r<5; r++)
+            for (int r = 0; r < 5; r++)
             {
                 IRow row = sheet.CreateRow(r);
-                for(int c =0; c<5; c++)
+                for (int c = 0; c < 5; c++)
                 {
                     ICell cell = row.CreateCell(c);
                     cell.SetCellValue(c + r);
@@ -771,7 +771,7 @@ namespace LinqFunctions
             {
                 wk.Write(fs);
             }
-           
+
         }
 
         private void StreamRead()
@@ -782,14 +782,14 @@ namespace LinqFunctions
             open.Filter = "Excel (*.xlsx)| *.xlsx | Text (*.txt)|*.txt";
             if (open.ShowDialog() == false)
                 return;
-            using (StreamReader sr =new StreamReader(open.FileName, Encoding.Default, false, 1024))
+            using (StreamReader sr = new StreamReader(open.FileName, Encoding.Default, false, 1024))
             {
                 while (sr.EndOfStream)
                 {
                     str += sr.ReadLine();
                 }
             }
-                tb_output.Text = str;
+            tb_output.Text = str;
         }
 
         private void StreamWrite()
@@ -804,7 +804,7 @@ namespace LinqFunctions
             {
                 fs.Write(Encoding.Default.GetBytes(str), 0, 1024);
             }
-            using (StreamWriter sw = new StreamWriter(path,false, Encoding.Default,1024))
+            using (StreamWriter sw = new StreamWriter(path, false, Encoding.Default, 1024))
             {
                 sw.Write(str.ToCharArray());
                 sw.Flush();
@@ -963,7 +963,7 @@ namespace LinqFunctions
         {
             if (cb_Grundlage.Text.Equals("Access modifier"))
             {
-               
+
             }
             else if (cb_Grundlage.Text.Equals(""))
             {
@@ -980,7 +980,7 @@ namespace LinqFunctions
             else if (cb_Grundlage.Text.Equals("Klasse Sort"))
             {
                 KlasseSort();
-            }else if(cb_Grundlage.Text.Equals("Reflector"))
+            } else if (cb_Grundlage.Text.Equals("Reflector"))
             {
                 Reflector();
             }
@@ -1043,59 +1043,58 @@ namespace LinqFunctions
             #endregion
             Assembly asm = Assembly.LoadFile(path);
 
-            //Get Types
+            //Get types
             Type[] types = asm.GetTypes();
 
-            //Get public Types
+            //Get Public Type
             Type[] publicTypes = asm.GetExportedTypes();
 
-            //Get one Type
-            Type typePerson = asm.GetType("PersonClass.Person");
+            //Get type
+            Type typePerson = asm.GetType("PersionClass.Person");
 
             //Get Method
-            MethodInfo method = typePerson.GetMethod("SayHi", new Type[]{ });
+            MethodInfo method = typePerson.GetMethod("SayHi", new Type[] { });
 
             //Get Method with parameter
-            MethodInfo method1 = typePerson.GetMethod("SayHi", new Type[] { typeof(string) });
+            MethodInfo Method1 = typePerson.GetMethod("SayHi", new Type[] { typeof(string) });
 
             //Create Instance
             object obj = Activator.CreateInstance(typePerson);
 
-            //Method invoke
-            method.Invoke(obj, null);
-            method.Invoke(obj, new object[] { "Lithum" });
-
-            //Get Constructor
+            //Get Construtor
             ConstructorInfo construtor = typePerson.GetConstructor(new Type[] { typeof(string) });
 
-            //Create Instance with p
-            object obj1 = construtor.Invoke(new object[] { "Lead" });
+            //Get Instance
+            object obj1 = construtor.Invoke(new object[] { "Lithum" });
 
-            //Get Properties
-            PropertyInfo properties = typePerson.GetProperty("Name");
-            properties.GetValue(obj1);
+            //Invoke method
+            Method1.Invoke(obj1, new object[] { "SMA" });
 
-            //is Assignable
-            Type TypeBlei = typeof(Person);
-            Type TypeAmeri = typeof(American);
-            bool b1 = TypeBlei.IsAssignableFrom(TypeAmeri);
+            //Get Property
+            string name = typePerson.GetProperty("Name").ToString();
 
-            //is Instance
-            bool b2 = typePerson.IsInstanceOfType(obj);
+            //Is Assignable From
+            Type typeFather = typeof(Father);
+            bool b1 = typeFather.IsAssignableFrom(typeof(Son));
 
-            //is subclass
-            bool b3 = typePerson.IsSubclassOf(TypeAmeri);
+            //Is Instance
+            bool b2 = typePerson.IsInstanceOfType(obj1);
 
-            //Get Private Method
-            typePerson.GetMethod("SayHi", BindingFlags.NonPublic | BindingFlags.Instance);
+            //Is subClass
+            bool b3 = typePerson.IsSubclassOf(typeof(object));
+
+            //Get private Method
+            MethodInfo privateinfo = typePerson.GetMethod("SayA", BindingFlags.NonPublic | BindingFlags.Instance);
+
         }
         #endregion
 
         #region Enum
         public string SeeEnum()
         {
-            string s = (charator.Lithum | charator.Lead).ToString();
-            return s;
+            string result = (charator.Lithum | charator.Lead).ToString();
+
+            return result;
         }
 
         [Flags]
@@ -1108,6 +1107,7 @@ namespace LinqFunctions
         #endregion
 
         #region Extention Method
+        #region Solution
         //public static class stringExtrention
         //{
         //    public static bool isEmail(this String str)
@@ -1115,8 +1115,16 @@ namespace LinqFunctions
         //        return true;
         //    }
 
-        //} 
+        //}  
+        #endregion
 
+        //public static class PersonExtention
+        //{
+        //    public static bool isEail(this Person p)
+        //    {
+        //        return false;
+        //    }
+        //}
         #endregion
 
         #region Access Modifier
@@ -1145,6 +1153,7 @@ namespace LinqFunctions
 
             //operator
             #region Operator
+            #region Solution
             //public static bool operator ==(MainWindow.MyClass a, MainWindow.MyClass b)
             //{
             //    if (a.num4 == b.num4)
@@ -1164,6 +1173,7 @@ namespace LinqFunctions
             {
                 return false;
             }
+            #endregion
         } 
         #endregion
 
@@ -1203,7 +1213,8 @@ namespace LinqFunctions
             }
 
             tb_input.Text += "/r/n";
-            IComparer comparer = new KlassComparer();
+
+            IComparer comparer = new KlasseComparer();
             list.Sort(comparer);
 
             foreach (Klasse k in list)
@@ -1240,14 +1251,13 @@ namespace LinqFunctions
         //} 
         #endregion
 
-        public class Klasse:IComparable
+        public class Klasse : IComparable
         {
-            public string name { get; set; }
-            public int num { get; set; }
+            public string name;
+            public int num;
             public Klasse(string n, int c)
             {
-                name = n;
-                num = c;
+                name = n; num = c;
             }
 
             public int CompareTo(object obj)
@@ -1256,17 +1266,17 @@ namespace LinqFunctions
             }
         }
 
-        public class KlassComparer : IComparer
+        public class KlasseComparer : IComparer
         {
             public int Compare(object x, object y)
             {
-                return ((Klasse)x).num - ((Klasse)y).num;
+                return (x as Klasse).num - (y as Klasse).num;
             }
         }
 
         #endregion
 
-        #region vitual method
+        #region vitual method and WeakReference
 
         private void VirtualMethod()
         {
@@ -1280,17 +1290,26 @@ namespace LinqFunctions
             }
 
             // WeakReference
+            #region WeakReference Solution
+            //WeakReference wk = new WeakReference(p);
+            //p = null;
+
+            //if (wk.IsAlive)
+            //{
+            //    object obj = wk.Target;
+            //    if (obj != null)
+            //    {
+            //        Person p1 = obj as Person;
+            //    }
+            //}    
+            #endregion
             WeakReference wk = new WeakReference(p);
             p = null;
-            
-            if(wk.IsAlive)
+            if (wk.IsAlive)
             {
                 object obj = wk.Target;
-                if(obj !=null)
-                {
-                    Person p1 = obj as Person;
-                }
-            }   
+                p = obj as Person[];
+            }
         }
 
         #region Solution
@@ -1325,14 +1344,9 @@ namespace LinqFunctions
             {
                 return "";
             }
-            
-            private void SayHi()
-            {
-
-            }
         }
 
-        public class Chinese:Person
+        public class Chinese : Person
         {
             public override string SayNationality()
             {
@@ -1340,7 +1354,7 @@ namespace LinqFunctions
             }
         }
 
-        public class American:Person
+        public class American : Person
         {
             public override string SayNationality()
             {
@@ -1372,10 +1386,9 @@ namespace LinqFunctions
         {
             int result;
             result = int.Parse(numstr);
-            if(!int.TryParse(numstr,out result))
-            {
-                MessageBox.Show("Fehler");
-            }
+
+            if (int.TryParse(numstr, out result)) MessageBox.Show("erfolg");
+
             return result;
         }
 
@@ -1389,18 +1402,14 @@ namespace LinqFunctions
             {
                 int r = i / j;
             }
-            catch (NullReferenceException ex)
-            { }
-            catch(DivideByZeroException ex)
-            { }
-            catch(ArgumentException ex)
-            { }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
+            catch (NullReferenceException ex) { }
+            catch (DivideByZeroException ex) { }
+            catch(ArgumentException ex) {
                 MessageBox.Show(ex.Source);
+                MessageBox.Show(ex.Message);
                 MessageBox.Show(ex.StackTrace);
             }
+            
         }
         #endregion
 

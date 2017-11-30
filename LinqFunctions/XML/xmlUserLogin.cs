@@ -61,16 +61,17 @@ namespace LinqFunctions.XML
             //root.AppendChild(node);
             //document.Save(@"C:/Users/g.he/Documents/CSharp/Git/LinqFunctions/LinqFunctions/XML/UserXML.xml");
             #endregion
+            string id = tbNewId.Text;
+            if (document.SelectNodes("/Users/user[@id='"+id+"']").Count > 0) return;
             XmlElement root = document.DocumentElement;
-            if (document.SelectNodes("/Users/user[@id='"+tbNewId.Text+"']").Count > 0) return;
             XmlElement node = document.CreateElement("user");
-            node.SetAttribute("id", tbNewId.Text);
+            node.SetAttribute("id",id);
             XmlElement Nnode = document.CreateElement("name");
             Nnode.InnerText = tbNeuName.Text;
             node.AppendChild(Nnode);
-            XmlElement pwnode = document.CreateElement("password");
-            pwnode.InnerText = tbNewPassword.Text;
-            node.AppendChild(pwnode);
+            XmlElement PWnode = document.CreateElement("password");
+            PWnode.InnerText = tbNewPassword.Text;
+            node.AppendChild(PWnode);
             root.AppendChild(node);
 
             document.Save(@"C:/Users/g.he/Documents/CSharp/Git/LinqFunctions/LinqFunctions/XML/UserXML.xml"); 
@@ -94,15 +95,16 @@ namespace LinqFunctions.XML
             //    listView1.Items.Add(item);
             //} 
             #endregion
-            XmlNodeList nodeList = document.SelectNodes("/Users/user");
+            XmlNodeList nodelist = document.SelectNodes("/Users/user");
             listView1.Items.Clear();
-            foreach(XmlNode node in nodeList)
+            foreach(XmlNode node in nodelist)
             {
                 ListViewItem item = new ListViewItem(node.Attributes["id"].Value);
                 item.SubItems.Add(node.SelectSingleNode("name").InnerText);
                 item.SubItems.Add(node.SelectSingleNode("password").InnerText);
                 listView1.Items.Add(item);
             }
+           
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -137,13 +139,10 @@ namespace LinqFunctions.XML
             //    }
             //} 
             #endregion
-
             string id = tbEditId.Text;
-            XmlElement root = document.DocumentElement;
             XmlNode node = document.SelectSingleNode("/Users/user[@id='"+id+"']");
             if (node == null) return;
-            root.RemoveChild(node);
-
+            document.DocumentElement.RemoveChild(node);
             document.Save(@"C:/Users/g.he/Documents/CSharp/Git/LinqFunctions/LinqFunctions/XML/UserXML.xml");
             XMLLoad();
         }
@@ -162,12 +161,13 @@ namespace LinqFunctions.XML
             //string pw = node.NextSibling.InnerText;
             //if (!tbLoginPassword.Text.Equals(pw)) return;
             #endregion
-            XmlNode Nnode = document.SelectSingleNode("/Users/user/name[.='" + tbLoginUsername.Text + "']");
-            if (Nnode == null) return;
-            string pw = Nnode.NextSibling.InnerText;
-            if (pw.Equals(tbLoginPassword.Text))
-            { MessageBox.Show("richtig"); }
-
+            string nid = tbLoginUsername.Text;
+            XmlNode node = document.SelectSingleNode("/Users/user/name[.='" + nid + "']");
+            if (node == null) return;
+            if(node.NextSibling.InnerText.Equals(tbLoginPassword.Text))
+            {
+                MessageBox.Show("Angepasst");
+            }
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -181,7 +181,7 @@ namespace LinqFunctions.XML
             //node.SelectSingleNode("name").InnerText = tbEditUsername.Text;
             //node.SelectSingleNode("password").InnerText = tbEditPassword.Text;
             #endregion
-            XmlNode node = document.SelectSingleNode("/Users/user[@id='"+tbEditId.Text+"']");
+            XmlNode node = document.DocumentElement.SelectSingleNode("user[@id='"+tbEditId.Text+"']");
             if (node == null) return;
             node.SelectSingleNode("name").InnerText = tbEditUsername.Text;
             node.SelectSingleNode("password").InnerText = tbEditPassword.Text;

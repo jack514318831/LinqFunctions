@@ -22,26 +22,22 @@
                     <RadioButton Content="radio" GroupName="g1"/>
                 </StackPanel>
             </Button>-->
-            <Button IsCancel="True" IsDefault="True">
+            <Button>
                 <Button.ToolTip>
-                    <StackPanel>
-                        <TextBlock Text="aaa"/>
-                        <TextBlock Text="bbb"/>
-                    </StackPanel>
+                    <TextBlock Text="aaa"/>
                 </Button.ToolTip>
                 <StackPanel>
+                    <TextBlock Text="bbb"/>
                     <RadioButton Content="radio" GroupName="g1"/>
                 </StackPanel>
             </Button>
             <!--<Label Target="{Binding ElementName=tb}">
                 choose _A
             </Label>-->
-            <Label Target="{Binding ElementName=tb}">
-                choose _A
-            </Label>
+            <Label Content="choose _A" Target="{Binding ElementName=tb}"/>
             <TextBox Name="tb"/>
             <!--<CheckBox Content="CheckBox" IsChecked="{x:Null}" IsThreeState="True"/>-->
-            <CheckBox Content="CheckBox" IsChecked="{x:Null}" IsThreeState="True"/>
+            <CheckBox IsChecked="{x:Null}" IsThreeState="True"/>
             <RadioButton Content="radia" GroupName="g1"/>
             <!--<ScrollViewer CanContentScroll="True" Height="70" Margin="5">
                 <StackPanel>
@@ -50,7 +46,7 @@
                     <Button Content="btn3" Height="50" Margin="5"/>
                 </StackPanel>
             </ScrollViewer>-->
-            <ScrollViewer Height="80" CanContentScroll="True">
+            <ScrollViewer CanContentScroll="True" Height="80">
                 <StackPanel>
                     <Button Height="70" Content="btn1"/>
                     <Button Height="70" Content="btn2"/>
