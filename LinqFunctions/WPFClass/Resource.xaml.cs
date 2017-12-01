@@ -26,23 +26,33 @@ namespace LinqFunctions.WPFClass
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.SPanel.Resources["solidbrush"] = new SolidColorBrush(Colors.Blue);
+            #region Solution
+            // this.SPanel.Resources["solidbrush"] = new SolidColorBrush(Colors.Blue); 
+            #endregion
+            this.SPanel.Resources["solidbrush"] = new SolidColorBrush(Colors.Gold);
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            #region Solution
+            //ResourceDictionary rd = new ResourceDictionary();
+            //rd.Source = new Uri("LibreryName: component/aaa.xaml", UriKind.Relative);
+            //this.btn1.Background = (Brush)rd["BrushName"]; 
+            #endregion
             ResourceDictionary rd = new ResourceDictionary();
-            rd.Source = new Uri("LibreryName: component/aaa.xaml", UriKind.Relative);
+            rd.Source = new Uri("LibreryName: component/windows.xaml", UriKind.Relative);
             this.btn1.Background = (Brush)rd["BrushName"];
         }
 
         private void mouseenter(object sender,  MouseEventArgs e)
         {
+            if(sender is TextBlock)
             ((TextBlock)sender).Background = new SolidColorBrush(Colors.LightYellow);
         }
 
         private void mouseleave(object sender, MouseEventArgs e)
         {
+            if(sender is TextBlock)
             ((TextBlock)sender).Background = new SolidColorBrush(Colors.White);
         }
     }

@@ -7,19 +7,30 @@
         mc:Ignorable="d"
         Title="Resource" Height="300" Width="300">
     <Window.Resources>
-        <Style x:Key="EventSetterStyle">
+        <!--<Style x:Key="EventSetterStyle">
             <EventSetter Event="FrameworkElement.MouseEnter" Handler="mouseenter">
             </EventSetter>
             <EventSetter Event="FrameworkElement.MouseLeave" Handler="mouseleave">
             </EventSetter>
+        </Style>-->
+        <Style x:Key="EventSetterStyle">
+            <EventSetter Event="FrameworkElement.MouseEnter" Handler="mouseenter"/>
+            <EventSetter Event="FrameworkElement.MouseLeave" Handler="mouseleave"/>
         </Style>
-        <Style x:Key="FontStyle">
+        <!--<Style x:Key="FontStyle">
             <Setter Property="Control.FontSize" Value="16"/>
         </Style>
-        <Style x:Key="FontColor" BasedOn="{StaticResource FontStyle}">
+        <Style x:Key="FontColorSize" BasedOn="{StaticResource FontStyle}">
+            <Setter Property="Control.Foreground" Value="Red"/>
+        </Style>-->
+        <Style x:Key="FontSize">
+            <Setter Property="Control.FontSize" Value="16"/>
+        </Style>
+        <Style x:Key="FontColorSize" BasedOn="{StaticResource FontSize}">
             <Setter Property="Control.Foreground" Value="Red"/>
         </Style>
     </Window.Resources>
+    
     <Grid>
         <StackPanel Name="SPanel">
             <StackPanel.Resources>
@@ -29,8 +40,8 @@
             <Button Background="{DynamicResource solidbrush}" Content="Dynamic" Click="Button_Click"/>
             <Button Foreground="{x:Static SystemColors.WindowTextBrush}" Content="Window Text Color"/>
             <Button Name="btn1" Content="ResourceLibrary" Click="Button_Click_1" Background="{DynamicResource dictionarybrush}"/>
-            <TextBlock Text="aaa" Style="{StaticResource EventSetterStyle}"/>
-            <TextBlock Text="More Style" Style="{StaticResource FontColor}"/>
+            <TextBlock Text="Blei" Style="{StaticResource EventSetterStyle}"/>
+            <TextBlock Text="More Style" Style="{StaticResource FontColorSize}"/>
         </StackPanel>
     </Grid>
 </Window>

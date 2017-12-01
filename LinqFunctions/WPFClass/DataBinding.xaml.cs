@@ -15,18 +15,18 @@ using System.Windows.Shapes;
 namespace LinqFunctions.WPFClass
 {
     /// <summary>
-    /// Interaktionslogik für AreaElement.xaml
+    /// Interaktionslogik für DataBinding.xaml
     /// </summary>
-    public partial class AreaElement : Window
+    public partial class DataBinding : Window
     {
-        public AreaElement()
+        public DataBinding()
         {
             InitializeComponent();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            foreach(Window w in Application.Current.Windows)
+            foreach (Window w in Application.Current.Windows)
             {
                 MessageBox.Show(w.Title);
             }
@@ -45,8 +45,8 @@ namespace LinqFunctions.WPFClass
 
             Binding binding = new Binding();
             binding.Source = this.SliderFont;
-            binding.Path = new PropertyPath("Value");
-            binding.Mode = BindingMode.TwoWay;
+            binding.Path = new PropertyPath("Name");
+            binding.Mode = BindingMode.OneWay;
             this.tbZiel.SetBinding(TextBlock.FontSizeProperty, binding);
 
         }
@@ -56,7 +56,6 @@ namespace LinqFunctions.WPFClass
             #region Solution
             //BindingOperations.ClearAllBindings(this.tbZiel); 
             #endregion
-
             BindingOperations.ClearAllBindings(this.tbZiel);
 
         }

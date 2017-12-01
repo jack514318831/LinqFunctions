@@ -29,7 +29,7 @@ namespace LinqFunctions.WPFClass
             #region Solution
             //tb_output.Text = string.Format("Event:{0} Key:{1}", e.RoutedEvent, e.Key); 
             #endregion
-            this.tb_output.Text = string.Format("Event:{0} Key:{1}", e.RoutedEvent, e.Key);
+            this.tb_output.Text = string.Format("Event:{0} Key:{1}" e.RoutedEvent, e.Key);
         }
     }
 }
