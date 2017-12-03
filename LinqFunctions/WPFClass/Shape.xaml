@@ -5,16 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LinqFunctions.WPFClass"
         mc:Ignorable="d"
-        Title="Shape" Height="350" Width="600">
+        Title="Shape" Height="450" Width="600">
     <Window.Resources>
         <RadialGradientBrush x:Key="radial" GradientOrigin="0.5,0.5">
             <GradientStop Offset="0" Color="Red"/>
             <GradientStop Offset="1" Color="Yellow"/>
         </RadialGradientBrush>
+        <CombinedGeometry x:Key="combine" GeometryCombineMode="Union">
+            <CombinedGeometry.Geometry1>
+                <RectangleGeometry Rect="10,10 100,50"/>
+            </CombinedGeometry.Geometry1>
+            <CombinedGeometry.Geometry2>
+                <EllipseGeometry Center="50,20" RadiusX="60" RadiusY="30"/>
+            </CombinedGeometry.Geometry2>
+        </CombinedGeometry>
     </Window.Resources>
     <Grid>
         <Grid>
             <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
@@ -58,7 +67,7 @@
                         </Rectangle.RenderTransform>
                     </Rectangle>
                     <!--LayoutTransform-->
-                        <Rectangle Width="100" Height="10" Fill="Orange">
+                    <Rectangle Width="100" Height="10" Fill="Orange">
                         <Rectangle.RenderTransform>
                             <RotateTransform Angle="20" CenterX="50" CenterY="5"/>
                         </Rectangle.RenderTransform>
@@ -83,6 +92,28 @@
                     </Rectangle.RenderTransform>
                 </Rectangle>
             </StackPanel>
+            <StackPanel Grid.Column="2">
+                <Path Fill="Yellow">
+                    <Path.Data>
+                        <GeometryGroup FillRule="EvenOdd">
+                            <RectangleGeometry Rect="10,10 100,50"/>
+                            <LineGeometry StartPoint="0,0" EndPoint="100,50"/>
+                            <EllipseGeometry Center="10,10" RadiusX="30" RadiusY="20"/>
+                        </GeometryGroup>
+                    </Path.Data>
+                </Path>
+                <Path Fill="Red" Data="{StaticResource combine}"/>
+                <Path Stroke="Black">
+                    <Path.Data>
+                        <PathGeometry>
+                            <PathFigure StartPoint="0,100">
+                                <ArcSegment IsLargeArc="False" Point="50,50" Size="80,80"/>
+                            </PathFigure>
+                        </PathGeometry>
+                    </Path.Data>
+                </Path>
+                <Path Stroke="Gold" Data="M50,150 L55,200 60,140 Z" />
+            </StackPanel>
         </Grid>
-        </Grid>
+    </Grid>
 </Window>

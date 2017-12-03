@@ -621,7 +621,7 @@ namespace LinqFunctions
             }
             else if (CB_wpf.Text.Equals("Area Element"))
             {
-                WPFClass.AreaElement window = new WPFClass.AreaElement();
+                WPFClass.DataBinding window = new WPFClass.DataBinding();
                 window.Owner = this;
                 window.ShowDialog();
             }
@@ -633,6 +633,11 @@ namespace LinqFunctions
             else if (CB_wpf.Text.Equals("Trigger"))
             {
                 WPFClass.Trigger win = new WPFClass.Trigger();
+                win.ShowDialog();
+            }
+            else if (CB_wpf.Text.Equals("Visual Object"))
+            {
+                WPFClass.VisualObject win = new WPFClass.VisualObject();
                 win.ShowDialog();
             }
         }
