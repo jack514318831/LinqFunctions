@@ -139,7 +139,7 @@ namespace LinqFunctions
 
             //XML Serializer
             XmlSerializer xmlserializer = new XmlSerializer(typeof(Buch));
-            using (FileStream fs = new FileStream(path+"xmlserializer.xml",FileMode.Create))
+            using (FileStream fs = new FileStream(path + "xmlserializer.xml", FileMode.Create))
             {
                 xmlserializer.Serialize(fs, buch);
             }
@@ -1037,7 +1037,7 @@ namespace LinqFunctions
             }
             else if (cb_Grundlage.Text.Equals("Foreach"))
             {
-                tb_output.Text  =   ForeachContent();
+                tb_output.Text = ForeachContent();
             }
         }
 
@@ -1229,7 +1229,7 @@ namespace LinqFunctions
                 return false;
             }
             #endregion
-        } 
+        }
         #endregion
 
         #region BaseThis
@@ -1339,9 +1339,9 @@ namespace LinqFunctions
             p[0] = new Chinese();
             p[1] = new American();
 
-            foreach(var ps in p)
+            foreach (var ps in p)
             {
-               tb_output.Text +=  ps.SayNationality();
+                tb_output.Text += ps.SayNationality();
             }
 
             // WeakReference
@@ -1459,12 +1459,12 @@ namespace LinqFunctions
             }
             catch (NullReferenceException ex) { }
             catch (DivideByZeroException ex) { }
-            catch(ArgumentException ex) {
+            catch (ArgumentException ex) {
                 MessageBox.Show(ex.Source);
                 MessageBox.Show(ex.Message);
                 MessageBox.Show(ex.StackTrace);
             }
-            
+
         }
         #endregion
 
@@ -1472,14 +1472,96 @@ namespace LinqFunctions
         private string ForeachContent()
         {
             string result = "";
-            foreach(string item in new EnumClass())
+            foreach (string item in new EnumClass())
             {
                 result += item + " ";
             }
             return result;
         }
 
-        public class EnumClass:IEnumerable
+        #region Method 1
+        //public class EnumClass:IEnumerable
+        //{
+        //    string[] NameList = new string[] { "SMA", "Solarwatt", "Sonnen" };
+        //    public string this[int index]
+        //    {
+        //        get
+        //        {
+        //            return NameList[index];
+        //        }
+
+        //        set
+        //        {
+        //            NameList[index] = value;
+        //        }
+        //    }
+
+        //    public IEnumerator GetEnumerator()
+        //    {
+        //        return new ClassEnumerator(NameList);
+        //    }
+        //}
+
+        //public class ClassEnumerator : IEnumerator
+        //{
+        //    string[] _namelist;
+        //    public ClassEnumerator(string[] NameList)
+        //    {
+        //        _namelist = NameList;
+        //    }
+        //    private int index=-1;
+
+        //    public object Current
+        //    {
+        //        get
+        //        {
+        //            if (index < -1 || index > _namelist.Length - 1) return null;
+        //            return _namelist[index];
+        //        }
+        //    }
+
+        //    public bool MoveNext()
+        //    {
+        //        if (index < -1 || index > _namelist.Length-1) return false;
+        //        index++;
+        //        return true;
+        //    }
+
+        //    public void Reset()
+        //    {
+        //        index = -1;
+        //    }
+        //} 
+        #endregion
+
+        #region Method 2
+        //public class EnumClass
+        //{
+        //    string[] NameList = new string[] { "SMA", "Solarwatt", "Sonnen" };
+        //    public string this[int index]
+        //    {
+        //        get
+        //        {
+        //            return NameList[index];
+        //        }
+
+        //        set
+        //        {
+        //            NameList[index] = value;
+        //        }
+        //    }
+        //    public IEnumerable GetEnumerable()
+        //    {
+        //        for (int i = 0; i < NameList.Length - 1; i++)
+        //        {
+        //            yield return NameList[i];
+        //        }
+        //    }
+        //} 
+        #endregion
+
+        #region Method 3
+        public class EnumClass
         {
             string[] NameList = new string[] { "SMA", "Solarwatt", "Sonnen" };
             public string this[int index]
@@ -1497,43 +1579,24 @@ namespace LinqFunctions
 
             public IEnumerator GetEnumerator()
             {
-                return new ClassEnumerator(NameList);
-            }
-        }
-
-        public class ClassEnumerator : IEnumerator
-        {
-            string[] _namelist;
-            public ClassEnumerator(string[] NameList)
-            {
-                _namelist = NameList;
-            }
-            private int index=-1;
-            
-            public object Current
-            {
-                get
+                for (int i = 0; i < NameList.Length; i++)
                 {
-                    if (index < -1 || index > _namelist.Length - 1) return null;
-                    return _namelist[index];
+                    yield return NameList[i];
                 }
             }
-
-            public bool MoveNext()
-            {
-                if (index < -1 || index > _namelist.Length-1) return false;
-                index++;
-                return true;
-            }
-
-            public void Reset()
-            {
-                index = -1;
-            }
-        }
-
-    }
-        #endregion
-
+        } 
         #endregion
     }
+    #endregion
+
+        #region Genetic
+        public class GeneticClass<T, K, V, X, Y, Z>
+        where T : struct
+        where K : class
+        where V : IComparable
+        where X : K
+        where Y : class, new()
+        { } 
+    #endregion
+    #endregion
+}
