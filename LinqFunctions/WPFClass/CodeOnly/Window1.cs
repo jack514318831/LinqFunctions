@@ -47,7 +47,7 @@ namespace LinqFunctions.WPFClass.CodeOnly
         //} 
         #endregion
 
-        private Button button1;
+        public Button button1;
         private void InitializeComponent()
         {
             this.Width = this.Height = this.Top = this.Left = 300;
@@ -56,20 +56,21 @@ namespace LinqFunctions.WPFClass.CodeOnly
             DockPanel dockpanel = new DockPanel();
 
             button1 = new Button();
-            button1.Margin = new Thickness(50);
-            button1.Content = "Click";
+            button1.Content = "Lithum";
+            button1.Margin = new Thickness(3);
             button1.Click += button1_Click;
 
-            IAddChild Container = dockpanel;
-            Container.AddChild(button1);
-            Container = this;
-            Container.AddChild(dockpanel);
+            IAddChild container = dockpanel;
+            container.AddChild(button1);
+            container = this;
+            container.AddChild(dockpanel);
+
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            button1.Content = "";
+            button1.Content = "Blei";
         }
-        
+
     }
 }

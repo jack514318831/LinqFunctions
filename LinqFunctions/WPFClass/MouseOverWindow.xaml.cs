@@ -32,7 +32,7 @@ namespace LinqFunctions.WPFClass
             //tb_output.Text = string.Format("X:{0}  Y:{1}",pt.X, pt.Y); 
             #endregion
             Point pt = e.GetPosition(rect);
-            tb_output.Text = string.Format("{0} {1}", pt.X, pt.Y);
+            tb_output.Text = string.Format("X:{0} Y:{1}", pt.X, pt.Y);
         }
 
         private void btn_Click(object sender, RoutedEventArgs e)
@@ -51,8 +51,8 @@ namespace LinqFunctions.WPFClass
             //    Label lb = (Label)sender;
             //    DragDrop.DoDragDrop(lb, lb.Content, DragDropEffects.Copy); 
             #endregion
-            Label lb = (Label)sender;
-            DragDrop.DoDragDrop(lb,lb.Content,DragDropEffects.Copy);
+            Label lb = sender as Label;
+            DragDrop.DoDragDrop(lb, lb.Content, DragDropEffects.Copy);
         }
 
         private void lb_target_Drop(object sender, DragEventArgs e)
@@ -68,7 +68,7 @@ namespace LinqFunctions.WPFClass
             #region Solution
             //btn.Background = new SolidColorBrush(Color.FromRgb(123, 53, 82)); 
             #endregion
-            btn.Background = new SolidColorBrush(Color.FromRgb(12, 12, 12));
+            btn.Background = new SolidColorBrush(Color.FromRgb(25,16,27));
         }
     }
 }

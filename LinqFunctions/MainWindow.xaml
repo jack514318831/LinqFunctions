@@ -32,6 +32,7 @@
                 <ComboBoxItem Content="Create XML" Name="CBI_Create"></ComboBoxItem>
                 <ComboBoxItem Content="Read XML" Name="CBI_Create1"></ComboBoxItem>
                 <ComboBoxItem Content="XML to string" Name="CBI_Create2"></ComboBoxItem>
+                <ComboBoxItem Content="Serializer"/>
                 <ComboBoxItem Content="UserFenster"/>
             </ComboBox>
 
@@ -112,6 +113,7 @@
                 <ComboBoxItem Content="virtual method"/>
                 <ComboBoxItem Content="Klasse Sort"/>
                 <ComboBoxItem Content="Reflector"/>
+                <ComboBoxItem Content="Foreach"/>
             </ComboBox>
             <TextBlock Text="Anothers" Grid.Column="1" Grid.Row="10" VerticalAlignment="Center" FontSize="16"/>
             <ComboBox Name="cb_anorders" Grid.Column="2" Grid.Row="10" Margin="7" DropDownClosed="cb_anorders_DropDownClosed">

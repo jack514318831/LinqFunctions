@@ -24,22 +24,25 @@
             </Button>-->
             <Button>
                 <Button.ToolTip>
-                    <TextBlock Text="aaa"/>
+                    <StackPanel>
+                    </StackPanel>
                 </Button.ToolTip>
                 <StackPanel>
-                    <TextBlock Text="bbb"/>
-                    <RadioButton Content="radio" GroupName="g1"/>
+                    <RadioButton Content="Blei" GroupName="g1"/>
                 </StackPanel>
             </Button>
-            <!--<Label Target="{Binding ElementName=tb}">
+            <!--<Label
+            Target="{Binding ElementName=tb}">
                 choose _A
             </Label>-->
             <Label Content="choose _A" Target="{Binding ElementName=tb}"/>
             <TextBox Name="tb"/>
-            <!--<CheckBox Content="CheckBox" IsChecked="{x:Null}" IsThreeState="True"/>-->
+            <!--<CheckBox
+            Content="CheckBox" IsChecked="{x:Null}" IsThreeState="True"/>-->
             <CheckBox IsChecked="{x:Null}" IsThreeState="True"/>
             <RadioButton Content="radia" GroupName="g1"/>
-            <!--<ScrollViewer CanContentScroll="True" Height="70" Margin="5">
+            <!--<ScrollViewer
+            CanContentScroll="True" Height="70" Margin="5">
                 <StackPanel>
                     <Button Content="btn1" Height="50" Margin="5"/>
                     <Button Content="btn2" Height="50" Margin="5"/>
@@ -67,11 +70,9 @@
                 </TabItem>-->
                 <TabItem>
                     <TabItem.Header>
-                        <StackPanel>
-                        </StackPanel>
+                        <StackPanel/>
                     </TabItem.Header>
-                    <StackPanel>
-                    </StackPanel>
+                    <StackPanel/>
                 </TabItem>
                 <TabItem Header="item2">
                 </TabItem>

@@ -42,13 +42,11 @@ namespace LinqFunctions.WPFClass
             //binding.Mode = BindingMode.TwoWay;
             //this.tbZiel.SetBinding(TextBlock.FontSizeProperty, binding); 
             #endregion
-
             Binding binding = new Binding();
-            binding.Source = this.SliderFont;
-            binding.Path = new PropertyPath("Name");
-            binding.Mode = BindingMode.OneWay;
-            this.tbZiel.SetBinding(TextBlock.FontSizeProperty, binding);
-
+            binding.Source = SliderFont;
+            binding.Path = new PropertyPath("Value");
+            binding.Mode = BindingMode.TwoWay;
+            tbZiel.SetBinding(TextBlock.FontSizeProperty, binding);
         }
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)
@@ -56,6 +54,7 @@ namespace LinqFunctions.WPFClass
             #region Solution
             //BindingOperations.ClearAllBindings(this.tbZiel); 
             #endregion
+
             BindingOperations.ClearAllBindings(this.tbZiel);
 
         }

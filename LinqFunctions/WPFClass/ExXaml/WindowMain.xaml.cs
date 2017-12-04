@@ -59,11 +59,9 @@ namespace LinqFunctions.WPFClass.ExXaml
             DependencyObject rootObject = new DependencyObject();
             using (FileStream fs = new FileStream(open.FileName, FileMode.Open))
             {
-                 rootObject = XamlReader.Load(fs) as DependencyObject;
+                rootObject = XamlReader.Load(fs) as DependencyObject;
             }
             button1 = LogicalTreeHelper.FindLogicalNode(rootObject, "MyButton") as Button;
-
-            this.Content = rootObject;
         }
     }
 }

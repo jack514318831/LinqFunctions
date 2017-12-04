@@ -26,6 +26,5 @@ namespace LinqFunctions.WPFClass.CodeOnly
         //    app.MainWindow = new Window1();
         //    app.MainWindow.ShowDialog();
         //}
-        
     }
 }

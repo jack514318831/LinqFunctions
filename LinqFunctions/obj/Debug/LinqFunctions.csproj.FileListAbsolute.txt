@@ -121,10 +121,8 @@ E:\Csharp\Git\LinqFunctions\LinqFunctions\obj\Debug\WPFClass\Resource.g.cs
 E:\Csharp\Git\LinqFunctions\LinqFunctions\obj\Debug\WPFClass\Resource.baml
 E:\Csharp\Git\LinqFunctions\LinqFunctions\obj\Debug\App.baml
 E:\Csharp\Git\LinqFunctions\LinqFunctions\obj\Debug\ResourceDictionary.baml
-C:\Users\g.he\Documents\CSharp\Git\LinqFunctions\LinqFunctions\obj\Debug\WPFClass\AreaElement.g.cs
 C:\Users\g.he\Documents\CSharp\Git\LinqFunctions\LinqFunctions\obj\Debug\WPFClass\Resource.g.cs
 C:\Users\g.he\Documents\CSharp\Git\LinqFunctions\LinqFunctions\obj\Debug\App.baml
-C:\Users\g.he\Documents\CSharp\Git\LinqFunctions\LinqFunctions\obj\Debug\WPFClass\AreaElement.baml
 C:\Users\g.he\Documents\CSharp\Git\LinqFunctions\LinqFunctions\obj\Debug\WPFClass\Resource.baml
 C:\Users\g.he\Documents\CSharp\Git\LinqFunctions\LinqFunctions\obj\Debug\ResourceDictionary.baml
 E:\Csharp\Git\LinqFunctions\LinqFunctions\obj\Debug\WPFClass\Trigger.g.cs
@@ -180,3 +178,8 @@ D:\CSharp\LinqFunctions\LinqFunctions\obj\Debug\LinqFunctions.csproj.CoreCompile
 D:\CSharp\LinqFunctions\LinqFunctions\obj\Debug\WPFClass\VisualObject.g.cs
 D:\CSharp\LinqFunctions\LinqFunctions\obj\Debug\WPFClass\VisualObject.baml
 D:\CSharp\LinqFunctions\LinqFunctions\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\g.he\Documents\CSharp\Git\LinqFunctions\LinqFunctions\obj\Debug\WPFClass\DataBinding.g.cs
+C:\Users\g.he\Documents\CSharp\Git\LinqFunctions\LinqFunctions\obj\Debug\WPFClass\VisualObject.g.cs
+C:\Users\g.he\Documents\CSharp\Git\LinqFunctions\LinqFunctions\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\g.he\Documents\CSharp\Git\LinqFunctions\LinqFunctions\obj\Debug\WPFClass\DataBinding.baml
+C:\Users\g.he\Documents\CSharp\Git\LinqFunctions\LinqFunctions\obj\Debug\WPFClass\VisualObject.baml

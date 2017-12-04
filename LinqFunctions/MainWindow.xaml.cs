@@ -19,6 +19,9 @@ using System.Data.SqlClient;
 using System.Globalization;
 using LinqFunctions.XML;
 using System.Reflection;
+using System.Web.Script.Serialization;
+using System.Xml.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace LinqFunctions
 {
@@ -65,6 +68,10 @@ namespace LinqFunctions
             {
                 xmlUserLogin xmlf = new xmlUserLogin();
                 xmlf.ShowDialog();
+            }
+            else if (CBstr.Equals("Serializer"))
+            {
+                Serializer(@"E:\");
             }
         }
 
@@ -117,6 +124,44 @@ namespace LinqFunctions
             }
             DG_Data.ItemsSource = list;
         }
+
+        private void Serializer(string path)
+        {
+            Buch buch = new Buch();
+            buch.Autor = "Json";
+            buch.Year = 2010;
+            buch.Name = "Eupd";
+            buch.Context = "Photovotaik";
+
+            //JSon Serializer
+            JavaScriptSerializer jsonserializer = new JavaScriptSerializer();
+            tb_output.Text = jsonserializer.Serialize(buch);
+
+            //XML Serializer
+            XmlSerializer xmlserializer = new XmlSerializer(typeof(Buch));
+            using (FileStream fs = new FileStream(path+"xmlserializer.xml",FileMode.Create))
+            {
+                xmlserializer.Serialize(fs, buch);
+            }
+
+            //Binary Serializer
+            BinaryFormatter binaryformatter = new BinaryFormatter();
+            using (FileStream fs = new FileStream(path + "BinarySerializer.bin", FileMode.Create))
+            {
+                binaryformatter.Serialize(fs, buch);
+            }
+        }
+
+        [Serializable]
+        public class Buch
+        {
+            public string Name;
+            public int Year;
+            public string Autor;
+            [NonSerialized]
+            public string Context;
+        }
+
         #endregion
 
         #region StringAnalyse
@@ -985,9 +1030,14 @@ namespace LinqFunctions
             else if (cb_Grundlage.Text.Equals("Klasse Sort"))
             {
                 KlasseSort();
-            } else if (cb_Grundlage.Text.Equals("Reflector"))
+            }
+            else if (cb_Grundlage.Text.Equals("Reflector"))
             {
                 Reflector();
+            }
+            else if (cb_Grundlage.Text.Equals("Foreach"))
+            {
+                tb_output.Text  =   ForeachContent();
             }
         }
 
@@ -1418,8 +1468,72 @@ namespace LinqFunctions
         }
         #endregion
 
-        #endregion
-      
-    }
+        #region Foreach
+        private string ForeachContent()
+        {
+            string result = "";
+            foreach(string item in new EnumClass())
+            {
+                result += item + " ";
+            }
+            return result;
+        }
 
-}
+        public class EnumClass:IEnumerable
+        {
+            string[] NameList = new string[] { "SMA", "Solarwatt", "Sonnen" };
+            public string this[int index]
+            {
+                get
+                {
+                    return NameList[index];
+                }
+
+                set
+                {
+                    NameList[index] = value;
+                }
+            }
+
+            public IEnumerator GetEnumerator()
+            {
+                return new ClassEnumerator(NameList);
+            }
+        }
+
+        public class ClassEnumerator : IEnumerator
+        {
+            string[] _namelist;
+            public ClassEnumerator(string[] NameList)
+            {
+                _namelist = NameList;
+            }
+            private int index=-1;
+            
+            public object Current
+            {
+                get
+                {
+                    if (index < -1 || index > _namelist.Length - 1) return null;
+                    return _namelist[index];
+                }
+            }
+
+            public bool MoveNext()
+            {
+                if (index < -1 || index > _namelist.Length-1) return false;
+                index++;
+                return true;
+            }
+
+            public void Reset()
+            {
+                index = -1;
+            }
+        }
+
+    }
+        #endregion
+
+        #endregion
+    }

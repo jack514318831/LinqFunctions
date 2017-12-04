@@ -16,20 +16,19 @@
             <!--<Slider Name="SliderFont"
             Orientation="Horizontal" Maximum="100" TickPlacement="TopLeft" TickFrequency="5" SmallChange="1" LargeChange="5" IsSelectionRangeEnabled="True" SelectionStart="70" SelectionEnd="90" >
             </Slider>-->
-            <Slider Name="SliderFont" Orientation="Horizontal" Maximum="100" TickFrequency="5" SmallChange="1" LargeChange="5" IsSelectionRangeEnabled="True" SelectionStart="70" SelectionEnd="90">
-            </Slider>
+            <Slider Maximum="100" TickFrequency="5" SmallChange="1" LargeChange="5" IsSelectionRangeEnabled="True" SelectionStart="10" SelectionEnd="50"/>
             <!--<TextBlock Text="Code Binding"
             Name="tbZiel" Margin="2" Foreground="{Binding ElementName=lbBinding,Path=SelectedItem.Tag}"/>
             <ListBox Name="lbBinding">
                 <ListBoxItem Tag="Red" Content="red"/>
                 <ListBoxItem Tag="Yellow" Content="yellow"/>
             </ListBox>-->
-            <ListBox Name="lbBinding">
-                <ListBoxItem Content="red" Tag="Red"/>
+            <ListBox Name="lbTag">
                 <ListBoxItem Content="yellow" Tag="Yellow"/>
+                <ListBoxItem Content="red" Tag="Red"/>
             </ListBox>
-            <TextBlock Name="tbZiel" Text="lithum" Background="{Binding ElementName=lbBinding, Path=SelectedItem.Tag}"/>
-
+            <TextBlock Name="tbZiel" Foreground="{Binding ElementName=lbTag,Path=Tag}"/>
+            
             <ProgressBar Name="progressbar" Height="20" Value="12" IsIndeterminate="True"/>
             <TextBlock Name="tbOutput" Text="Simple Text" FontSize="{Binding ElementName=SliderFont, Path=Value, Mode=TwoWay}"/>
             <Button Content="Show Windows" Click="Button_Click"/>
@@ -42,7 +41,7 @@
             <!--<TextBlock
             Name="tbDatabinding" Height="20" Text="{Binding Source={x:Static SystemFonts.IconFontFamily}, Path=Source}"/>-->
             <TextBlock Text="{Binding Source={x:Static SystemFonts.IconFontFamily},Path=Source}"/>
-            <TextBlock Text="{Binding Source={StaticResource CustomFont}, Path=Source}"/>
+            <TextBlock Text="{Binding Source={StaticResource CustomFont},Path=Source}"/>
 
             <!--<TextBlock Margin="5">
                 <TextBlock.Text>
