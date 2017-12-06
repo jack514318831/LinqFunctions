@@ -5,11 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LinqFunctions.WPFClass"
         mc:Ignorable="d"
-        Title="Keydown" Height="300" Width="300">
+        Title="Keydown" Height="320" Width="300">
     <Grid>
         <StackPanel>
             <TextBox Name="tb_input" Margin="10" KeyDown="tb_input_KeyDown"/>
-            <TextBox Name="tb_output" Margin="10" Height="200" />
+            <TextBox Name="tb_output" Margin="10" Height="30" />
+            <StackPanel>
+                <Image Name="img" Width="280" Height="160"/>
+                <Button Name="btnGeneration" Content="Generation Image" Click="btnGeneration_Click"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>

@@ -16,7 +16,7 @@
             <!--<Slider Name="SliderFont"
             Orientation="Horizontal" Maximum="100" TickPlacement="TopLeft" TickFrequency="5" SmallChange="1" LargeChange="5" IsSelectionRangeEnabled="True" SelectionStart="70" SelectionEnd="90" >
             </Slider>-->
-            <Slider Maximum="100" TickFrequency="5" SmallChange="1" LargeChange="5" IsSelectionRangeEnabled="True" SelectionStart="10" SelectionEnd="50"/>
+            <Slider Name="SliderFont" Maximum="100" TickFrequency="5" SmallChange="1" LargeChange="5" IsSelectionRangeEnabled="True" SelectionStart="10" SelectionEnd="50"/>
             <!--<TextBlock Text="Code Binding"
             Name="tbZiel" Margin="2" Foreground="{Binding ElementName=lbBinding,Path=SelectedItem.Tag}"/>
             <ListBox Name="lbBinding">

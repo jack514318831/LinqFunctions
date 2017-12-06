@@ -31,5 +31,33 @@ namespace LinqFunctions.WPFClass
             #endregion
             tb_output.Text = string.Format("{0} {1}", e.RoutedEvent, e.Key);
         }
+
+        private void btnGeneration_Click(object sender, RoutedEventArgs e)
+        {
+            WriteableBitmap writeablebitmap = new WriteableBitmap((int)img.Width, (int)img.Height, 96, 96, PixelFormats.Bgra32, null);
+            byte blue = 100;
+            byte green = 50;
+            byte red = 50;
+            byte arpha = 255;
+            Random rand = new Random();
+            byte[] colordatas = new byte[10000*writeablebitmap.Format.BitsPerPixel/8];
+
+            for (int x= 0; x<100;x++)
+            {
+                for(int y =0; y<100; y++)
+                {
+                    blue =(byte)rand.Next(100, 255);
+                    green = (byte)rand.Next(100, 255);
+                    red= (byte)rand.Next(100, 255);
+                    int offset = 
+                    colordatas = 
+                    Int32Rect rect = new Int32Rect(10+x, 10+y, 1, 1);
+                    int stride = writeablebitmap.PixelWidth * writeablebitmap.Format.BitsPerPixel / 8;
+
+                    writeablebitmap.WritePixels(rect, colordata, stride, 0);
+                }
+            }
+            img.Source = writeablebitmap;
+        }
     }
 }
