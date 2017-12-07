@@ -34,30 +34,56 @@ namespace LinqFunctions.WPFClass
 
         private void btnGeneration_Click(object sender, RoutedEventArgs e)
         {
-            WriteableBitmap writeablebitmap = new WriteableBitmap((int)img.Width, (int)img.Height, 96, 96, PixelFormats.Bgra32, null);
+            #region Solution
+            //WriteableBitmap writeableBitmap = new WriteableBitmap((int)img.Width, (int)img.Height, 96, 96, PixelFormats.Bgra32, null);
+
+            //byte blue = 100;
+            //byte green = 50;
+            //byte red = 50;
+            //byte arpha = 255;
+            //Random rand = new Random();
+            //byte[] colordata = new byte[4 * 1000 * 1000];
+            //int stride = writeableBitmap.PixelWidth * writeableBitmap.Format.BitsPerPixel / 8;
+
+            //for (int x = 0; x < 1000; x++)
+            //{
+            //    for (int y = 0; y < 1000; y++)
+            //    {
+            //        int offset = y + y * x;
+            //        colordata[offset] = (byte)rand.Next(100, 255);
+            //        colordata[offset + 1] = (byte)rand.Next(100, 255);
+            //        colordata[offset + 2] = (byte)rand.Next(100, 255);
+            //        colordata[offset + 3] = 255;
+            //    }
+            //}
+            //Int32Rect rect = new Int32Rect(10, 10, 100, 100);
+            //writeableBitmap.WritePixels(rect, colordata, stride, 0);
+            //img.Source = writeableBitmap;
+            #endregion
+            WriteableBitmap writeableBitmap = new WriteableBitmap((int)img.Width, (int)img.Height, 96, 96, PixelFormats.Bgra32, null);
+
             byte blue = 100;
             byte green = 50;
             byte red = 50;
             byte arpha = 255;
             Random rand = new Random();
-            byte[] colordatas = new byte[10000*writeablebitmap.Format.BitsPerPixel/8];
+            byte[] colordata = new byte[4*1000*1000];
+            int stride = writeableBitmap.PixelWidth * writeableBitmap.Format.BitsPerPixel / 8;
 
-            for (int x= 0; x<100;x++)
+            for (int x =0; x<1000; x++)
             {
-                for(int y =0; y<100; y++)
+                for(int y =0; y<1000; y++)
                 {
-                    blue =(byte)rand.Next(100, 255);
-                    green = (byte)rand.Next(100, 255);
-                    red= (byte)rand.Next(100, 255);
-                    int offset = 
-                    colordatas = 
-                    Int32Rect rect = new Int32Rect(10+x, 10+y, 1, 1);
-                    int stride = writeablebitmap.PixelWidth * writeablebitmap.Format.BitsPerPixel / 8;
-
-                    writeablebitmap.WritePixels(rect, colordata, stride, 0);
+                    int offset = y + y*x;
+                    colordata[offset] = (byte)rand.Next(100,255);
+                    colordata[offset + 1] = (byte)rand.Next(100, 255);
+                    colordata[offset + 2] = (byte)rand.Next(100, 255);
+                    colordata[offset + 3] = 255;
                 }
             }
-            img.Source = writeablebitmap;
+            Int32Rect rect = new Int32Rect(10, 10, 100, 100);
+            writeableBitmap.WritePixels(rect, colordata, stride, 0);
+            img.Source = writeableBitmap;
         }
     }
 }

@@ -81,9 +81,10 @@ namespace LinqFunctions
 
             var result = new XElement("emps", from emp in list
                                               select new XElement("emp",
-                                              new XAttribute("id", emp.EmpployeeID),
-                                              new XAttribute("did", emp.DepartmentID),
-                                              new XElement("Sal", emp.Salary)));
+                                              new XAttribute("ID", emp.EmpployeeID),
+                                              new XAttribute("DID", emp.DepartmentID),
+                                              new XElement("Sal", emp.Salary)
+                                              ));
 
             result.Save(@"E:\Test.xml");
         }
@@ -93,7 +94,7 @@ namespace LinqFunctions
             XDocument xdoc = XDocument.Load(@"E:\countries.xml");
 
             var result = from country in xdoc.Descendants().Elements("country")
-                         from city in country.Elements("country")
+                         from city in country.Elements("city")
                          select new
                          {
                              country = country.Attribute("name").Value,
@@ -133,23 +134,40 @@ namespace LinqFunctions
             buch.Name = "Eupd";
             buch.Context = "Photovotaik";
 
-            //JSon Serializer
+            #region Solution
+            ////JSon Serializer
+            //JavaScriptSerializer jsonserializer = new JavaScriptSerializer();
+            //tb_output.Text = jsonserializer.Serialize(buch);
+
+            ////XML Serializer
+            //XmlSerializer xmlserializer = new XmlSerializer(typeof(Buch));
+            //using (FileStream fs = new FileStream(path + "xmlserializer.xml", FileMode.Create))
+            //{
+            //    xmlserializer.Serialize(fs, buch);
+            //}
+
+            ////Binary Serializer
+            //BinaryFormatter binaryformatter = new BinaryFormatter();
+            //using (FileStream fs = new FileStream(path + "BinarySerializer.bin", FileMode.Create))
+            //{
+            //    binaryformatter.Serialize(fs, buch);
+            //} 
+            #endregion
             JavaScriptSerializer jsonserializer = new JavaScriptSerializer();
             tb_output.Text = jsonserializer.Serialize(buch);
 
-            //XML Serializer
-            XmlSerializer xmlserializer = new XmlSerializer(typeof(Buch));
             using (FileStream fs = new FileStream(path + "xmlserializer.xml", FileMode.Create))
             {
+                XmlSerializer xmlserializer = new XmlSerializer(typeof(Buch));
                 xmlserializer.Serialize(fs, buch);
             }
 
-            //Binary Serializer
-            BinaryFormatter binaryformatter = new BinaryFormatter();
-            using (FileStream fs = new FileStream(path + "BinarySerializer.bin", FileMode.Create))
+            using (FileStream fs = new FileStream(path + "Binaryserializer.xml", FileMode.Create))
             {
-                binaryformatter.Serialize(fs, buch);
+                BinaryFormatter binaryFormatter = new BinaryFormatter();
+                binaryFormatter.Serialize(fs, buch);
             }
+
         }
 
         [Serializable]
