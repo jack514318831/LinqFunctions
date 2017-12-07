@@ -723,6 +723,42 @@ namespace LinqFunctions
 
         }
 
+
+        #region Regex Grund Functions
+        //Regex.IsMatch()
+        //Regex.Match()
+        //Regex.Matches()
+        //Regex.Replace()
+        //group 0(1(2)(3))(4)
+        #endregion
+        
+        private void Pattern()
+        {
+            //PLZ
+            string pattern = "^0-9{6}$";
+
+            //10-25
+            pattern = "^1[0-9]|2[0-5]$";
+            bool b = Regex.IsMatch("", pattern, RegexOptions.ECMAScript);
+
+            //Personal ID
+            pattern = @"^([1-9]\d{14})|([1-9]\d{16}[1-9xX])$";
+
+            //E-mail
+            pattern = @"^[-a-zA-Z0-9_\.]+@[a-zA-Z0-9]+[\.a-zA-Z0-9]{1,2}$";
+
+            //Televon nummer
+            pattern = @"^\d{3,4}-?\d{7,8}$";
+
+            //Datum
+            pattern = @"^[0-9]{4}-(0[1-9]|1[0-2])-[0-9]{2}$";
+
+            //Machtes Ip
+            string msg = "196.168.10.5[port=21,type=ftp]";
+            Match mt=  Regex.Match(msg,"(.+)[port=([0-9]+),type=(.+)]");
+            string result = string.Format("ip:{0} port:{1} type:{2}", mt.Groups[1], mt.Groups[2], mt.Groups[3]);
+        }
+
         private void CardNumber()
         {
             string str = "hier ist a card num : 4444-3333-2222-1111";
