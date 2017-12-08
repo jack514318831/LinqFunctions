@@ -757,6 +757,19 @@ namespace LinqFunctions
             string msg = "196.168.10.5[port=21,type=ftp]";
             Match mt=  Regex.Match(msg,"(.+)[port=([0-9]+),type=(.+)]");
             string result = string.Format("ip:{0} port:{1} type:{2}", mt.Groups[1], mt.Groups[2], mt.Groups[3]);
+
+            //Replace *+ as %
+            string str = "how***are**you****";
+            result= Regex.Replace(str, "*+", "%");
+
+            //Replace Kammel
+            str = "hallo 'welcome' to 'China'";
+            result = Regex.Replace(str, "'(.+?)'", "[$1]");
+
+            //Tel. verstecken
+            str = "He:17680923124 Gang:15634566774";
+            result = Regex.Replace(str, "([0-9]{3})[0-9]{4}([0-9]{4})", "$1****$2");
+
         }
 
         private void CardNumber()
