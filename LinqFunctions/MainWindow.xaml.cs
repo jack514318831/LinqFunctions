@@ -587,7 +587,7 @@ namespace LinqFunctions
         }
         #endregion
 
-        #region LinqToDataset
+        #region LinqToDataset/Regex
         private void CB_DataSet_DropDownClosed(object sender, EventArgs e)
         {
             string cbstr = CB_DataSet.Text;
@@ -598,6 +598,18 @@ namespace LinqFunctions
             else if (cbstr.Equals("Linq to DataSet"))
             {
                 LinqToDataSet();
+            }
+            else if (cbstr.Equals("Card Number"))
+            {
+                CardNumber();
+            }
+            else if (cbstr.Equals("Url Reader"))
+            {
+                URLReader();
+            }
+            else if (cbstr.Equals("Regex Grund"))
+            {
+                Pattern();
             }
         }
 
@@ -652,6 +664,117 @@ namespace LinqFunctions
             DG_Data.ItemsSource = result;
 
         }
+
+        #region Regex Grund Functions
+        //Regex.IsMatch()
+        //Regex.Match()
+        //Regex.Matches()
+        //Regex.Replace()
+        //group 0(1(2)(3))(4)
+        #endregion
+
+        private void Pattern()
+        {
+            //PLZ
+            string pattern = "^0-9{6}$";
+
+            //10-25
+            pattern = "^1[0-9]|2[0-5]$";
+            bool b = Regex.IsMatch("", pattern, RegexOptions.ECMAScript);
+
+            //Personal ID
+            pattern = @"^([1-9]\d{14})|([1-9]\d{16}[1-9xX])$";
+
+            //E-mail
+            pattern = @"^[-a-zA-Z0-9_\.]+@[a-zA-Z0-9]+[\.a-zA-Z0-9]{1,2}$";
+
+            //Televon nummer
+            pattern = @"^\d{3,4}-?\d{7,8}$";
+
+            //Datum
+            pattern = @"^[0-9]{4}-(0[1-9]|1[0-2])-[0-9]{2}$";
+
+            //Machtes Ip
+            string msg = "196.168.10.5[port=21,type=ftp]";
+            Match mt = Regex.Match(msg, @"(.+)\[port=([0-9]+),type=(.+)\]");
+            string result = string.Format("ip:{0} port:{1} type:{2}", mt.Groups[1], mt.Groups[2], mt.Groups[3]);
+
+            //Replace *+ as %
+            string str = "how###are##you####";
+            result = Regex.Replace(str, "#+", "%");
+
+            //Replace Kammel
+            str = "hallo 'welcome' to 'China'";
+            result = Regex.Replace(str, "'(.+?)'", "[$1]");
+
+            //Tel. verstecken
+            str = "He:17680923124 Gang:15634566774";
+            result = Regex.Replace(str, "([0-9]{3})[0-9]{4}([0-9]{4})", "$1****$2");
+
+            //Email with *
+            str = "ganghe@gmx.de";
+            string s = "*********************************";
+
+            MatchEvaluator matchEvaluator = mt1 => s.Substring(0,mt1.Groups[1].Length)+mt1.Groups[2];
+            result = Regex.Replace(str, @"(\w+)(@\w+\.\w+)", matchEvaluator, RegexOptions.ECMAScript);
+
+            // row as line
+            str = "Temorrow is good day, row is row 10";
+            result = Regex.Replace(str, @"\brow\b", "line");
+
+            //wiederholt word
+            str = "aabb ccddd";
+            result = Regex.Replace(str, @"(.)\1+", "$1");
+
+            //Match word with doppelt char
+            str = "one two three zoo";
+            MatchCollection rmt = Regex.Matches(str, @"[a-z]*[a-z]\1+[a-z]*");
+        }
+
+        private void CardNumber()
+        {
+            string str = "hier ist a card num : 4444-3333-2222-1111";
+
+            string pattern = @"(\d{4}[ ,-]){3}\d{4}";
+            Match mt = Regex.Match(str, pattern);
+            foreach (Group g in mt.Groups)
+            {
+                MessageBox.Show(g.ToString());
+            }
+        }
+
+        private void URLReader()
+        {
+            // two things, Regular Exp. plus HttpWebRequest
+            string url = tb_input.Text;
+            string htmlstr = "";
+            List<string> slist = new List<string>();
+            StringBuilder buider = new StringBuilder();
+
+            try
+            {
+                HttpWebRequest httpwebrequest = (HttpWebRequest)WebRequest.Create(url);
+                WebRequest webrequest = (WebRequest)httpwebrequest;
+                webrequest.Proxy = null;
+                WebResponse wr = webrequest.GetResponse();
+                StreamReader sr = new StreamReader(wr.GetResponseStream());
+                htmlstr = sr.ReadToEnd();
+            }
+            catch
+            {
+            }
+
+            string pattern = "(?<=<a href=('|\")).*?(?=('|\")>(.|\\n)*?</a>)";
+            MatchCollection mtc = Regex.Matches(htmlstr, pattern);
+
+            foreach (Match mt in mtc)
+            {
+                buider.AppendLine(mt.ToString());
+            }
+
+            tb_output.Text = buider.ToString();
+        }
+
         #endregion
 
         #region WPF
@@ -705,116 +828,6 @@ namespace LinqFunctions
             }
         }
 
-
-        #endregion
-
-        #region regularExp
-        private void CB_Regex_DropDownClosed(object sender, EventArgs e)
-        {
-            string cbstr = CB_Regex.Text;
-            if (cbstr.Equals("Card Number"))
-            {
-                CardNumber();
-            }
-            else if (cbstr.Equals("Url Reader"))
-            {
-                URLReader();
-            }
-
-        }
-
-
-        #region Regex Grund Functions
-        //Regex.IsMatch()
-        //Regex.Match()
-        //Regex.Matches()
-        //Regex.Replace()
-        //group 0(1(2)(3))(4)
-        #endregion
-        
-        private void Pattern()
-        {
-            //PLZ
-            string pattern = "^0-9{6}$";
-
-            //10-25
-            pattern = "^1[0-9]|2[0-5]$";
-            bool b = Regex.IsMatch("", pattern, RegexOptions.ECMAScript);
-
-            //Personal ID
-            pattern = @"^([1-9]\d{14})|([1-9]\d{16}[1-9xX])$";
-
-            //E-mail
-            pattern = @"^[-a-zA-Z0-9_\.]+@[a-zA-Z0-9]+[\.a-zA-Z0-9]{1,2}$";
-
-            //Televon nummer
-            pattern = @"^\d{3,4}-?\d{7,8}$";
-
-            //Datum
-            pattern = @"^[0-9]{4}-(0[1-9]|1[0-2])-[0-9]{2}$";
-
-            //Machtes Ip
-            string msg = "196.168.10.5[port=21,type=ftp]";
-            Match mt=  Regex.Match(msg,"(.+)[port=([0-9]+),type=(.+)]");
-            string result = string.Format("ip:{0} port:{1} type:{2}", mt.Groups[1], mt.Groups[2], mt.Groups[3]);
-
-            //Replace *+ as %
-            string str = "how***are**you****";
-            result= Regex.Replace(str, "*+", "%");
-
-            //Replace Kammel
-            str = "hallo 'welcome' to 'China'";
-            result = Regex.Replace(str, "'(.+?)'", "[$1]");
-
-            //Tel. verstecken
-            str = "He:17680923124 Gang:15634566774";
-            result = Regex.Replace(str, "([0-9]{3})[0-9]{4}([0-9]{4})", "$1****$2");
-
-        }
-
-        private void CardNumber()
-        {
-            string str = "hier ist a card num : 4444-3333-2222-1111";
-
-            string pattern = @"(\d{4}[ ,-]){3}\d{4}";
-            Match mt = Regex.Match(str, pattern);
-            foreach (Group g in mt.Groups)
-            {
-                MessageBox.Show(g.ToString());
-            }
-        }
-
-        private void URLReader()
-        {
-            // two things, Regular Exp. plus HttpWebRequest
-            string url = tb_input.Text;
-            string htmlstr = "";
-            List<string> slist = new List<string>();
-            StringBuilder buider = new StringBuilder();
-
-            try
-            {
-                HttpWebRequest httpwebrequest = (HttpWebRequest)WebRequest.Create(url);
-                WebRequest webrequest = (WebRequest)httpwebrequest;
-                webrequest.Proxy = null;
-                WebResponse wr = webrequest.GetResponse();
-                StreamReader sr = new StreamReader(wr.GetResponseStream());
-                htmlstr = sr.ReadToEnd();
-            }
-            catch
-            {
-            }
-
-            string pattern = "(?<=<a href=('|\")).*?(?=('|\")>(.|\\n)*?</a>)";
-            MatchCollection mtc = Regex.Matches(htmlstr, pattern);
-
-            foreach (Match mt in mtc)
-            {
-                buider.AppendLine(mt.ToString());
-            }
-
-            tb_output.Text = buider.ToString();
-        }
 
         #endregion
 
