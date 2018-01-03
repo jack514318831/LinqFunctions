@@ -12,10 +12,6 @@
     <name>He</name>
     <password>4321</password>
   </user>
-  <user id="004">
-    <name>GangHe</name>
-    <password>12345</password>
-  </user>
   <user id="005">
     <name>Tesla</name>
     <password>12345</password>

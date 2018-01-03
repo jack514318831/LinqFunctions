@@ -675,24 +675,25 @@ namespace LinqFunctions
 
         private void Pattern()
         {
-            //PLZ
-            string pattern = "^0-9{6}$";
+            //PLZ 528100
+            string pattern = "^[0-9]{6}$";
+            bool b = Regex.IsMatch("", pattern, RegexOptions.ECMAScript);
 
             //10-25
             pattern = "^1[0-9]|2[0-5]$";
-            bool b = Regex.IsMatch("", pattern, RegexOptions.ECMAScript);
 
-            //Personal ID
-            pattern = @"^([1-9]\d{14})|([1-9]\d{16}[1-9xX])$";
+
+            //Personal ID 15 or 18 ziffern
+            pattern = @"^[1-9][0-9]{14}|[1-9][0-9xX]{17}$";
 
             //E-mail
-            pattern = @"^[-a-zA-Z0-9_\.]+@[a-zA-Z0-9]+[\.a-zA-Z0-9]{1,2}$";
+            pattern = @"^[-a-zA-Z0-9_\.]+@([a-zA-Z0-9]+\.){2}[a-zA-Z0-9]+$";
 
-            //Televon nummer
-            pattern = @"^\d{3,4}-?\d{7,8}$";
+            //Televon nummer 
+            pattern = @"^\d{3,4}[-\s]\d{7,8}$";
 
             //Datum
-            pattern = @"^[0-9]{4}-(0[1-9]|1[0-2])-[0-9]{2}$";
+            pattern = @"^[0-9]{4}-(0[1-9]|1[1-2])-[0-9]{2}$";
 
             //Machtes Ip
             string msg = "196.168.10.5[port=21,type=ftp]";
@@ -701,26 +702,26 @@ namespace LinqFunctions
 
             //Replace *+ as %
             string str = "how###are##you####";
-            result = Regex.Replace(str, "#+", "%");
+            result = Regex.Replace(str,"#+","%");
 
             //Replace Kammel
             str = "hallo 'welcome' to 'China'";
-            result = Regex.Replace(str, "'(.+?)'", "[$1]");
+            result = Regex.Replace(str, "'(.+)'", "[$1]");
 
             //Tel. verstecken
             str = "He:17680923124 Gang:15634566774";
-            result = Regex.Replace(str, "([0-9]{3})[0-9]{4}([0-9]{4})", "$1****$2");
+            result = Regex.Replace(str, @"(\d{3})\d{4}(\d{4})","$1****$2");
 
             //Email with *
             str = "ganghe@gmx.de";
             string s = "*********************************";
 
-            MatchEvaluator matchEvaluator = mt1 => s.Substring(0,mt1.Groups[1].Length)+mt1.Groups[2];
-            result = Regex.Replace(str, @"(\w+)(@\w+\.\w+)", matchEvaluator, RegexOptions.ECMAScript);
+            MatchEvaluator matchevaluator = mt1 => str.Substring(0, mt1.Groups[1].Length) + mt1.Groups[2];
+            result = Regex.Replace(str, "(.+)(@.+)",matchevaluator, RegexOptions.ECMAScript);
 
             // row as line
             str = "Temorrow is good day, row is row 10";
-            result = Regex.Replace(str, @"\brow\b", "line");
+            result = Regex.Replace(str, @"\brow\b","line");
 
             //wiederholt word
             str = "aabb ccddd";
@@ -728,7 +729,7 @@ namespace LinqFunctions
 
             //Match word with doppelt char
             str = "one two three zoo";
-            MatchCollection rmt = Regex.Matches(str, @"[a-z]*[a-z]\1+[a-z]*");
+            MatchCollection rmtc = Regex.Matches(str,@"[a-z]*[a-z]\1+[a-z]*");
         }
 
         private void CardNumber()
@@ -1128,98 +1129,105 @@ namespace LinqFunctions
             string path = @"C:\Users\g.he\Documents\CSharp\Git\LinqFunctions\LinqFunctions\PersonClass.dll";
 
             #region Solution
-            ////Create Assembly
             //Assembly asm = Assembly.LoadFile(path);
 
-            ////Get Types
+            ////Get types
             //Type[] types = asm.GetTypes();
 
-            ////Get one type
+            ////Get Public Type
+            //Type[] publicTypes = asm.GetExportedTypes();
+
+            ////Get type
             //Type typePerson = asm.GetType("PersonClass.Person");
 
             ////Get Method
             //MethodInfo method = typePerson.GetMethod("SayHi", new Type[] { });
 
-            ////Create Instanze
-            //object obj = Activator.CreateInstance(typePerson);
-
-            ////Method Invoke
-            //method.Invoke(obj, null);
-
             ////Get Method with parameter
             //MethodInfo method1 = typePerson.GetMethod("SayHi", new Type[] { typeof(string) });
-            //method1.Invoke(obj, new object[] { "aaa" });
+
+            ////Create Instance
+            //object obj = Activator.CreateInstance(typePerson);
 
             ////Get Construtor
             //ConstructorInfo construtor = typePerson.GetConstructor(new Type[] { typeof(string) });
 
-            ////Instanze with Construtor
-            //object obj1 = construtor.Invoke(new object[] { "bbb" });
+            ////Get Instance
+            //object obj1 = construtor.Invoke(new object[] { "Lithum" });
 
-            ////Get Properties
+            ////Invoke method
+            //method1.Invoke(obj1, new object[] { "Lead" });
+
+            ////Get Property 
             //PropertyInfo property = typePerson.GetProperty("Name");
-            //string name = property.GetValue(obj1, null).ToString();
 
-            ////entscheiden, ob Reference accept
-            //Type typeFather = typeof(Father);
-            //Type typeSon = typeof(Son);
-            //bool b = typeFather.IsAssignableFrom(typeSon);
+            ////Get Property from object
+            //property.GetValue(obj1);
+
+            ////Set Property
+            //property.SetValue(obj1, new object[] { "Blei" });
+
+            ////Is Assignable From
+            //Type father = typeof(Father);
+            //bool b1 = father.IsAssignableFrom(typeof(Son));
 
             ////Is Instance
-            //b = typeFather.IsInstanceOfType(obj);
+            //bool b2 = typePerson.IsInstanceOfType(obj1);
 
             ////Is subClass
-            //b = typeSon.IsSubclassOf(typeFather);
+            //bool b3 = typePerson.IsSubclassOf(typeof(object));
 
-            ////Get Private Method
-            //Type typePerson1 = typeof(Person);
-            //MethodInfo privatemethod = typePerson1.GetMethod("SayHi", BindingFlags.NonPublic | BindingFlags.Instance);
-            //privatemethod.Invoke(Activator.CreateInstance(typePerson1), null);
+            ////Get private Method
+            //MethodInfo privateMethod = typePerson.GetMethod("Getone", BindingFlags.NonPublic | BindingFlags.Instance); 
             #endregion
+            //Get Assembly
             Assembly asm = Assembly.LoadFile(path);
 
-            //Get types
+            //Get Types
             Type[] types = asm.GetTypes();
 
-            //Get Public Type
+            //Get public Types
             Type[] publicTypes = asm.GetExportedTypes();
 
-            //Get type
-            Type typePerson = asm.GetType("PersionClass.Person");
+            //Get Type
+            Type typePerson = asm.GetType("PersonClass.Person");
 
-            //Get Method
-            MethodInfo method = typePerson.GetMethod("SayHi", new Type[] { });
-
-            //Get Method with parameter
-            MethodInfo Method1 = typePerson.GetMethod("SayHi", new Type[] { typeof(string) });
-
-            //Create Instance
+            //Instance
             object obj = Activator.CreateInstance(typePerson);
 
-            //Get Construtor
-            ConstructorInfo construtor = typePerson.GetConstructor(new Type[] { typeof(string) });
+            //Constructor
+            ConstructorInfo constructor = typePerson.GetConstructor(new Type[] { typeof(string) });
 
-            //Get Instance
-            object obj1 = construtor.Invoke(new object[] { "Lithum" });
-
-            //Invoke method
-            Method1.Invoke(obj1, new object[] { "SMA" });
+            //instance with constructor
+            object obj1 = constructor.Invoke(new object[] { "Lithum" });
 
             //Get Property
-            string name = typePerson.GetProperty("Name").ToString();
+            PropertyInfo property = typePerson.GetProperty("Name");
 
-            //Is Assignable From
-            Type typeFather = typeof(Father);
-            bool b1 = typeFather.IsAssignableFrom(typeof(Son));
+            //Get Property value
+            string name = property.GetValue(obj1).ToString();
 
-            //Is Instance
-            bool b2 = typePerson.IsInstanceOfType(obj1);
+            //Set Property value
+            property.SetValue(obj1, new object[] { "Blei" });
 
-            //Is subClass
-            bool b3 = typePerson.IsSubclassOf(typeof(object));
+            //Get Method
+            MethodInfo method = typePerson.GetMethod("Set",new Type[] { typeof(string)});
 
             //Get private Method
-            MethodInfo privateinfo = typePerson.GetMethod("SayA", BindingFlags.NonPublic | BindingFlags.Instance);
+            MethodInfo method2 = typePerson.GetMethod("Set", BindingFlags.NonPublic | BindingFlags.Instance);
+
+            //Method invoke
+            method2.Invoke(obj1, new object[] { "Samsung" });
+
+            //Is Assignable
+            Type father = typeof(Father);
+            bool b1 = father.IsAssignableFrom(typeof(Son));
+
+            //is Instance
+            bool b2 = typePerson.IsInstanceOfType(obj1);
+
+            //is subclass
+            bool b3 = typePerson.IsSubclassOf(typeof(object));
 
         }
         #endregion
@@ -1255,7 +1263,7 @@ namespace LinqFunctions
 
         //public static class PersonExtention
         //{
-        //    public static bool isEail(this Person p)
+        //    public static bool isEmail(this Person p)
         //    {
         //        return false;
         //    }
@@ -1266,9 +1274,9 @@ namespace LinqFunctions
         public class MyClass
         {
             //public
-            //protected internal
             //protected
             //internal
+            //protected internal
             //private
 
             // intern Class Access
@@ -1386,7 +1394,7 @@ namespace LinqFunctions
         //} 
         #endregion
 
-        public class Klasse : IComparable
+        public class Klasse :IComparable
         {
             public string name;
             public int num;
@@ -1397,7 +1405,7 @@ namespace LinqFunctions
 
             public int CompareTo(object obj)
             {
-                return name[0] - ((Klasse)obj).name[0];
+                return this.name[0]-((Klasse)obj).name[0];
             }
         }
 
@@ -1405,9 +1413,10 @@ namespace LinqFunctions
         {
             public int Compare(object x, object y)
             {
-                return (x as Klasse).num - (y as Klasse).num;
+                return ((Klasse)x).num - ((Klasse)y).num;
             }
         }
+
 
         #endregion
 
@@ -1438,12 +1447,11 @@ namespace LinqFunctions
             //    }
             //}    
             #endregion
-            WeakReference wk = new WeakReference(p);
+            WeakReference wr = new WeakReference(p);
             p = null;
-            if (wk.IsAlive)
+            if (wr.IsAlive)
             {
-                object obj = wk.Target;
-                p = obj as Person[];
+                p = wr.Target as Person[];
             }
         }
 
@@ -1477,8 +1485,9 @@ namespace LinqFunctions
         {
             public virtual string SayNationality()
             {
-                return "";
+                return "p";
             }
+
         }
 
         public class Chinese : Person
@@ -1503,14 +1512,13 @@ namespace LinqFunctions
         abstract class Animal
         {
             public string Name { get; set; }
-            public abstract void SayHi();
+            public abstract string Say(string str);
         }
-
         class Cat : Animal
         {
-            public override void SayHi()
+            public override string Say(string str)
             {
-                MessageBox.Show("Cat");
+                return str;
             }
         }
 
@@ -1522,7 +1530,7 @@ namespace LinqFunctions
             int result;
             result = int.Parse(numstr);
 
-            if (int.TryParse(numstr, out result)) MessageBox.Show("erfolg");
+            if (int.TryParse(numstr, out result)) MessageBox.Show("") ;
 
             return result;
         }
@@ -1549,18 +1557,100 @@ namespace LinqFunctions
         #endregion
 
         #region Foreach
-        private string ForeachContent()
-        {
-            string result = "";
-            foreach (string item in new EnumClass())
-            {
-                result += item + " ";
-            }
-            return result;
-        }
+        #region Solution
+        //private string ForeachContent()
+        //{
+        //    string result = "";
+        //    foreach (string item in new EnumClass())
+        //    {
+        //        result += item + " ";
+        //    }
+        //    return result;
+        //}
 
-        #region Method 1
-        //public class EnumClass:IEnumerable
+        //#region Method 1
+        ////public class EnumClass:IEnumerable
+        ////{
+        ////    string[] NameList = new string[] { "SMA", "Solarwatt", "Sonnen" };
+        ////    public string this[int index]
+        ////    {
+        ////        get
+        ////        {
+        ////            return NameList[index];
+        ////        }
+
+        ////        set
+        ////        {
+        ////            NameList[index] = value;
+        ////        }
+        ////    }
+
+        ////    public IEnumerator GetEnumerator()
+        ////    {
+        ////        return new ClassEnumerator(NameList);
+        ////    }
+        ////}
+
+        ////public class ClassEnumerator : IEnumerator
+        ////{
+        ////    string[] _namelist;
+        ////    public ClassEnumerator(string[] NameList)
+        ////    {
+        ////        _namelist = NameList;
+        ////    }
+        ////    private int index=-1;
+
+        ////    public object Current
+        ////    {
+        ////        get
+        ////        {
+        ////            if (index < -1 || index > _namelist.Length - 1) return null;
+        ////            return _namelist[index];
+        ////        }
+        ////    }
+
+        ////    public bool MoveNext()
+        ////    {
+        ////        if (index < -1 || index > _namelist.Length-1) return false;
+        ////        index++;
+        ////        return true;
+        ////    }
+
+        ////    public void Reset()
+        ////    {
+        ////        index = -1;
+        ////    }
+        ////} 
+        //#endregion
+
+        //#region Method 2
+        ////public class EnumClass
+        ////{
+        ////    string[] NameList = new string[] { "SMA", "Solarwatt", "Sonnen" };
+        ////    public string this[int index]
+        ////    {
+        ////        get
+        ////        {
+        ////            return NameList[index];
+        ////        }
+
+        ////        set
+        ////        {
+        ////            NameList[index] = value;
+        ////        }
+        ////    }
+        ////    public IEnumerable GetEnumerable()
+        ////    {
+        ////        for (int i = 0; i < NameList.Length - 1; i++)
+        ////        {
+        ////            yield return NameList[i];
+        ////        }
+        ////    }
+        ////} 
+        //#endregion
+
+        //#region Method 3
+        //public class EnumClass
         //{
         //    string[] NameList = new string[] { "SMA", "Solarwatt", "Sonnen" };
         //    public string this[int index]
@@ -1578,31 +1668,68 @@ namespace LinqFunctions
 
         //    public IEnumerator GetEnumerator()
         //    {
-        //        return new ClassEnumerator(NameList);
+        //        for (int i = 0; i < NameList.Length; i++)
+        //        {
+        //            yield return NameList[i];
+        //        }
+        //    }
+        //}
+        //#endregion 
+        #endregion
+
+        private string ForeachContent()
+        {
+            string result = "";
+            foreach (string item in new EnumClass())
+            {
+                result += item + " ";
+            }
+            return result;
+        }
+
+        #region Method 1
+        //public class EnumClass:IEnumerable
+        //{
+        //    string[] NameList = new string[] { "SMA", "Fronius", "Samsung" };
+        //    public string this[int index]
+        //    {
+        //        get
+        //        {
+        //            return NameList[index];
+        //        }
+        //        set
+        //        {
+        //            NameList[index] = value;
+        //        }
+        //    }
+
+        //    public IEnumerator GetEnumerator()
+        //    {
+        //        return new EnumClassEnumerator(NameList);
         //    }
         //}
 
-        //public class ClassEnumerator : IEnumerator
+        //public class EnumClassEnumerator : IEnumerator
         //{
-        //    string[] _namelist;
-        //    public ClassEnumerator(string[] NameList)
+        //    string[] namelist;
+        //    public EnumClassEnumerator(string[] NameList)
         //    {
-        //        _namelist = NameList;
+        //        namelist = NameList;
         //    }
-        //    private int index=-1;
 
+        //    int index = -1;
         //    public object Current
         //    {
         //        get
         //        {
-        //            if (index < -1 || index > _namelist.Length - 1) return null;
-        //            return _namelist[index];
+        //            if (index <= -1 || index > namelist.Length) return null;
+        //            return namelist[index];
         //        }
         //    }
 
         //    public bool MoveNext()
         //    {
-        //        if (index < -1 || index > _namelist.Length-1) return false;
+        //        if (index <= -1 || index > namelist.Length) return false;
         //        index++;
         //        return true;
         //    }
@@ -1611,7 +1738,8 @@ namespace LinqFunctions
         //    {
         //        index = -1;
         //    }
-        //} 
+        //}
+
         #endregion
 
         #region Method 2
@@ -1630,6 +1758,7 @@ namespace LinqFunctions
         //            NameList[index] = value;
         //        }
         //    }
+
         //    public IEnumerable GetEnumerable()
         //    {
         //        for (int i = 0; i < NameList.Length - 1; i++)
@@ -1637,7 +1766,7 @@ namespace LinqFunctions
         //            yield return NameList[i];
         //        }
         //    }
-        //} 
+        //}
         #endregion
 
         #region Method 3
@@ -1664,19 +1793,19 @@ namespace LinqFunctions
                     yield return NameList[i];
                 }
             }
-        } 
+        }
         #endregion
     }
     #endregion
 
         #region Genetic
-        public class GeneticClass<T, K, V, X, Y, Z>
-        where T : struct
-        where K : class
-        where V : IComparable
-        where X : K
-        where Y : class, new()
-        { } 
+    public class GeneticClass<T, K, V, X, Y, Z>
+    where T : struct
+    where K : class
+    where V : IComparable
+    where X : K
+    where Y : class, new()
+    { }
     #endregion
     #endregion
 }

@@ -61,20 +61,21 @@ namespace LinqFunctions.XML
             //root.AppendChild(node);
             //document.Save(@"C:/Users/g.he/Documents/CSharp/Git/LinqFunctions/LinqFunctions/XML/UserXML.xml");
             #endregion
-            string id = tbNewId.Text;
-            if (document.SelectNodes("/Users/user[@id='"+id+"']").Count > 0) return;
+
+            string idstr = tbNewId.Text;
+            if (document.SelectNodes("/Users/user[@id=" + idstr + "]").Count > 0) return;
             XmlElement root = document.DocumentElement;
             XmlElement node = document.CreateElement("user");
-            node.SetAttribute("id",id);
-            XmlElement Nnode = document.CreateElement("name");
-            Nnode.InnerText = tbNeuName.Text;
-            node.AppendChild(Nnode);
-            XmlElement PWnode = document.CreateElement("password");
-            PWnode.InnerText = tbNewPassword.Text;
-            node.AppendChild(PWnode);
+            node.SetAttribute("id", tbNewId.Text);
+            XmlElement nnode = document.CreateElement("name");
+            nnode.InnerText = tbNeuName.Text;
+            XmlElement pnode = document.CreateElement("password");
+            pnode.InnerText = tbNewPassword.Text;
+            node.AppendChild(nnode);
+            node.AppendChild(pnode);
             root.AppendChild(node);
 
-            document.Save(@"C:/Users/g.he/Documents/CSharp/Git/LinqFunctions/LinqFunctions/XML/UserXML.xml"); 
+            document.Save(@"C:/Users/g.he/Documents/CSharp/Git/LinqFunctions/LinqFunctions/XML/UserXML.xml");
             XMLLoad();
             
         }
@@ -139,10 +140,11 @@ namespace LinqFunctions.XML
             //    }
             //} 
             #endregion
-            string id = tbEditId.Text;
-            XmlNode node = document.SelectSingleNode("/Users/user[@id='"+id+"']");
+            string idstr = tbEditId.Text;
+            XmlNode node = document.SelectSingleNode("/Users/user[@id='"+idstr+"']");
             if (node == null) return;
             document.DocumentElement.RemoveChild(node);
+
             document.Save(@"C:/Users/g.he/Documents/CSharp/Git/LinqFunctions/LinqFunctions/XML/UserXML.xml");
             XMLLoad();
         }
@@ -162,11 +164,11 @@ namespace LinqFunctions.XML
             //if (!tbLoginPassword.Text.Equals(pw)) return;
             #endregion
             string nid = tbLoginUsername.Text;
-            XmlNode node = document.SelectSingleNode("/Users/user/name[.='" + nid + "']");
+            XmlNode node = document.SelectSingleNode("/Users/user/name[.='"+nid+"']");
             if (node == null) return;
-            if(node.NextSibling.InnerText.Equals(tbLoginPassword.Text))
+            if (node.NextSibling.InnerText == tbLoginPassword.Text)
             {
-                MessageBox.Show("Angepasst");
+                MessageBox.Show("fertig");
             }
         }
 
@@ -181,7 +183,7 @@ namespace LinqFunctions.XML
             //node.SelectSingleNode("name").InnerText = tbEditUsername.Text;
             //node.SelectSingleNode("password").InnerText = tbEditPassword.Text;
             #endregion
-            XmlNode node = document.DocumentElement.SelectSingleNode("user[@id='"+tbEditId.Text+"']");
+            XmlNode node = document.SelectSingleNode("/Users/user[@id="+tbEditId.Text+"]");
             if (node == null) return;
             node.SelectSingleNode("name").InnerText = tbEditUsername.Text;
             node.SelectSingleNode("password").InnerText = tbEditPassword.Text;
