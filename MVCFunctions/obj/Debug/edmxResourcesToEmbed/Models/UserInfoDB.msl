@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="UserInfoDBStoreContainer" CdmEntityContainer="UserInfoDBContainer">
+    <EntitySetMapping Name="UserInfoSet">
+      <EntityTypeMapping TypeName="IsTypeOf(UserInfoDB.UserInfo)">
+        <MappingFragment StoreEntitySet="UserInfoSet">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="UserAge" ColumnName="UserAge" />
+          <ScalarProperty Name="ClassInfoClassId" ColumnName="ClassInfoClassId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderInfo">
+      <EntityTypeMapping TypeName="IsTypeOf(UserInfoDB.OrderInfo)">
+        <MappingFragment StoreEntitySet="OrderInfo">
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="OrderName" ColumnName="OrderName" />
+          <ScalarProperty Name="UserInfoUserId" ColumnName="UserInfoUserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ClassInfo">
+      <EntityTypeMapping TypeName="IsTypeOf(UserInfoDB.ClassInfo)">
+        <MappingFragment StoreEntitySet="ClassInfo">
+          <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+          <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

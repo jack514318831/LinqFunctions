@@ -109,6 +109,11 @@
     <Compile Include="WPFClass\ContentElement\Window1.xaml.cs">
       <DependentUpon>Window1.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WPFClass\Dependency\CustomStackPanel.cs" />
+    <Compile Include="WPFClass\Dependency\DependencyWindow.xaml.cs">
+      <DependentUpon>DependencyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPFClass\Dependency\PersonDependency.cs" />
     <Compile Include="WPFClass\ExXaml\Programm1.cs" />
     <Compile Include="WPFClass\ExXaml\WindowMain.xaml.cs">
       <DependentUpon>WindowMain.xaml</DependentUpon>
@@ -170,6 +175,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WPFClass\ContentElement\Window1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPFClass\Dependency\DependencyWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

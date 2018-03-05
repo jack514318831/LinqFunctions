@@ -827,6 +827,11 @@ namespace LinqFunctions
                 WPFClass.VisualObject win = new WPFClass.VisualObject();
                 win.ShowDialog();
             }
+            else if (CB_wpf.Text.Equals("Dependency"))
+            {
+                WPFClass.Dependency.DependencyWindow win = new WPFClass.Dependency.DependencyWindow();
+                win.ShowDialog();
+            }
         }
 
 
@@ -1795,10 +1800,15 @@ namespace LinqFunctions
             }
         }
         #endregion
+
+        private void CB_wpf_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
     #endregion
 
-        #region Genetic
+    #region Genetic
     public class GeneticClass<T, K, V, X, Y, Z>
     where T : struct
     where K : class

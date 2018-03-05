@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="UserInfoDB" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="UserInfoDBContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="UserInfoSet" EntityType="UserInfoDB.UserInfo" />
+    <EntitySet Name="OrderInfo" EntityType="UserInfoDB.OrderInfo" />
+    <AssociationSet Name="UserInfoOrderInfo" Association="UserInfoDB.UserInfoOrderInfo">
+      <End Role="UserInfo" EntitySet="UserInfoSet" />
+      <End Role="OrderInfo" EntitySet="OrderInfo" />
+    </AssociationSet>
+    <EntitySet Name="ClassInfo" EntityType="UserInfoDB.ClassInfo" />
+    <AssociationSet Name="FK_ClassInfoUserInfo" Association="UserInfoDB.FK_ClassInfoUserInfo">
+      <End Role="ClassInfo" EntitySet="ClassInfo" />
+      <End Role="UserInfo" EntitySet="UserInfoSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="UserInfo">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Email" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="UserAge" Type="Int16" Nullable="true" />
+    <NavigationProperty Name="OrderInfo" Relationship="UserInfoDB.UserInfoOrderInfo" FromRole="UserInfo" ToRole="OrderInfo" />
+    <Property Name="ClassInfoClassId" Type="Int32" Nullable="true" />
+    <NavigationProperty Name="ClassInfo" Relationship="UserInfoDB.FK_ClassInfoUserInfo" FromRole="UserInfo" ToRole="ClassInfo" />
+  </EntityType>
+  <EntityType Name="OrderInfo">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="UserInfo" Relationship="UserInfoDB.UserInfoOrderInfo" FromRole="OrderInfo" ToRole="UserInfo" />
+    <Property Name="UserInfoUserId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="UserInfoOrderInfo">
+    <End Type="UserInfoDB.UserInfo" Role="UserInfo" Multiplicity="1" />
+    <End Type="UserInfoDB.OrderInfo" Role="OrderInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfo">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="OrderInfo">
+        <PropertyRef Name="UserInfoUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ClassInfo">
+    <Key>
+      <PropertyRef Name="ClassId" />
+    </Key>
+    <Property Name="ClassId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClassName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="UserInfoSet" Relationship="UserInfoDB.FK_ClassInfoUserInfo" FromRole="ClassInfo" ToRole="UserInfo" />
+  </EntityType>
+  <Association Name="FK_ClassInfoUserInfo">
+    <End Type="UserInfoDB.ClassInfo" Role="ClassInfo" Multiplicity="0..1" />
+    <End Type="UserInfoDB.UserInfo" Role="UserInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ClassInfo">
+        <PropertyRef Name="ClassId" />
+      </Principal>
+      <Dependent Role="UserInfo">
+        <PropertyRef Name="ClassInfoClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

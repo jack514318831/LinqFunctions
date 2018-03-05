@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="UserInfoDB.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ClassInfo">
+    <Key>
+      <PropertyRef Name="ClassId" />
+    </Key>
+    <Property Name="ClassId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClassName" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrderInfo">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrderName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UserInfoUserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserInfoSet">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" />
+    <Property Name="UserAge" Type="int" />
+    <Property Name="ClassInfoClassId" Type="int" />
+  </EntityType>
+  <Association Name="FK_ClassInfoUserInfo">
+    <End Role="ClassInfo" Type="Self.ClassInfo" Multiplicity="0..1" />
+    <End Role="UserInfoSet" Type="Self.UserInfoSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ClassInfo">
+        <PropertyRef Name="ClassId" />
+      </Principal>
+      <Dependent Role="UserInfoSet">
+        <PropertyRef Name="ClassInfoClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserInfoOrderInfo">
+    <End Role="UserInfoSet" Type="Self.UserInfoSet" Multiplicity="1" />
+    <End Role="OrderInfo" Type="Self.OrderInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfoSet">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="OrderInfo">
+        <PropertyRef Name="UserInfoUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="UserInfoDBStoreContainer">
+    <EntitySet Name="ClassInfo" EntityType="Self.ClassInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderInfo" EntityType="Self.OrderInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserInfoSet" EntityType="Self.UserInfoSet" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ClassInfoUserInfo" Association="Self.FK_ClassInfoUserInfo">
+      <End Role="ClassInfo" EntitySet="ClassInfo" />
+      <End Role="UserInfoSet" EntitySet="UserInfoSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserInfoOrderInfo" Association="Self.FK_UserInfoOrderInfo">
+      <End Role="UserInfoSet" EntitySet="UserInfoSet" />
+      <End Role="OrderInfo" EntitySet="OrderInfo" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

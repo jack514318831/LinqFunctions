@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $('#btnTime').click(function () {
+            $.ajax({
+                url: "/Ajax/ShowTime",
+                success: function (data) { alert(data) }
+                });
+            });
+        });
+</script>
+
+<input type="button" id="btnTime" value="Get Time"/>
+
+@Ajax.BeginForm("ShowTime", "Ajax", new AjaxOptions
+{
+    HttpMethod = "Post",
+    UpdateTargetId = "div1",
+    InsertionMode = InsertionMode.Replace,
+    LoadingElementId = "wait"
+})
+{
+   <input type="submit"/>
+}
+@{Html.EndForm();}
+<img id="wait" src="adf/adf" style="display:none"/>
+<div id="div1">
+</div>
+

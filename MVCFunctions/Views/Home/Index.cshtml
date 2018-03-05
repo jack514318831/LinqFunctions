@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@*Solution*@
+@Html.DropDownList("CityList")
+@Html.ActionLink("To About", "About", "Home")
+@Html.MyLabel("aaa");
+@{
+
+    var p1 =  ViewData["Person"] as MVCFunctions.Models.PersonInfo;
+    var p2 = ViewData.Model;
+} 
+@p1.PersonName
+@p2.PersonName

@@ -1,0 +1,17 @@
+﻿<Window x:Class="LinqFunctions.WPFClass.Dependency.DependencyWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LinqFunctions.WPFClass.Dependency"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="DependencyWindow" Height="300" Width="300">
+    <Grid>
+        <local:CustomStackPanel x:Name="customStackPanle" MinDate="{x:Static sys:DateTime.Now}">
+            <!--CustomStackPanel的依赖属性-->
+            <ContentPresenter Content="{Binding Path=MinDate, ElementName=customStackPanle}"/>
+            <local:CustomButton Content="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=MinDate}" Height="25"/>
+        </local:CustomStackPanel>
+    </Grid>
+</Window>
