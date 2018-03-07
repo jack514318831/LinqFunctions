@@ -1,0 +1,11 @@
+C:\Git\LinqFunctions\OA.EFModel\bin\Debug\OA.EFModel.dll.config
+C:\Git\LinqFunctions\OA.EFModel\bin\Debug\OA.EFModel.dll
+C:\Git\LinqFunctions\OA.EFModel\bin\Debug\OA.EFModel.pdb
+C:\Git\LinqFunctions\OA.EFModel\bin\Debug\EntityFramework.dll
+C:\Git\LinqFunctions\OA.EFModel\bin\Debug\EntityFramework.SqlServer.dll
+C:\Git\LinqFunctions\OA.EFModel\bin\Debug\EntityFramework.xml
+C:\Git\LinqFunctions\OA.EFModel\bin\Debug\EntityFramework.SqlServer.xml
+C:\Git\LinqFunctions\OA.EFModel\bin\Debug\de\EntityFramework.resources.dll
+C:\Git\LinqFunctions\OA.EFModel\obj\Debug\OA.EFModel.csprojResolveAssemblyReference.cache
+C:\Git\LinqFunctions\OA.EFModel\obj\Debug\OA.EFModel.dll
+C:\Git\LinqFunctions\OA.EFModel\obj\Debug\OA.EFModel.pdb

@@ -1,0 +1,15 @@
+C:\Git\LinqFunctions\OA.BLL\bin\Debug\OA.BLL.dll
+C:\Git\LinqFunctions\OA.BLL\bin\Debug\OA.BLL.pdb
+C:\Git\LinqFunctions\OA.BLL\bin\Debug\OA.EFDAL.dll
+C:\Git\LinqFunctions\OA.BLL\bin\Debug\OA.EFModel.dll
+C:\Git\LinqFunctions\OA.BLL\bin\Debug\OA.InterfaceSet.dll
+C:\Git\LinqFunctions\OA.BLL\bin\Debug\EntityFramework.dll
+C:\Git\LinqFunctions\OA.BLL\bin\Debug\OA.EFDAL.pdb
+C:\Git\LinqFunctions\OA.BLL\bin\Debug\OA.EFModel.pdb
+C:\Git\LinqFunctions\OA.BLL\bin\Debug\OA.EFModel.dll.config
+C:\Git\LinqFunctions\OA.BLL\bin\Debug\OA.InterfaceSet.pdb
+C:\Git\LinqFunctions\OA.BLL\bin\Debug\EntityFramework.xml
+C:\Git\LinqFunctions\OA.BLL\bin\Debug\de\EntityFramework.resources.dll
+C:\Git\LinqFunctions\OA.BLL\obj\Debug\OA.BLL.csprojResolveAssemblyReference.cache
+C:\Git\LinqFunctions\OA.BLL\obj\Debug\OA.BLL.dll
+C:\Git\LinqFunctions\OA.BLL\obj\Debug\OA.BLL.pdb
